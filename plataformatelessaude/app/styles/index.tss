@@ -1,15 +1,39 @@
 ".container": {
-	backgroundColor:"white"
+    backgroundColor: "#fff",
+    layout: "vertical",
+    padding: 20
 }
 
-"Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: "#000"
+".form": {
+    layout: "vertical",
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE
 }
 
-"#label": {
-	font: {
-		fontSize: 12
-	}
+".header": {
+    font: { fontSize: 24, fontWeight: "bold" },
+    textAlign: "center",
+    color: "#000",
+    top: 20,
+    marginBottom: 10
+}
+
+".input": {
+    width: Ti.UI.FILL,
+    height: 40,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 10,
+    paddingLeft: 10
+}
+
+"Button": {
+    width: Ti.UI.FILL,
+    height: 50,
+    font: { fontSize: 18 },
+    color: "#fff",
+    backgroundColor: "#007aff",
+    borderRadius: 5,
+    margin: 10
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.tidev.io">
-	<id>com.er.g5</id>
-	<name>plataformatelessaude</name>
+	<id>com.er.pts</id>
+	<name>Plataforma_TeleSaude</name>
 	<version>1.0</version>
 	<publisher>not specified</publisher>
 	<url/>
@@ -10,7 +10,7 @@
 	<icon>appicon.png</icon>
 	<fullscreen>false</fullscreen>
 	<navbar-hidden>false</navbar-hidden>
-	<guid>e77cddc4-60a3-4df6-8703-6ea939956b50</guid>
+	<guid>bee1d1cd-8dfb-4f40-b658-f9b22354ab47</guid>
 	<property name="ti.ui.defaultunit" type="string">dp</property>
 	<property name="run-on-main-thread" type="bool">true</property>
 	<ios>
