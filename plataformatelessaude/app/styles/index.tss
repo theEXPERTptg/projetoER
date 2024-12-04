@@ -1,28 +1,39 @@
 ".container": {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    layout: "vertical",
+    padding: 20
 }
 
-".Button": {
+".form": {
+    layout: "vertical",
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE
+}
+
+".header": {
+    font: { fontSize: 24, fontWeight: "bold" },
+    textAlign: "center",
+    color: "#000",
+    top: 20,
+    marginBottom: 10
+}
+
+".input": {
+    width: Ti.UI.FILL,
+    height: 40,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 10,
+    paddingLeft: 10
+}
+
+"Button": {
     width: Ti.UI.FILL,
     height: 50,
-    top: 50,
-    margin: 10,
     font: { fontSize: 18 },
-    color: "#000"
-}
-
-"#registerBtn": {
-	color:"#111",
-	height: 50,
-    top: 100,
-    margin: 10,
-
-}
-
-"#loginBtn":{
-	color:"#111",
-	height: 50,
-    top: 50,
-    margin: 10,
-
+    color: "#fff",
+    backgroundColor: "#007aff",
+    borderRadius: 5,
+    margin: 10
 }

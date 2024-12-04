@@ -1,9 +1,0 @@
-<Alloy>
-    <Window class="container">
-        <Label text="Login" class="header"></Label>
-        <TextField id="username" hintText="Username" class="input"></TextField>
-        <TextField id="password" hintText="Password" passwordMask="true" class="input"></TextField>
-        <Button id="loginSubmit" title="Login" onClick="submitLogin"></Button>
-        <Button id="backToHome" title="Back" onClick="goBack"></Button>
-    </Window>
-</Alloy>

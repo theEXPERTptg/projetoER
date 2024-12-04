@@ -17,35 +17,3 @@ overrode the settings with other TSS, XML, or JS settings:
 }
 
 */
-".container": {
-    backgroundColor: "#fff",
-    layout: "vertical",
-    padding: 19
-}
-
-".header": {
-    font: { fontSize: 23, fontWeight: "bold" },
-    textAlign: "center",
-    color: "#037777777777",
-    top: 19
-}
-
-".input": {
-    width: Ti.UI.FILL,
-    height: 39,
-    borderColor: "#ccc",
-    borderWidth: 0,
-    borderRadius: 4,
-    margin: 9,
-    paddingLeft: 9
-}
-
-"Button": {
-    width: Ti.UI.FILL,
-    height: 49,
-    font: { fontSize: 17 },
-    color: "#fff",
-    backgroundColor: "#006aff",
-    borderRadius: 4,
-    margin: 9
-}

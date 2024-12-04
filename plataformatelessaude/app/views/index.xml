@@ -1,6 +1,22 @@
 <Alloy>
-    <Window class="container">
-        <Button id="loginBtn" title="Login" onClick="goToLogin"></Button>
-        <Button id="registerBtn" title="Register" onClick="goToRegister"></Button>
+    <Window id="mainWindow" class="container">
+        <!-- Login Form -->
+        <View id="loginForm" class="form">
+            <Label text="Login" class="header"></Label>
+            <TextField id="loginUsername" hintText="Username" class="input"></TextField>
+            <TextField id="loginPassword" hintText="Password" passwordMask="true" class="input"></TextField>
+            <Button id="loginSubmit" title="Login" onClick="submitLogin"></Button>
+            <Button id="showRegister" title="Go to Register" onClick="showRegisterForm"></Button>
+        </View>
+
+        <!-- Register Form -->
+        <View id="registerForm" class="form" visible="false">
+            <Label text="Register" class="header"></Label>
+            <TextField id="registerUsername" hintText="Username" class="input"></TextField>
+            <TextField id="registerPassword" hintText="Password" passwordMask="true" class="input"></TextField>
+            <TextField id="confirmPassword" hintText="Confirm Password" passwordMask="true" class="input"></TextField>
+            <Button id="registerSubmit" title="Register" onClick="submitRegister"></Button>
+            <Button id="showLogin" title="Back to Login" onClick="showLoginForm"></Button>
+        </View>
     </Window>
 </Alloy>
