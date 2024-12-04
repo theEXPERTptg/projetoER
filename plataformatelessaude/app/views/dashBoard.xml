@@ -1,0 +1,117 @@
+<Alloy>
+    <Window id="mainWindow" class="container">
+        <!-- Top Container for User Profile -->
+        <View class="profileContainer">
+            <!-- User Info Container -->
+            <View id="userInfo" class="userInfo">
+                <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
+                <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
+            </View>
+
+            <!-- Upcoming Appointments Container -->
+            <View id="upcomingAppointments">
+                <Label id="appointmentTitle" class="appointmentTitle" text="Upcoming Appointments"></Label>
+                <Label id="appointmentDetails" class="appointmentDetails" text="Consultation - General - 25-12 13:15"></Label>
+            </View>
+
+            <!-- Buttons Container -->
+            <View id="buttonContainer" class="buttonContainer">
+                <Button id="HomeBtn" title="Home" class="button" onClick="showHome" backgroundColor="#789E9E"></Button>
+                <Button id="ScheduleBtn" title="Schedule" class="button" onClick="showSchedule"></Button>
+                <Button id="HealthBtn" title="Health Metrics" class="button" onClick="showHealth"></Button>
+            </View>
+        </View>
+
+        <!-- Scrollable View for Additional Content -->
+        <ScrollView id="homeContent" class="scrollableContainer">
+            <View id="scrollableInnerView" class="scrollableInnerView">
+                <!-- Add multiple child views here -->
+                <View class="scrollableItem" >
+                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
+                    <View class="scrollableItemContent" backgroundColor="#888">
+                        <View class="scrollableItemApointmentText">
+                            <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
+                            <Label class="scollableItemContextText" text="Consultation - General"></Label>
+                            <Label class="scollableItemContextText" text="25-12-2024 13:15"></Label>
+                        </View>
+      
+                        <View class="scrollableItemButtons">
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
+                        </View>
+                    </View>
+                </View>
+                <View class="scrollableItem" >
+                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
+                    <View class="scrollableItemContent" backgroundColor="#888">
+                        <View class="scrollableItemApointmentText">
+                            <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
+                            <Label class="scollableItemContextText" text="Surgery"></Label>
+                            <Label class="scollableItemContextText" text="26-12-2024 19:15"></Label>
+                        </View>
+      
+                        <View class="scrollableItemButtons">
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
+                        </View>
+                    </View>
+                </View>
+                <View class="scrollableItem" >
+                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
+                    <View class="scrollableItemContent" backgroundColor="#888">
+                        <View class="scrollableItemApointmentText">
+                            <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
+                            <Label class="scollableItemContextText" text="Consultation - Check Up"></Label>
+                            <Label class="scollableItemContextText" text="12-01-2024 12:00"></Label>
+                        </View>
+      
+                        <View class="scrollableItemButtons">
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
+                        </View>
+                    </View>
+                </View>
+                <View class="scrollableItem">           
+                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
+                    <View class="scrollableItemContent" backgroundColor="#888">
+                        <View class="scrollableItemApointmentText">
+                            <Label class="scrollableItemContentTitle" text="Notification"></Label>
+                            <Label class="scollableItemContextText" text="Your results are back!"></Label>
+                            <Label class="scollableItemContextText" text="by: Dr Johnny"></Label>
+                        </View>
+      
+                        <View class="scrollableItemButtons">
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
+                        </View>
+                    </View>
+                </View>
+                <View class="scrollableItem">
+                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
+                    <View class="scrollableItemContent" backgroundColor="#888">
+                    <View class="scrollableItemApointmentText">
+                        <Label class="scrollableItemContentTitle" text="Reminder"></Label>
+                        <Label class="scollableItemContextText" text="TAKE YOUR PILLS"></Label>
+                        <Label class="scollableItemContextText" text="Today - 20:00"></Label>
+                    </View>
+    
+                    <View class="scrollableItemButtons">
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
+                    </View>
+                </View>
+            </View>
+        </ScrollView>
+
+    </Window>
+</Alloy>

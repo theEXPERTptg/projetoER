@@ -1,22 +1,61 @@
 <Alloy>
-    <Window id="mainWindow" class="container">
-        <!-- Login Form -->
-        <View id="loginForm" class="form">
-            <Label text="Login" class="header"></Label>
-            <TextField id="loginUsername" hintText="Username" class="input"></TextField>
-            <TextField id="loginPassword" hintText="Password" passwordMask="true" class="input"></TextField>
-            <Button id="loginSubmit" title="Login" onClick="submitLogin"></Button>
-            <Button id="showRegister" title="Go to Register" onClick="showRegisterForm"></Button>
-        </View>
+    <Window id="mainWindow" class="container" backgroundColor="#789E9E">
+        <!-- Main Container to Center Forms -->
+        <View id="mainContainer" class="OutterLayoutBox">
+            <!-- Login Form -->
+            <View id="loginForm" class="form">
+                <Label text="Login" class="titleBox"></Label>
+                <TextField id="loginUsername" hintText="Username" class="input"></TextField>
+                <TextField id="loginPassword" hintText="Password" passwordMask="true" class="input"></TextField>
+                <Button id="loginSubmit" class="Button" title="Login" onClick="submitLogin"></Button>
+                <Button id="signUp" class="Button1" title="Registo" onClick="showRegisterFormPage1"></Button>
+                <Button id="forgotPassword" class="Button2" title="Forgot Password" onClick="forgotPassword"></Button> <!--TODO change onclick-->
+                <Button id="generateOtpCode" class="Button2" title="Forgot Password" onClick="generateOtpCode"></Button> <!--TODO change onclick-->
+                <!--todo BOTÃO Google aqui-->
+                </View> 
 
-        <!-- Register Form -->
-        <View id="registerForm" class="form" visible="false">
-            <Label text="Register" class="header"></Label>
-            <TextField id="registerUsername" hintText="Username" class="input"></TextField>
-            <TextField id="registerPassword" hintText="Password" passwordMask="true" class="input"></TextField>
-            <TextField id="confirmPassword" hintText="Confirm Password" passwordMask="true" class="input"></TextField>
-            <Button id="registerSubmit" title="Register" onClick="submitRegister"></Button>
-            <Button id="showLogin" title="Back to Login" onClick="showLoginForm"></Button>
+            <!-- Register Form 1/4 -->
+            <View id="registerFormPage1" class="form" visible="false"> 
+                <Label text="Registo" class="titleBox"></Label>
+                <TextField id="name" hintText="Nome" class="input"></TextField>
+                <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
+                <TextField id="gender" hintText="Género" class="input"></TextField>
+                <TextField id="birthDate" hintText="Data de Nascimento" class="input"></TextField>
+                <Button id="next1" title="Próximo (1/4)" onClick="showRegisterFormPage2"></Button> <!--TODO registerpage2-->
+                <Button id="back1" title="Voltar Atrás" onClick="showLoginForm"></Button> 
+            </View>
+                <!--Page 2-->
+            <View id="registerFormPage2" class="form" visible="false"> 
+                <Label text="Registo" class="titleBox"></Label>
+                <TextField id="email" hintText="Email" class="input"></TextField>
+                <TextField id="phoneNumber" hintText="Phone Number" class="input"></TextField>
+                <TextField id="password" hintText="Password" class="input"></TextField>
+                <TextField id="confirmPassword" hintText="Confirm Password" class="input"></TextField>
+                <Button id="next2" title="Próximo (2/4)" onClick="showRegisterFormPage3"></Button> <!--TODO registerpage2-->
+                <Button id="back2" title="Voltar Atrás" onClick="showRegisterFormPage1"></Button>
+            </View>
+
+            <!--Page 3-->
+            <View id="registerFormPage3" class="form" visible="false"> 
+                <Label text="Registo" class="titleBox"></Label>
+                <TextField id="emergencyName" hintText="Nome" class="input"></TextField>
+                <TextField id="emergencyPhoneNumber" hintText="Num. Telemóvel" class="input"></TextField>
+                <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
+                <Button id="next3" title="Próximo (3/4)" onClick="showRegisterFormPage4"></Button> <!--TODO registerpage2-->
+                <Button id="back3" title="Voltar Atrás" onClick="showRegisterFormPage2"></Button>
+            </View>
+
+            <!--Page 4-->
+            <View id="registerFormPage4" class="form" visible="false"> 
+                <Label text="Registo" class="titleBox"></Label>
+                <TextField id="name" hintText="Nome" class="input"></TextField>
+                <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
+                <TextField id="gender" hintText="Género" class="input"></TextField>
+                <TextField id="gender" hintText="Data de Nascimento" class="input"></TextField>
+                <Button id="next4" title="Próximo (4/4)" onClick="register"></Button> <!--TODO register-->
+                <Button id="back4" title="Voltar Atrás" onClick="showRegisterFormPage3"></Button>
+            </View>
+
         </View>
     </Window>
 </Alloy>
