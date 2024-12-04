@@ -1,15 +1,28 @@
 ".container": {
-	backgroundColor:"white"
+    backgroundColor: "#fff"
 }
 
-"Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: "#000"
+".Button": {
+    width: Ti.UI.FILL,
+    height: 50,
+    top: 50,
+    margin: 10,
+    font: { fontSize: 18 },
+    color: "#000"
 }
 
-"#label": {
-	font: {
-		fontSize: 12
-	}
+"#registerBtn": {
+	color:"#111",
+	height: 50,
+    top: 100,
+    margin: 10,
+
+}
+
+"#loginBtn":{
+	color:"#111",
+	height: 50,
+    top: 50,
+    margin: 10,
+
 }

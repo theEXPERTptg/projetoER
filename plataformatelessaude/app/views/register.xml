@@ -1,0 +1,10 @@
+<Alloy>
+    <Window class="container">
+        <Label text="Register" class="header"></Label>
+        <TextField id="username" hintText="Username" class="input"></TextField>
+        <TextField id="password" hintText="Password" passwordMask="true" class="input"></TextField>
+        <TextField id="confirmPassword" hintText="Confirm Password" passwordMask="true" class="input"></TextField>
+        <Button id="registerSubmit" title="Register" onClick="submitRegister"></Button>
+        <Button id="backToHome" title="Back" onClick="goBack"></Button>
+    </Window>
+</Alloy>
