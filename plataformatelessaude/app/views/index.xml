@@ -38,6 +38,7 @@
             <!--Page 3-->
             <View id="registerFormPage3" class="form" visible="false"> 
                 <Label text="Registo" class="titleBox"></Label>
+                <Label id="EmergencyContactText" text="Contacto de Emergência" class="titleBox"></Label>
                 <TextField id="emergencyName" hintText="Nome" class="input"></TextField>
                 <TextField id="emergencyPhoneNumber" hintText="Num. Telemóvel" class="input"></TextField>
                 <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
@@ -50,9 +51,11 @@
                 <Label text="Registo" class="titleBox"></Label>
                 <TextField id="name" hintText="Nome" class="input"></TextField>
                 <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
-                <TextField id="gender" hintText="Género" class="input"></TextField>
-                <TextField id="gender" hintText="Data de Nascimento" class="input"></TextField>
-                <Button id="next4" title="Próximo (4/4)" onClick="register"></Button> <!--TODO register-->
+                <View id="checkboxContainer">
+                    <Switch id="checkbox1" />
+                    <Label id="checkboxLabel" text="Texto" />
+                    </View>
+                <Button id="next4" title="Completar Registo" onClick="register"></Button> <!--TODO register-->
                 <Button id="back4" title="Voltar Atrás" onClick="showRegisterFormPage3"></Button>
             </View>
 

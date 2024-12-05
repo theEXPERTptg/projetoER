@@ -1,6 +1,4 @@
 
-
-
 // Show the Register Form
 function showRegisterFormPage1() {
     $.loginForm.visible = false;  // Hide login form
@@ -54,9 +52,9 @@ function submitLogin() {
     var password = $.loginPassword.value;
 
     //TODO FOR TESTING ONLY
-    alert("fake login");
-    Alloy.createController("dashBoard").getView().open();
-    return;
+    //alert("fake login");
+    //Alloy.createController("dashBoard").getView().open();
+    //return;
 
 
 
@@ -96,12 +94,22 @@ function submitRegister() {
 }
 
 function forgotPassword(){
-
 }
 
 function generateOtpCode(){
-
 }
+
+//DBUGGING APAGAR DEPOIS---------------
 // Open the main window
+//$.registerFormPage4.visible = false;
+//$.registerFormPage2.visible = false;
+//$.registerFormPage3.visible = false;
+//$.registerFormPage4.visible = true;
+
+//---------------------------------------------
+
+
 $.mainWindow.open();
-submitLogin();
+
+var callRoom = Alloy.createController("callRoom").getView();
+//callRoom.open();

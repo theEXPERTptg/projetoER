@@ -1,4 +1,5 @@
 
+
 function onClick(){
     alert("A tua prima");
 }
@@ -24,4 +25,4 @@ function showHealth(){
     $.HealthBtn.backgroundColor = "#789E9E";
 }
 
-$.mainWindow.open()
+$.callRoom.open()

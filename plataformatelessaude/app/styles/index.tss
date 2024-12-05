@@ -72,3 +72,36 @@
     borderRadius: "50px",
 }
 
+"#EmergencyContactText":{
+     font: {
+        fontSize: 38 
+    },
+    top: 10,
+    padding: 10
+}
+
+"#checkboxContainer": {
+    layout: "horizontal", // Organiza os elementos lado a lado
+    width: Ti.UI.SIZE,
+    height: Ti.UI.SIZE,
+    top: 10,
+    left: 20
+
+}
+
+"#checkbox1": {
+
+    style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX, // Aplica estilo de checkbox no Android
+    width: 20,
+    height: 20,
+    backgroundColor: "grey",
+    borderWidth: 10,
+    borderColor: "darkGrey"
+
+}
+
+"#checkboxLabel": {
+    left: 10, // Espaço entre o checkbox e o texto
+    font: { fontSize: 16 },
+    color: "#333"
+}
