@@ -10,7 +10,7 @@
                 <Button id="loginSubmit" class="Button" title="Login" onClick="submitLogin"></Button>
                 <Button id="signUp" class="Button1" title="Registo" onClick="showRegisterFormPage1"></Button>
                 <Button id="forgotPassword" class="Button2" title="Forgot Password" onClick="forgotPassword"></Button> <!--TODO change onclick-->
-                <Button id="generateOtpCode" class="Button2" title="Forgot Password" onClick="generateOtpCode"></Button> <!--TODO change onclick-->
+                <Button id="generateOtpCode" class="Button2" title="generateOtpCode" onClick="generateOtpCode"></Button> <!--TODO change onclick-->
                 <!--todo BOTÃO Google aqui-->
                 </View> 
 
@@ -20,8 +20,8 @@
                 <TextField id="name" hintText="Nome" class="input"></TextField>
                 <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
                 <TextField id="gender" hintText="Género" class="input"></TextField>
-                <TextField id="birthDate" hintText="Data de Nascimento" class="input"></TextField>
-                <Button id="next1" title="Próximo (1/4)" onClick="showRegisterFormPage2"></Button> <!--TODO registerpage2-->
+                <TextField id="birthDate" hintText="Data de Nascimento (dd/mm/aaaa)" class="input"></TextField>
+                <Button id="next1" title="Próximo (1/4)" onClick="validatePage1"></Button> <!--TODO registerpage2-->
                 <Button id="back1" title="Voltar Atrás" onClick="showLoginForm"></Button> 
             </View>
                 <!--Page 2-->
@@ -49,8 +49,8 @@
             <!--Page 4-->
             <View id="registerFormPage4" class="form" visible="false"> 
                 <Label text="Registo" class="titleBox"></Label>
-                <TextField id="name" hintText="Nome" class="input"></TextField>
-                <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
+                <TextField id="namePage4" hintText="Nome" class="input"></TextField>
+                <TextField id="NifNumberPage4" hintText="NIF" class="input"></TextField>
                 <View id="checkboxContainer">
                     <Switch id="checkbox1" />
                     <Label id="checkboxLabel" text="Texto" />
@@ -59,6 +59,7 @@
                 <Button id="back4" title="Voltar Atrás" onClick="showRegisterFormPage3"></Button>
             </View>
 
+            
         </View>
     </Window>
 </Alloy>

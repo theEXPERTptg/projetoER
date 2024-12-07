@@ -5,7 +5,9 @@ function onClick(){
 }
 
 function showHome(){
+    $.schedule.visible=false;
     $.homeContent.visible=true;
+
     $.HomeBtn.backgroundColor = "#789E9E" ;
     $.ScheduleBtn.backgroundColor = "#B7D8D6";
     $.HealthBtn.backgroundColor = "#B7D8D6";
@@ -13,6 +15,7 @@ function showHome(){
 
 function showSchedule(){
     $.homeContent.visible=false;
+    $.schedule.visible=true;
     $.HomeBtn.backgroundColor = "#B7D8D6" ;
     $.ScheduleBtn.backgroundColor = "#789E9E";
     $.HealthBtn.backgroundColor = "#B7D8D6";
@@ -25,4 +28,22 @@ function showHealth(){
     $.HealthBtn.backgroundColor = "#789E9E";
 }
 
-$.callRoom.open()
+function prevMonth(){
+    alert("NOT IMPLEMENTED - prevMonth")
+}
+
+function nextMonth(){
+    alert("NOT IMPLEMENTED - nextMonth")
+}
+
+
+function selectDay(e){
+    var allDays = $.scheduleCalendar.children.filter(child => child.class == "dayRow")
+
+    allDays.forEach(element => {
+        element.backgroundColor = "#F00";
+    });
+
+    var dayUI = e.source; 
+    dayUI.backgroundColor = '#FFD700'; 
+}

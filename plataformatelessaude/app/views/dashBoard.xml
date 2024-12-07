@@ -22,8 +22,98 @@
             </View>
         </View>
 
+
+        <!-- SCHEDULE-->
+        <View id="schedule" visible="false">
+            <View id="scheduleCalendar">
+                <View id="monthSelector">
+                    <View id="prevMonthArrow" class="monthSelectorText" onClick="prevMonth"><Label text="<" color="black"></Label></View>
+                    <View id="currentMonthAndYear" class="monthSelectorText"><Label text="December 2024" color="black"></Label></View>
+                    <View id="prevMonthArrow" class="monthSelectorText" onClick="nextMonth"><Label text=">" color="black"></Label></View>
+                    
+                
+                </View>
+                <View id="weekDays">
+                    <View class="calendarDay"><Label class="weekDayLable">S</Label></View>
+                    <View class="calendarDay"><Label class="weekDayLable">M</Label></View>
+                    <View class="calendarDay"><Label class="weekDayLable">T</Label></View>
+                    <View class="calendarDay"><Label class="weekDayLable">W</Label></View>
+                    <View class="calendarDay"><Label class="weekDayLable">T</Label></View>
+                    <View class="calendarDay"><Label class="weekDayLable">F</Label></View>
+                    <View class="calendarDay"><Label class="weekDayLable">S</Label></View>
+                </View>
+                <View id="row1" class="dayRow">
+                    <View class="calendarDay" onClick="selectDay" >
+                        <View class="calendarDayNumber" backgroundColor="#FFF" ><Label class="calendarDayLable">1</Label></View>
+                        <View class="calendarDayEventMarkersContainer" backgroundColor="#000">
+                        </View>
+                    </View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                </View>
+                 <View id="row2" class="dayRow">
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                
+                </View>
+                 <View id="row3" class="dayRow">
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                
+                </View>
+                 <View id="row4" class="dayRow">
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                
+                </View>
+                 <View id="row5" class="dayRow">
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                    <View class="calendarDay"></View>
+                
+                </View>
+            </View>
+            <ScrollView id="scheduleConsultationList">
+            
+            
+            </ScrollView>
+            <View id="scheduleScheduleConsultation" visible="false">
+
+            </View>
+            <View id="scheduleRescheduleConsultation" visible="false">
+            
+            </View>
+
+        </View>
+
+
         <!-- Scrollable View for Additional Content -->
-        <ScrollView id="homeContent" class="scrollableContainer">
+        <!-- HOME SCREEN-->
+        
+        <ScrollView id="homeContent" class="scrollableContainer" visible="true">
             <View id="scrollableInnerView" class="scrollableInnerView">
                 <!-- Add multiple child views here -->
                 <View class="scrollableItem" >
@@ -112,6 +202,7 @@
                 </View>
             </View>
         </ScrollView>
+        
 
     </Window>
 </Alloy>

@@ -36,6 +36,21 @@
     left: "5%"
 }
 
+
+".speciality": {
+    color: "#ffffff",
+    width: "65%",
+    font: {
+        fontSize: 20,
+        fontWeight: "bold"
+        
+    },
+    color: "#000",
+    textAlign: "left",
+    left: "5%"
+}
+
+
 ".userPhoto": {
     width: "25%", // Adjust width as per requirement
     height: "90%", // Fit the height of the parent container
@@ -45,6 +60,7 @@
     borderWidth: 5,
     borderColor: "#4D6466"
 }
+
 
 "#upcomingAppointments": {
     width: Ti.UI.FILL,
@@ -171,4 +187,109 @@
 
 ".cancelButton":{
     backgroundColor: "#F00"
+}
+
+
+
+"#scheduleCalendar":{
+    backgroundColor: "#EEF3D8",
+    height: "60%"
+
+}
+
+"#scheduleConsultationList":{
+    backgroundColor: "#F00",
+    height: "60%"
+}
+
+"#scheduleScheduleConsultation":{
+    backgroundColor: "#0F0",
+    height: "40%"
+}
+
+"#scheduleRescheduleConsultation":{
+    backgroundColor:"#00F",
+    height: "40%"
+}
+
+"#schedule":{
+    top: "32%", // Below the profile container
+    left: "3%",
+    right: "3%",
+    bottom: "3%",
+    layout: "vertical",
+    backgroundColor: "#EEF3D8",
+    borderRadius: 10,
+}
+
+"#monthSelector": {
+    height:"10%",
+    backgroundColor: "#EEF3D8",
+    top:"1%",
+    layout: 'horizontal'
+}
+
+"#weekDays":{
+
+    height:"5%",
+    backgroundColor: "#000",
+    top: "12%",
+    layout: 'horizontal'
+    
+}
+
+".dayRow":{
+    height: "15%" ,
+    backgroundColor: "#EEF3D8",
+    layout: "horizontal"
+}
+
+"#row1": {
+    top	:"18%"
+}
+"#row2": {
+    top	:"34%"
+}
+"#row3": {
+    top	:"50%"
+}
+"#row4": {
+    top	:"66%"
+}
+"#row5": {
+    top	:"82%"
+}
+
+".calendarDay":{
+    left:"1%",
+    backgroundColor: "#B7D8D6",
+    width: "13.19%",
+    layout: 'vertical'
+}
+
+".weekDayLable": {
+    color:"black",
+    font:{
+        fontSize: 10,
+        fontWeight: "bold"
+    }	
+}
+
+".monthSelectorText": {
+    width: "33.33%"	
+}
+
+".calendarDayNumber": {
+    height: "65%"
+}
+".calendarDayEventMarkersContainer": {
+    height: Ti.UI.FILL	
+}
+
+".calendarDayLable": {
+    color: 'black',
+    font:{
+        font:14,
+        fontWeight: "bold"
+    }	
 }

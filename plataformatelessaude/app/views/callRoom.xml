@@ -1,32 +1,56 @@
 <Alloy>
-    <Window id="mainWindow" class="container">
+    <Window id="callRoom" class="container">
         <!-- Top Container for User Profile -->
-        <View class="profileContainer">
+        <View class="header">
             <!-- User Info Container -->
             <View id="userInfo" class="userInfo">
                 <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
                 <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
-            </View>
+            </View>   
+        </View>
 
-            <!-- Upcoming Appointments Container -->
-            <View id="upcomingAppointments">
-                <Label id="appointmentTitle" class="appointmentTitle" text="Upcoming Appointments"></Label>
-                <Label id="appointmentDetails" class="appointmentDetails" text="Consultation - General - 25-12 13:15"></Label>
-            </View>
-
-            <!-- Buttons Container -->
-            <View id="buttonContainer" class="buttonContainer">
-                <Button id="HomeBtn" title="Home" class="button" onClick="showHome" backgroundColor="#789E9E"></Button>
-                <Button id="ScheduleBtn" title="Schedule" class="button" onClick="showSchedule"></Button>
-                <Button id="HealthBtn" title="Health Metrics" class="button" onClick="showHealth"></Button>
+        <View class="container2">
+            <View id="callInfoBox" class="userInfo">
+                <View class="doctextBox">
+                    <Label id="userName1" class="userName" text="Doutor Fábio Mendonça"></Label>
+                    <Label id="speciality" class="speciality" text="Medicina Geral"></Label>
+                <View>
+                <ImageView id="docPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
             </View>
         </View>
+
+        <View class="container2">
+            <View id="checkQuestionsBox" class="userInfo">
+                <Label id="userName2" class="userName" text="Questões Pré-Consulta"></Label>
+                <Label id="userName3" class="userName" text="Realizou alguma consulta nos últimos dois meses?"></Label>
+            </View> 
+        </View>
+
+        <View class="container2">
+            <View id="notificationsBox" class="userInfo">
+                <Label id="userName4" class="userName" text="Notificações"></Label>
+                <Label id="userName5" class="userName" text="10mg Necotinazol antes de dormir"></Label>
+                <Label id="userName6" class="userName" text="notificações do sistema"></Label>
+                
+                <ImageView id="userPhoto2" class="userPhoto" image="/ProfilePic.png"></ImageView>
+            </View>
+        </View>
+
+        <View class="footer">
+            <View id="footer" class="userInfo">
+                
+                <ImageView id="userPhoto3" class="userPhoto" image="/ProfilePic.png"></ImageView>
+            </View>
+        </View>
+
+        <View class="callScreen" visible="false">
+        <!--chamada-->
+        </View>
+
+        <View class="callMessage" visible="false">
+
         
-
-
-
-
-
-
-
+        </View>
+        
+    </Window>
 </Alloy>

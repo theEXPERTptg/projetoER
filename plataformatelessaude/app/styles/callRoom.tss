@@ -1,0 +1,121 @@
+".container": {
+    backgroundColor: "#789E9E",
+    layout: 'vertical'
+}
+
+".header": {
+    top: "0%",
+    left: "1%",
+    right: "1%",    
+    width: Ti.UI.FILL,
+    height: "20%",
+    backgroundColor: "#EEF3D8",
+    borderRadius: 10,
+    layout: "vertical", 
+    borderWidth: 5,
+    borderColor: "#B7D8D6",
+    borderTopWidth: 0
+}
+
+".container2": {
+    top: "1%",
+    bottom: "1%",
+    left: "1%",
+    right: "1%",
+    height: "20%", 
+    width: Ti.UI.FILL,
+    layout: "vertical",
+    backgroundColor: "#EEF3D8",
+    borderRadius: 5,
+    borderWidth: 5,
+    borderColor: "#B7D8D6"
+}
+
+
+".userInfo": {
+    width: Ti.UI.FILL,
+    height: "80%", 
+    top: "10%",
+    bottom: "10%",
+    layout: "horizontal", 
+    justifyContent: "space-between", 
+    alignItems: "center"
+}
+
+".userName": {
+    color: "#ffffff",
+    width: "65%",
+    font: {
+        fontSize: 24,
+        fontWeight: "bold"
+        
+    },
+    color: "#000",
+    textAlign: "left",
+    left: "5%"
+}
+
+".docTextBox": {
+    width: "50%"
+}
+
+
+".userPhoto": {
+    width: "25%", 
+    height: "85%", 
+    backgroundColor: "#FFF",
+    top : "5%",
+    borderRadius: 40,
+    borderWidth: 5,
+    borderColor: "#4D6466"
+}
+
+
+"#docPhoto":{
+    width: "25%", 
+    height: "70%",
+    top: "10%"
+}
+
+"#callInfoBox":{
+    top: "1%",
+    left: "3%",
+    right: "3%",    
+    width: Ti.UI.FILL,
+    height: "30%",
+    backgroundColor: "#EEF3D8",
+    borderRadius: 10,
+    layout: "horizontal",
+    borderRadius: 5
+}
+
+"#checkQuestionsBox":{
+    top: "1%",
+    left: "3%",
+    right: "3%",    
+    width: Ti.UI.FILL,
+    height: "30%",
+    backgroundColor: "#EEF3D8",
+    borderRadius: 10,
+    layout: "vertical",
+    borderRadius: 5
+}
+
+"#notificationsBox":{
+    top: "1%",
+    left: "3%",
+    right: "3%",    
+    width: Ti.UI.FILL,
+    height: "30%",
+    backgroundColor: "#EEF3D8",
+    borderRadius: 10,
+    layout: "vertical",
+}
+
+".footer":{
+    "width": Ti.UI.FILL,
+    "height": "50dp",
+    "backgroundColor": "#EEF3D8",
+    "bottom": 0,
+    "layout": "vertical"
+}
