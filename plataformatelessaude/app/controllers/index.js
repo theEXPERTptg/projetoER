@@ -221,6 +221,8 @@ function validateNIF(value) {
 
 $.mainWindow.open();
 
+Alloy.createController("dashBoard").getView().open();
+
 //var callRoom = Alloy.createController("callRoom").getView();
 //callRoom.open();
 

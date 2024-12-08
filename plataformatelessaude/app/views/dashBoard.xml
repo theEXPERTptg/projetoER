@@ -30,10 +30,8 @@
         <View id="schedule" visible="false">
 
             <View id="scheduleMenuButtons">
-                <Button class="scheduleBtn" onClick="newAppointment" backgroundColor="#69AA70">New
-                    Appointment</Button>
-                <Button class="scheduleBtn" onClick="appointmentHistory" backgroundColor="#4D6466">Appointment
-                    History</Button>
+                <Button class="scheduleBtn" onClick="newAppointment" backgroundColor="#69AA70">New Appointment</Button>
+                <Button class="scheduleBtn" onClick="appointmentHistory" backgroundColor="#4D6466">Appointment History</Button>
             </View>
             <View id="scheduleCalendar">
                 <View id="monthSelector">
@@ -72,7 +70,6 @@
                         <Label class="weekDayLabel">S</Label>
                     </View>
                 </View>
-
                 <View id="row1" class="dayRow">
                     <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
@@ -251,60 +248,60 @@
                     </View>
                 </View>
                 <View id="row5" class="dayRow">
-                    <View class="calendarDay" onClick="selectDay">
+  <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel">29</Label>
+                            <Label class="calendarDayLabel">22</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
                     <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel">30</Label>
+                            <Label class="calendarDayLabel">23</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
                     <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel">31</Label>
+                            <Label class="calendarDayLabel">24</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">25</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">26</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">27</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">28</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
                 </View>
+
             </View>
             <View id="consultationListDate">
-                <Label color="black">25 December - Wednesday</Label>
+                     <Label id="consultationListDateLabel" color="black" text="25 December - Wednesday"></Label>
             </View>
             <ScrollView layout="vertical" height="Ti.UI.FILL">
                 <View class="consultationList">
 
                     <View class="consultationOnList" backgroundColor="black">
-                        <View class="consultationOnListTime"></View>
-                        <View layout="horizontal">
-                            <View></View>
+                        <View class="consultationOnListTime" layout="horizontal">
+                            <View > </View>
                             <View></View>
                         </View>
                     </View>
