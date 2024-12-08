@@ -9,12 +9,11 @@ function validatePage1() {
     
     function validarDataNascimento(dataNascimento) {
         const dataAtual = new Date(2024, 11, 7); // 07/12/2024 (mês é zero-based internamente)
-
         // Regex to validate format DD/MM/YYYY
         const regexData = /^(\d{2})\/(\d{2})\/(\d{4})$/;
         const match = dataNascimento.match(regexData);
         if (!match) {
-            alert("A data de nascimento inserida não está correta use o formato dd/mm/aaaa com uma barra / a separar o dia, mês e ano.")
+            alert("A data de nascimento inserida não está correta.")
             return false;
         }
         const [_, diaStr, mesStr, anoStr] = match;
@@ -47,34 +46,144 @@ function validatePage1() {
         return true;
     }
 
+    function validateNIF(value) {
+    const nif = typeof value === 'string' ? value : value.toString();
+    const validationSets = {
+        one: ['1', '2', '3', '5', '6', '8'],
+        two: ['45', '70', '71', '72', '74', '75', '77', '79', '90', '91', '98', '99']
+    };
+    if (nif.length !== 9) return false;
+    if (!validationSets.one.includes(nif.substr(0, 1)) && !validationSets.two.includes(nif.substr(0, 2))) return false;
+    const total = nif[0] * 9 + nif[1] * 8 + nif[2] * 7 + nif[3] * 6 + nif[4] * 5 + nif[5] * 4 + nif[6] * 3 + nif[7] * 2;
+    const modulo11 = (Number(total) % 11);
+    const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
+    return checkDigit === Number(nif[8]);
+    }   
+
+    //Below the logic for the form, validation of values and to go to the next page
+
     if (!name && !nif && !gender && !birthDate) {
-        alert("All fields are empty. Insert the required information.");
+        alert("Não foram inseridos dados. Insira a informação necessária.");
         return false; 
     } else if (!name){
-        alert("No name was given. Insert the required information.")
+        alert("Nenhum nome foi inserido. Insira a informação necessária.")
         return false;
     } else if (!nif){
-        alert("No nif was given. Insert the required information.")
+        alert("Nenhum NIF foi inserido. Insira a informação necessária.")
+        return false;
+    } else if (validateNIF(nif) === false){
+        alert("O NIF inserido está incorreto. Insira um NIF valido.")
         return false;
     } else if (!gender){
-        alert("No gender was given. Insert the required information.")
+        alert("Nenhum género foi inserido. Insira a informação necessária.")
         return false;
     } else if (!birthDate){
-        alert("No birthdate was given. Insert the required information.")
+        alert("Não foi inserida uma data de nascimento. Insira a informação necessária.")
         return false;
-    } else if (validateNIF(nif) == false){
-        alert("The NIF number given is invalid. Insert a valid NIF number.")
+    } else if (validarDataNascimento(birthDate) === false){
         return false;
-    } else if (validateNIF(nif) == true){
+    } else if (validateNIF(nif) === true && validarDataNascimento(birthDate) === true){
+        $.registerFormPage1.visible = false;
+        $.registerFormPage2.visible = true;
+        $.registerFormPage3.visible = false;
         return true;
-    } else if (validarDataNascimento(birthDate)){
+    }     
+}
+
+function validatePage2() {
+    var email = $.email.value;
+    var phoneNumber = $.phoneNumber.value;
+    var password = $.password.value;
+    var confirmPassword = $.confirmPassword.value;
+
+    function validatePhoneNumber(phoneNumber){
+        const onlyNumbers = /^\d+$/.test(phoneNumber);
+
+        if (!onlyNumbers) {
+        alert("O número de telemóvel deve conter apenas números. Insira um número de telemóvel válido.");
+            return false;
+        }
+
+        if (phoneNumber.length !== 9) {
+            alert("O número de telemóvel deve conter exatamente 9 dígitos. Insira um número de telemóvel válido.");
+            return false;
+        }
+
+        return true;
     }
 
-    $.registerFormPage1.visible = false;
-    $.registerFormPage2.visible = true;
-    $.registerFormPage3.visible = false; 
-    //return true; // allows navigation
-}
+    function validateEmail(email){
+        // Regex para validar email
+        const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+        // Verificar se o email é válido
+        if (!regexEmail.test(email)) {
+        alert("O endereço de email inserido não é valido. Insira um endereço de email válido.");
+            return false;
+        }
+
+        return true;
+    }
+
+    function validatePassword(password){
+
+        if (password.length < 7) {
+            alert("A password inserida é curta. Insira uma password que tenha pelo menos 7 caracteres.");
+            return false;
+        }
+
+        const temLetra = /[a-zA-Z]/.test(password); // Verifica letras (a-z, A-Z)
+        const temDigito = /\d/.test(password);      // Verifica dígitos (0-9)
+        const temSimbolo = /[\W_]/.test(password);  // Verifica símbolos (\W ou _)
+
+        if (!temLetra || !temDigito || !temSimbolo) {
+            alert("Uma password segura deve conter pelo menos 1 letra, 1 dígito e 1 símbolo. Insira uma password valida.");
+            return false;
+        }
+
+        return true;
+
+    }
+
+    function validateConfirmPassword(confirmPassword){
+        if (password !== confirmPassword) {
+            alert("A confirmação de password não é igual à password inserida. Insira a mesma password inserida antes.");
+            return false;
+        }
+        return true;
+    }
+
+    if (!email && !phoneNumber && !password && !confirmPassword) {
+        alert("Não foram inseridos dados. Insira a informação necessária.");
+        return false; 
+    } else if (!email){
+        alert("Nenhum email foi inserido. Insira a informação necessária.")
+        return false;
+    } else if (validateEmail(email) === false){
+        return false;
+    } else if (!phoneNumber){
+        alert("Nenhum número de telemóvel foi inserido. Insira a informação necessária.")
+        return false;
+    } else if (validatePhoneNumber(phoneNumber) === false){
+        return false;
+    } else if (!password){
+        alert("Nenhuma password foi inserida. Insira a informação necessária.")
+        return false;
+    } else if (validatePassword(password) === false){
+        return false;
+    } else if (!confirmPassword){
+        alert("Não foi inserida a confirmação da password. Insira a informação necessária.")
+        return false;
+    } else if (validateConfirmPassword(confirmPassword) === false){
+        return false;
+    } else if (validateEmail(email) === true && validatePhoneNumber(phoneNumber) === true && validatePassword(password) === true &&validateConfirmPassword(confirmPassword) === true){
+        $.registerFormPage2.visible = false;
+        $.registerFormPage3.visible = true;
+        $.registerFormPage4.visible = false;
+        return true;
+    }
+}    
+
 
 function showRegisterFormPage1() {
     $.loginForm.visible = false;  // Hide login form
@@ -191,21 +300,6 @@ function forgotPassword(){
 function generateOtpCode(){
     Alloy.createController("callRoom").getView().open();
 
-}
-
-function validateNIF(value) {
-    return;
-    const nif = typeof value === 'string' ? value : value.toString();
-    const validationSets = {
-        one: ['1', '2', '3', '5', '6', '8'],
-        two: ['45', '70', '71', '72', '74', '75', '77', '79', '90', '91', '98', '99']
-    };
-    if (nif.length !== 9) return false;
-    if (!validationSets.one.includes(nif.substr(0, 1)) && !validationSets.two.includes(nif.substr(0, 2))) return false;
-    const total = nif[0] * 9 + nif[1] * 8 + nif[2] * 7 + nif[3] * 6 + nif[4] * 5 + nif[5] * 4 + nif[6] * 3 + nif[7] * 2;
-    const modulo11 = (Number(total) % 11);
-    const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
-    return checkDigit === Number(nif[8]);
 }
 
 

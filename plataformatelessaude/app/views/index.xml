@@ -31,7 +31,7 @@
                 <TextField id="phoneNumber" hintText="Phone Number" class="input"></TextField>
                 <TextField id="password" hintText="Password" class="input"></TextField>
                 <TextField id="confirmPassword" hintText="Confirm Password" class="input"></TextField>
-                <Button id="next2" title="Próximo (2/4)" onClick="showRegisterFormPage3"></Button> <!--TODO registerpage2-->
+                <Button id="next2" title="Próximo (2/4)" onClick="validatePage2"></Button> <!--TODO registerpage2-->
                 <Button id="back2" title="Voltar Atrás" onClick="showRegisterFormPage1"></Button>
             </View>
 
