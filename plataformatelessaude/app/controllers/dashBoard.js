@@ -9,7 +9,7 @@ var appointments = {
         {
             "doctorName": "Dr. John Doe",
             "specialisation": "Cardiology",
-            "day": 8,
+            "day": 9,
             "month": 11, // December (0-based)
             "year": 2024,
             "startTime": "13:15",
@@ -23,6 +23,96 @@ var appointments = {
             "year": 2024,
             "startTime": "10:00",
             "endTime": "10:30"
+        },
+        {
+            "doctorName": "Dr. Alice Johnson",
+            "specialisation": "Pediatrics",
+            "day": 6,
+            "month": 11,
+            "year": 2024,
+            "startTime": "14:00",
+            "endTime": "14:30"
+        },
+        {
+            "doctorName": "Dr. Sarah Lee",
+            "specialisation": "Cardiology",
+            "day": 13,
+            "month": 11,
+            "year": 2024,
+            "startTime": "10:30",
+            "endTime": "11:00"
+        },
+        {
+            "doctorName": "Dr. Robert Brown",
+            "specialisation": "Orthopedics",
+            "day": 7,
+            "month": 0,
+            "year": 2025,
+            "startTime": "15:15",
+            "endTime": "15:45"
+        },
+        {
+            "doctorName": "Dr. Sarah Lee",
+            "specialisation": "Cardiology",
+            "day": 26,
+            "month": 11,
+            "year": 2024,
+            "startTime": "11:30",
+            "endTime": "12:00"
+        },
+        {
+            "doctorName": "Dr. Alice Johnson",
+            "specialisation": "Pediatrics",
+            "day": 26,
+            "month": 11,
+            "year": 2024,
+            "startTime": "16:15",
+            "endTime": "16:45"
+        },
+        {
+            "doctorName": "Dr. Michael Green",
+            "specialisation": "Dermatology",
+            "day": 6,
+            "month": 0,
+            "year": 2025,
+            "startTime": "15:30",
+            "endTime": "16:00"
+        },
+        {
+            "doctorName": "Dr. Michael Green",
+            "specialisation": "Dermatology",
+            "day": 15,
+            "month": 11,
+            "year": 2024,
+            "startTime": "14:30",
+            "endTime": "15:00"
+        },
+        {
+            "doctorName": "Dr. Michael Green",
+            "specialisation": "Dermatology",
+            "day": 11,
+            "month": 11,
+            "year": 2024,
+            "startTime": "16:45",
+            "endTime": "17:00"
+        },
+        {
+            "doctorName": "Dr. Robert Brown",
+            "specialisation": "Orthopedics",
+            "day": 11,
+            "month": 0,
+            "year": 2025,
+            "startTime": "16:15",
+            "endTime": "16:45"
+        },
+        {
+            "doctorName": "Dr. Alice Johnson",
+            "specialisation": "Pediatrics",
+            "day": 28,
+            "month": 11,
+            "year": 2024,
+            "startTime": "12:45",
+            "endTime": "13:00"
         }
     ]
 };
@@ -94,8 +184,6 @@ function prevMonth() {
     }
     populateCalendar(currentMonth, currentYear);
     highlightCurrentDay();
-    // Update consultations for current day if applicable
-    updateConsultationList(new Date(currentYear, currentMonth, currentDate.getDate()));
 }
 
 function nextMonth() {
@@ -106,12 +194,13 @@ function nextMonth() {
     }
     populateCalendar(currentMonth, currentYear);
     highlightCurrentDay();
-    // Update consultations for current day if applicable
-    updateConsultationList(new Date(currentYear, currentMonth, currentDate.getDate()));
 }
 
 function newAppointment() {
     alert("NOT IMPLEMENTED - newAppointment");
+    $.consultationList.visible = false;
+    $.scheduleScheduleConsultation.visible = true;
+
 }
 
 function appointmentHistory() {
@@ -131,6 +220,7 @@ function cancelConsultation() {
 }
 
 function selectDay(e) {
+    $.scheduleScheduleConsultation.visible=false;
     var allRows = $.scheduleCalendar.children.filter((element) =>
         element.id && element.id.includes("row")
     );
@@ -141,7 +231,7 @@ function selectDay(e) {
     });
 
     var dayUI = e.source.parent;
-    if (e.source instanceof Ti.UI.Label) {
+    if (e.source instanceof Ti.UI.Label || e.source.backgroundColor === "red") {
         // if the event source is the label, the calendarDay view is a parent of a parent
         dayUI = e.source.parent.parent;
     }
@@ -173,11 +263,28 @@ function populateCalendar(month, year) {
         for (var c = 0; c < dayCells.length; c++) {
             var dayCell = dayCells[c];
             var label = dayCell.children[0].children[0];
+            var eventMarkersContainer = dayCell.children[1];
+            eventMarkersContainer.removeAllChildren();
             var cellIndex = r * 7 + c;
+            
             if (cellIndex < firstDay || currentDayCounter > daysInMonth) {
                 label.text = "";
             } else {
                 label.text = currentDayCounter;
+
+                // Check if there are consultations this day and show a dot if so
+                var dailyConsultations = getConsultationsByDate(currentDayCounter, month, year);
+                if (dailyConsultations.length > 0) {
+                    var dot = Ti.UI.createView({
+                        width: 10,
+                        height: 10,
+                        borderRadius: 5,
+                        backgroundColor: "red",
+                        bottom: 5
+                    });
+                    eventMarkersContainer.add(dot);
+                }
+
                 currentDayCounter++;
             }
         }
@@ -190,6 +297,7 @@ function populateCalendar(month, year) {
         init = false;
     }
 }
+
 
 function getMonthName(monthIndex) {
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -247,7 +355,6 @@ function updateConsultationList(date) {
         var infoView = Ti.UI.createView({
             left_: "30%",
             width: "70%",
-            backgroundColor: "white",
             layout: "vertical"
         });
 
@@ -325,3 +432,5 @@ function updateConsultationList(date) {
 populateCalendar(currentMonth, currentYear);
 highlightCurrentDay();
 showSchedule();
+
+

@@ -315,65 +315,28 @@
     height: "5%"
 }
 
-
-
-
-
-".consultationOnListInfo": {
-    left_:"30%",
-    width: "70%",
-    backgroundColor: "white"
-}
-
-".consultationOnListInfoText": {
-    height:"50%"	
+"#scheduleScheduleConsultation": {
+    height: Ti.UI.FILL,
+    backgroundColor: "red"
 }
 
 
-".consultationOnListInfoBtns": {
-    width:"70%",
-    left:"30%"	
+"#scheduleScheduleConsultation": {
+    top: "5%",
+    left: "5%",
+    right: "5%",
+    height: Ti.UI.SIZE,
+    backgroundColor: "#EEF3D8",
+    borderRadius: 10,
+    layout: "vertical"
 }
 
-
-".joinCallBtn":{
-     width: "20%",
-    height: "80%",
-    top:"10%",
-    left: "10%",
-    right: "0%",
-    backgroundColor: "green"	
+"#scheduleDateLabel": {
+    color: "#000",
+    font: {
+        fontSize: 16,
+        fontWeight: "bold"
+    },
+    top: "5%",
+    textAlign: "center"
 }
-
-".rescheduleConsultationBtn":{
-     width: "20%",
-    height: "80%",
-    top:"10%",
-    left: "10%",
-    right: "0%",
-    backgroundColor: "yellow"	
-}
-
-".cancelConsultationBtn":{
-     width: "20%",
-    height: "80%",
-    top:"10%",
-    left: "10%",
-    right: "0%",
-    backgroundColor: "red"	
-}
-
-".consultationColor": {
-    top: "35%",
-    left:"10%",
-    width:"5%",
-    height:"30%",
-    backgroundColor:"blue"	
-}
-
-".consultationOnListInfoTextLabel": {
-    top:"30%",
-    left:"5%"	
-}
-
-
