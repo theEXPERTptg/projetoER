@@ -1,5 +1,55 @@
 <Alloy>
     <Window id="mainWindow" class="container">
+
+         <View id="schedulePopup" visible="false" class="popupContainer">
+            <View class="popupContent">
+                <Label text="Schedule Consultation" class="popupTitle"></Label>
+
+                <!-- Time Picker -->
+                <Picker id="timePicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="09:00" />
+                        <PickerRow title="09:30" />
+                        <PickerRow title="10:00" />
+                        <PickerRow title="10:30" />
+                        <PickerRow title="11:00" />
+                        <PickerRow title="11:30" />
+                        <!-- Add more times as needed -->
+                    </PickerColumn>
+                </Picker>
+
+                <!-- Specialty Picker -->
+                <Picker id="specialtyPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="Cardiology" />
+                        <PickerRow title="Dermatology" />
+                        <PickerRow title="Pediatrics" />
+                        <PickerRow title="Orthopedics" />
+                        <!-- Add more specialties as needed -->
+                    </PickerColumn>
+                </Picker>
+
+                <!-- Doctor Picker -->
+                <Picker id="doctorPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="Dr. John Doe" />
+                        <PickerRow title="Dr. Jane Smith" />
+                        <PickerRow title="Dr. Alice Johnson" />
+                        <PickerRow title="Dr. Sarah Lee" />
+                        <PickerRow title="Dr. Robert Brown" />
+                        <PickerRow title="Dr. Michael Green" />
+                        <!-- Add more doctors as needed -->
+                    </PickerColumn>
+                </Picker>
+
+                <View layout="horizontal" top="20" bottom="20" height="50dp">
+                    <Button id="confirmBtn" title="Confirm" width="50%" onClick="confirmPopup"></Button>
+                    <Button id="cancelBtn" title="Cancel" width="50%" onClick="cancelPopup"></Button>
+                </View>
+            </View>
+        </View>
+
+
         <!-- Top Container for User Profile -->
         <View class="profileContainer">
             <!-- User Info Container -->
@@ -300,7 +350,6 @@
             </View>
 
 
-
             <ScrollView layout="vertical" height="Ti.UI.FILL">
                 <View id="consultationList" class="consultationList">
                     <!-- Dynamically added consultation views will go here -->
@@ -308,9 +357,8 @@
             </ScrollView>
 
 
-            
             <View id="scheduleScheduleConsultation" visible="false" layout="vertical">
-                
+
 
             </View>
 
@@ -415,6 +463,8 @@
             </View>
         </ScrollView>
 
+
+       
 
     </Window>
 </Alloy>

@@ -3,6 +3,8 @@ var currentDay = currentDate.getDay();
 var currentMonth = currentDate.getMonth();
 var currentYear = currentDate.getFullYear();
 
+var selectedDate = new Date();
+
 //MONTHS ARE FROM 0 TO 11
 var appointments = {
     "consultations": [
@@ -196,12 +198,6 @@ function nextMonth() {
     highlightCurrentDay();
 }
 
-function newAppointment() {
-    alert("NOT IMPLEMENTED - newAppointment");
-    $.consultationList.visible = false;
-    $.scheduleScheduleConsultation.visible = true;
-
-}
 
 function appointmentHistory() {
     alert("NOT IMPLEMENTED - appointmentHistory");
@@ -220,7 +216,8 @@ function cancelConsultation() {
 }
 
 function selectDay(e) {
-    $.scheduleScheduleConsultation.visible=false;
+    $.scheduleScheduleConsultation.visible = false;
+
     var allRows = $.scheduleCalendar.children.filter((element) =>
         element.id && element.id.includes("row")
     );
@@ -232,7 +229,6 @@ function selectDay(e) {
 
     var dayUI = e.source.parent;
     if (e.source instanceof Ti.UI.Label || e.source.backgroundColor === "red") {
-        // if the event source is the label, the calendarDay view is a parent of a parent
         dayUI = e.source.parent.parent;
     }
 
@@ -243,7 +239,7 @@ function selectDay(e) {
     var selectedDay = label.text;
 
     if (selectedDay) {
-        var selectedDate = new Date(currentYear, currentMonth, selectedDay);
+        selectedDate = new Date(currentYear, currentMonth, selectedDay);
         var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var weekdayName = weekdays[selectedDate.getDay()];
         $.consultationListDateLabel.text = selectedDay + " " + getMonthName(currentMonth) + " - " + weekdayName;
@@ -434,3 +430,78 @@ highlightCurrentDay();
 showSchedule();
 
 
+function newAppointment() {
+    // If no selected date, prompt user to select a day first
+    if (!selectedDate) {
+        alert("Please select a day on the calendar first.");
+        return;
+    }
+    // Show the popup for scheduling a new appointment
+    $.schedulePopup.visible = true;
+    $.scheduleScheduleConsultation.visible = false;
+}
+
+function cancelPopup() {
+    $.schedulePopup.visible = false;
+}
+function confirmPopup() {
+    // Get the selected values from the pickers
+    var selectedTimeRow = $.timePicker.getSelectedRow(0);
+    var selectedSpecialtyRow = $.specialtyPicker.getSelectedRow(0);
+    var selectedDoctorRow = $.doctorPicker.getSelectedRow(0);
+
+    if (!selectedTimeRow || !selectedSpecialtyRow || !selectedDoctorRow) {
+        alert("Please select time, specialty, and doctor.");
+        return;
+    }
+
+    var selectedTime = selectedTimeRow.title;           // e.g. "09:00"
+    var selectedSpecialty = selectedSpecialtyRow.title; // e.g. "Cardiology"
+    var selectedDoctor = selectedDoctorRow.title;       // e.g. "Dr. John Doe"
+
+    // Extract day, month, year from selectedDate
+    var day = selectedDate.getDate();
+    var month = selectedDate.getMonth();
+    var year = selectedDate.getFullYear();
+
+    // Create a new consultation object
+    var newConsultation = {
+        "doctorName": selectedDoctor,
+        "specialisation": selectedSpecialty,
+        "day": day,
+        "month": month,
+        "year": year,
+        "startTime": selectedTime,
+        "endTime": getEndTime(selectedTime) // A helper function to get an end time. Let's define it below.
+    };
+
+    // Add the new consultation to the appointments array
+    appointments.consultations.push(newConsultation);
+
+    // Hide the popup
+    $.schedulePopup.visible = false;
+
+    // Refresh the calendar (to show the dot) and consultation list
+    populateCalendar(currentMonth, currentYear);
+    highlightCurrentDay();
+    updateConsultationList(selectedDate);
+}
+
+// Helper function to get a default end time (e.g., add 30 minutes to the selected start time)
+function getEndTime(startTime) {
+    // startTime is in "HH:MM" format
+    var parts = startTime.split(":");
+    var hours = parseInt(parts[0], 10);
+    var minutes = parseInt(parts[1], 10);
+
+    // Add 30 minutes to create an end time
+    minutes += 30;
+    if (minutes >= 60) {
+        hours += 1;
+        minutes -= 60;
+    }
+
+    var endHours = hours < 10 ? "0" + hours : "" + hours;
+    var endMinutes = minutes < 10 ? "0" + minutes : "" + minutes;
+    return endHours + ":" + endMinutes;
+}
