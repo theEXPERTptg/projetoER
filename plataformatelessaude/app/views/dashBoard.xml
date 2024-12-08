@@ -5,7 +5,6 @@
             <View class="popupContent">
                 <Label text="Schedule Consultation" class="popupTitle"></Label>
 
-                <!-- Time Picker -->
                 <Picker id="timePicker" top="10">
                     <PickerColumn>
                         <PickerRow title="09:00" />
@@ -14,31 +13,44 @@
                         <PickerRow title="10:30" />
                         <PickerRow title="11:00" />
                         <PickerRow title="11:30" />
-                        <!-- TODO Add more times as needed -->
+                        <PickerRow title="12:00" />
+                        <PickerRow title="12:30" />
+                        <PickerRow title="13:00" />
+                        <PickerRow title="13:30" />
+                        <PickerRow title="14:00" />
+                        <PickerRow title="14:30" />
+                        <PickerRow title="15:00" />
+                        <PickerRow title="15:30" />
+                        <PickerRow title="16:00" />
+                        <PickerRow title="16:30" />
+                        <PickerRow title="17:00" />
+                        <PickerRow title="17:30" />
+                        <PickerRow title="18:00" />
+                        <PickerRow title="18:30" />
+                        <PickerRow title="19:00" />
+                        <PickerRow title="19:30" />
+                        <PickerRow title="20:00" />
+                        <PickerRow title="20:30" />
                     </PickerColumn>
                 </Picker>
 
-                <!-- Specialty Picker -->
                 <Picker id="specialtyPicker" top="10">
                     <PickerColumn>
                         <PickerRow title="Cardiology" />
                         <PickerRow title="Dermatology" />
                         <PickerRow title="Pediatrics" />
                         <PickerRow title="Orthopedics" />
-                        <!-- Add more specialties as needed -->
                     </PickerColumn>
                 </Picker>
 
-                <!-- Doctor Picker -->
                 <Picker id="doctorPicker" top="10">
                     <PickerColumn>
-                        <PickerRow title="Dr. John Doe" />
-                        <PickerRow title="Dr. Jane Smith" />
-                        <PickerRow title="Dr. Alice Johnson" />
-                        <PickerRow title="Dr. Sarah Lee" />
-                        <PickerRow title="Dr. Robert Brown" />
-                        <PickerRow title="Dr. Michael Green" />
-                        <!-- Add more doctors as needed -->
+                        <PickerRow title="Dr. Carlos" />
+                        <PickerRow title="Dr. Francisco" />
+                        <PickerRow title="Dr. Helder" />
+                        <PickerRow title="Dr. Zé" />
+                        <PickerRow title="Dr. Otávio" />
+                        <PickerRow title="Dr. Miguel" />
                     </PickerColumn>
                 </Picker>
 
@@ -48,12 +60,10 @@
                 </View>
             </View>
         </View>
-        <!-- Reschedule Popup -->
         <View id="reschedulePopup" visible="false" class="popupContainer">
             <View class="popupContent">
                 <Label text="Reschedule Consultation" class="popupTitle"></Label>
 
-                <!-- Day Picker -->
                 <Picker id="rescheduleDayPicker" top="10">
                     <PickerColumn>
                         <PickerRow title="1" />
@@ -61,13 +71,35 @@
                         <PickerRow title="3" />
                         <PickerRow title="4" />
                         <PickerRow title="5" />
-                        <!-- ... add more days as needed ... -->
+                        <PickerRow title="6" />
+                        <PickerRow title="7" />
+                        <PickerRow title="8" />
+                        <PickerRow title="9" />
+                        <PickerRow title="10" />
+                        <PickerRow title="11" />
+                        <PickerRow title="12" />
+                        <PickerRow title="13" />
+                        <PickerRow title="14" />
+                        <PickerRow title="15" />
+                        <PickerRow title="16" />
+                        <PickerRow title="17" />
+                        <PickerRow title="18" />
+                        <PickerRow title="19" />
+                        <PickerRow title="20" />
+                        <PickerRow title="21" />
+                        <PickerRow title="22" />
+                        <PickerRow title="23" />
+                        <PickerRow title="24" />
+                        <PickerRow title="25" />
+                        <PickerRow title="26" />
+                        <PickerRow title="27" />
+                        <PickerRow title="28" />
+                        <PickerRow title="29" />
                         <PickerRow title="30" />
                         <PickerRow title="31" />
                     </PickerColumn>
                 </Picker>
 
-                <!-- Month Picker -->
                 <Picker id="rescheduleMonthPicker" top="10">
                     <PickerColumn>
                         <PickerRow title="January" />
@@ -85,16 +117,13 @@
                     </PickerColumn>
                 </Picker>
 
-                <!-- Year Picker -->
                 <Picker id="rescheduleYearPicker" top="10">
                     <PickerColumn>
                         <PickerRow title="2024" />
                         <PickerRow title="2025" />
-                        <!-- Add more years as needed -->
                     </PickerColumn>
                 </Picker>
 
-                <!-- Time Picker -->
                 <Picker id="rescheduleTimePicker" top="10">
                     <PickerColumn>
                         <PickerRow title="09:00" />
@@ -103,7 +132,25 @@
                         <PickerRow title="10:30" />
                         <PickerRow title="11:00" />
                         <PickerRow title="11:30" />
-                        <!-- Add more times as needed -->
+                        <PickerRow title="12:00" />
+                        <PickerRow title="12:30" />
+                        <PickerRow title="13:00" />
+                        <PickerRow title="13:30" />
+                        <PickerRow title="14:00" />
+                        <PickerRow title="14:30" />
+                        <PickerRow title="15:00" />
+                        <PickerRow title="15:30" />
+                        <PickerRow title="16:00" />
+                        <PickerRow title="16:30" />
+                        <PickerRow title="17:00" />
+                        <PickerRow title="17:30" />
+                        <PickerRow title="18:00" />
+                        <PickerRow title="18:30" />
+                        <PickerRow title="19:00" />
+                        <PickerRow title="19:30" />
+                        <PickerRow title="20:00" />
+                        <PickerRow title="20:30" />
+
                     </PickerColumn>
                 </Picker>
 
@@ -116,22 +163,18 @@
             </View>
         </View>
 
-        <!-- Top Container for User Profile -->
         <View class="profileContainer">
-            <!-- User Info Container -->
             <View id="userInfo" class="userInfo">
                 <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
                 <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
             </View>
 
-            <!-- Upcoming Appointments Container -->
             <View id="upcomingAppointments">
                 <Label id="appointmentTitle" class="appointmentTitle" text="Upcoming Appointments"></Label>
                 <Label id="appointmentDetails" class="appointmentDetails"
                     text="Consultation - General - 25-12 13:15"></Label>
             </View>
 
-            <!-- Buttons Container -->
             <View id="buttonContainer" class="buttonContainer">
                 <Button id="HomeBtn" title="Home" class="button" onClick="showHome"
                     backgroundColor="#789E9E"></Button>
@@ -436,12 +479,9 @@
         </View>
 
 
-        <!-- Scrollable View for Additional Content -->
         <!-- HOME SCREEN-->
-
         <ScrollView id="homeContent" class="scrollableContainer" visible="true">
             <View id="scrollableInnerView" class="scrollableInnerView">
-            <!-- Add multiple child views here -->
             <View class="scrollableItem">
                 <View class="scrollableItemImage" backgroundColor="#000"></View>
                 <View class="scrollableItemContent" backgroundColor="#888">
@@ -528,7 +568,5 @@
                 </View>
             </View>
         </ScrollView>
-
-
     </Window>
 </Alloy>

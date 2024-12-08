@@ -341,8 +341,6 @@
     textAlign: "center"
 }
 
-
-
 ".popupContainer": {
     width: Ti.UI.FILL,
     height: Ti.UI.FILL,

@@ -11,7 +11,7 @@ var consultationToReschedule = null;
 var appointments = {
     "consultations": [
         {
-            "doctorName": "Dr. John Doe",
+            "doctorName": "Dr. Johnny ",
             "specialisation": "Cardiology",
             "day": 9,
             "month": 11, // December (0-based)
@@ -20,7 +20,7 @@ var appointments = {
             "endTime": "14:00"
         },
         {
-            "doctorName": "Dr. Jane Smith",
+            "doctorName": "Dr. Carlos",
             "specialisation": "Dermatology",
             "day": 8,
             "month": 11, // December (0-based)
@@ -29,7 +29,7 @@ var appointments = {
             "endTime": "10:30"
         },
         {
-            "doctorName": "Dr. Alice Johnson",
+            "doctorName": "Dr. Francisco",
             "specialisation": "Pediatrics",
             "day": 6,
             "month": 11,
@@ -38,7 +38,7 @@ var appointments = {
             "endTime": "14:30"
         },
         {
-            "doctorName": "Dr. Sarah Lee",
+            "doctorName": "Dr. Helder",
             "specialisation": "Cardiology",
             "day": 13,
             "month": 11,
@@ -47,7 +47,7 @@ var appointments = {
             "endTime": "11:00"
         },
         {
-            "doctorName": "Dr. Robert Brown",
+            "doctorName": "Dr. Zé",
             "specialisation": "Orthopedics",
             "day": 7,
             "month": 0,
@@ -56,7 +56,7 @@ var appointments = {
             "endTime": "15:45"
         },
         {
-            "doctorName": "Dr. Sarah Lee",
+            "doctorName": "Dr. Otávio",
             "specialisation": "Cardiology",
             "day": 26,
             "month": 11,
@@ -65,7 +65,7 @@ var appointments = {
             "endTime": "12:00"
         },
         {
-            "doctorName": "Dr. Alice Johnson",
+            "doctorName": "Dr. Miguel",
             "specialisation": "Pediatrics",
             "day": 26,
             "month": 11,
@@ -74,7 +74,7 @@ var appointments = {
             "endTime": "16:45"
         },
         {
-            "doctorName": "Dr. Michael Green",
+            "doctorName": "Dr. Miguel",
             "specialisation": "Dermatology",
             "day": 6,
             "month": 0,
@@ -83,7 +83,7 @@ var appointments = {
             "endTime": "16:00"
         },
         {
-            "doctorName": "Dr. Michael Green",
+            "doctorName": "Dr. Carlos",
             "specialisation": "Dermatology",
             "day": 15,
             "month": 11,
@@ -92,7 +92,7 @@ var appointments = {
             "endTime": "15:00"
         },
         {
-            "doctorName": "Dr. Michael Green",
+            "doctorName": "Dr. Carlos",
             "specialisation": "Dermatology",
             "day": 11,
             "month": 11,
@@ -101,7 +101,7 @@ var appointments = {
             "endTime": "17:00"
         },
         {
-            "doctorName": "Dr. Robert Brown",
+            "doctorName": "Dr. Zé",
             "specialisation": "Orthopedics",
             "day": 11,
             "month": 0,
@@ -110,7 +110,7 @@ var appointments = {
             "endTime": "16:45"
         },
         {
-            "doctorName": "Dr. Alice Johnson",
+            "doctorName": "Dr. Helder",
             "specialisation": "Pediatrics",
             "day": 28,
             "month": 11,
@@ -137,7 +137,7 @@ function highlightCurrentDay() {
             row.children.forEach(dayCell => {
                 var label = dayCell.children[0].children[0];
                 if (label.text == todayDay) {
-                    dayCell.backgroundColor = '#FFB74D';  // Highlight today's date
+                    dayCell.backgroundColor = '#FFB74D'; //Today highlight 
                 }
             });
         });
@@ -151,7 +151,7 @@ function clearAllHighlights() {
 
     allRows.forEach(row => {
         row.children.forEach(dayView => {
-            dayView.backgroundColor = "#B7D8D6"; // Reset to default background
+            dayView.backgroundColor = "#B7D8D6"; //Clear highlight
         });
     });
 }
@@ -211,9 +211,7 @@ function joinCall() {
 
 
 
-// Function triggered when Cancel button is clicked
 function cancelConsultation(e) {
-    // Get the consultation index from the clicked button
     var consultationIndex = e.source.consultationIndex;
 
     if (typeof consultationIndex === 'number') {
@@ -221,13 +219,11 @@ function cancelConsultation(e) {
         var month = selectedDate.getMonth();
         var year = selectedDate.getFullYear();
 
-        // Find consultations matching the selected date, including year
         var consultations = getConsultationsByDate(day, month, year);
 
         if (consultationIndex >= 0 && consultationIndex < consultations.length) {
             var consultationToCancel = consultations[consultationIndex];
 
-            // Show confirmation alert
             var dialog = Ti.UI.createAlertDialog({
                 title: "Cancel Consultation",
                 message: "Are you sure you want to cancel the consultation with " + consultationToCancel.doctorName + "?",
@@ -237,7 +233,6 @@ function cancelConsultation(e) {
 
             dialog.addEventListener('click', function (event) {
                 if (event.index === 0) {
-                    // Remove the consultation from the database
                     var updatedConsultations = appointments.consultations.filter(function (consultation) {
                         return !(
                             consultation.day === consultationToCancel.day &&
@@ -248,15 +243,12 @@ function cancelConsultation(e) {
                         );
                     });
 
-                    // Update the appointments database
                     appointments.consultations = updatedConsultations;
 
-                    // Refresh the calendar and consultation list
                     populateCalendar(currentMonth, currentYear);
                     highlightCurrentDay();
                     updateConsultationList(new Date(year, month, day));
 
-                    // Show cancellation success message
                     Ti.UI.createAlertDialog({
                         title: "Cancellation Successful",
                         message: "Your consultation with " + consultationToCancel.doctorName + " has been successfully canceled.",
@@ -328,7 +320,6 @@ function populateCalendar(month, year) {
             } else {
                 label.text = currentDayCounter;
 
-                // Check if there are consultations this day and show a dot if so
                 var dailyConsultations = getConsultationsByDate(currentDayCounter, month, year);
                 if (dailyConsultations.length > 0) {
                     var dot = Ti.UI.createView({
@@ -347,9 +338,9 @@ function populateCalendar(month, year) {
     }
 
     $.currentMonthAndYear.children[0].text = getMonthName(month) + " " + year;
-    if (init) {
+    if (init) { //at first load
         updateConsultationDateLabel(new Date());
-        updateConsultationList(new Date()); // show current day's consultations at start
+        updateConsultationList(new Date());
         init = false;
     }
 }
@@ -368,7 +359,6 @@ function updateConsultationDateLabel(date) {
     $.consultationListDateLabel.text = selectedDay + " " + getMonthName(selectedMonth) + " - " + weekdayName;
 }
 
-// Directly filter from local `appointments`
 function getConsultationsByDate(day, month, year) {
     return appointments.consultations.filter(function (consultation) {
         return consultation.day === day && consultation.month === month && consultation.year === year;
@@ -382,10 +372,8 @@ function updateConsultationList(date) {
     var month = date.getMonth();
     var year = date.getFullYear();
 
-    // Clear the previous list
     $.consultationList.removeAllChildren();
 
-    // Filter consultations for the selected date
     var consultations = getConsultationsByDate(day, month, year);
 
     consultations.forEach(function (consultation, i) {
@@ -487,20 +475,11 @@ function updateConsultationList(date) {
     });
 }
 
-
-// Initial setup
-populateCalendar(currentMonth, currentYear);
-highlightCurrentDay();
-showSchedule();
-
-
 function newAppointment() {
-    // If no selected date, prompt user to select a day first
     if (!selectedDate) {
         alert("Please select a day on the calendar first.");
         return;
     }
-    // Show the popup for scheduling a new appointment
     $.schedulePopup.visible = true;
     $.scheduleScheduleConsultation.visible = false;
 }
@@ -509,7 +488,6 @@ function cancelPopup() {
     $.schedulePopup.visible = false;
 }
 function confirmPopup() {
-    // Get the selected values from the pickers
     var selectedTimeRow = $.timePicker.getSelectedRow(0);
     var selectedSpecialtyRow = $.specialtyPicker.getSelectedRow(0);
     var selectedDoctorRow = $.doctorPicker.getSelectedRow(0);
@@ -519,16 +497,14 @@ function confirmPopup() {
         return;
     }
 
-    var selectedTime = selectedTimeRow.title;           // e.g. "09:00"
-    var selectedSpecialty = selectedSpecialtyRow.title; // e.g. "Cardiology"
-    var selectedDoctor = selectedDoctorRow.title;       // e.g. "Dr. John Doe"
+    var selectedTime = selectedTimeRow.title;           
+    var selectedSpecialty = selectedSpecialtyRow.title; 
+    var selectedDoctor = selectedDoctorRow.title;       
 
-    // Extract day, month, year from selectedDate
     var day = selectedDate.getDate();
     var month = selectedDate.getMonth();
     var year = selectedDate.getFullYear();
 
-    // Create a new consultation object
     var newConsultation = {
         "doctorName": selectedDoctor,
         "specialisation": selectedSpecialty,
@@ -536,29 +512,23 @@ function confirmPopup() {
         "month": month,
         "year": year,
         "startTime": selectedTime,
-        "endTime": getEndTime(selectedTime) // A helper function to get an end time. Let's define it below.
+        "endTime": getEndTime(selectedTime) 
     };
 
-    // Add the new consultation to the appointments array
     appointments.consultations.push(newConsultation);
 
-    // Hide the popup
     $.schedulePopup.visible = false;
 
-    // Refresh the calendar (to show the dot) and consultation list
     populateCalendar(currentMonth, currentYear);
     highlightCurrentDay();
     updateConsultationList(selectedDate);
 }
 
-// Helper function to get a default end time (e.g., add 30 minutes to the selected start time)
 function getEndTime(startTime) {
-    // startTime is in "HH:MM" format
     var parts = startTime.split(":");
     var hours = parseInt(parts[0], 10);
     var minutes = parseInt(parts[1], 10);
 
-    // Add 30 minutes to create an end time
     minutes += 30;
     if (minutes >= 60) {
         hours += 1;
@@ -570,15 +540,9 @@ function getEndTime(startTime) {
     return endHours + ":" + endMinutes;
 }
 
-
-
-
-
-
 function rescheduleConsultation(e) {
     var consultationIndex = e.source.consultationIndex;
     if (typeof consultationIndex === 'number') {
-        // Use the currently selected date (which includes the correct year)
         var day = selectedDate.getDate();
         var month = selectedDate.getMonth();
         var year = selectedDate.getFullYear();
@@ -595,12 +559,10 @@ function rescheduleConsultation(e) {
     }
 }
 
-// Cancel the reschedule action
 function cancelReschedulePopup() {
     $.reschedulePopup.visible = false;
 }
 
-// Confirm the new date/time for the consultation
 function confirmReschedulePopup() {
     if (!consultationToReschedule) {
         alert("No consultation selected to reschedule.");
@@ -632,11 +594,9 @@ function confirmReschedulePopup() {
 
     $.reschedulePopup.visible = false;
 
-    // Refresh the calendar and consultation list
     populateCalendar(currentMonth, currentYear);
     highlightCurrentDay();
 
-    // If the newly rescheduled consultation matches the currently selected date, update the list
     if (selectedDate && selectedDate.getDate() === newDay && selectedDate.getMonth() === newMonth && selectedDate.getFullYear() === newYear) {
         updateConsultationList(new Date(newYear, newMonth, newDay));
     }
@@ -659,3 +619,8 @@ function getEndTime(startTime) {
     var endMinutes = minutes < 10 ? "0" + minutes : "" + minutes;
     return endHours + ":" + endMinutes;
 }
+
+// Initial setup
+populateCalendar(currentMonth, currentYear);
+highlightCurrentDay();
+showSchedule();
