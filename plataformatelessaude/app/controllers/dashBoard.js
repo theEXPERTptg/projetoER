@@ -209,13 +209,71 @@ function joinCall() {
     alert("NOT IMPLEMENTED - joinCall");
 }
 
-function rescheduleConsultation() {
-    alert("NOT IMPLEMENTED - rescheduleConsultation");
+
+
+// Function triggered when Cancel button is clicked
+function cancelConsultation(e) {
+    // Get the consultation index from the clicked button
+    var consultationIndex = e.source.consultationIndex;
+
+    if (typeof consultationIndex === 'number') {
+        var day = selectedDate.getDate();
+        var month = selectedDate.getMonth();
+        var year = selectedDate.getFullYear();
+
+        // Find consultations matching the selected date, including year
+        var consultations = getConsultationsByDate(day, month, year);
+
+        if (consultationIndex >= 0 && consultationIndex < consultations.length) {
+            var consultationToCancel = consultations[consultationIndex];
+
+            // Show confirmation alert
+            var dialog = Ti.UI.createAlertDialog({
+                title: "Cancel Consultation",
+                message: "Are you sure you want to cancel the consultation with " + consultationToCancel.doctorName + "?",
+                buttonNames: ['Yes', 'No'],
+                cancel: 1
+            });
+
+            dialog.addEventListener('click', function (event) {
+                if (event.index === 0) {
+                    // Remove the consultation from the database
+                    var updatedConsultations = appointments.consultations.filter(function (consultation) {
+                        return !(
+                            consultation.day === consultationToCancel.day &&
+                            consultation.month === consultationToCancel.month &&
+                            consultation.year === consultationToCancel.year &&
+                            consultation.startTime === consultationToCancel.startTime &&
+                            consultation.doctorName === consultationToCancel.doctorName
+                        );
+                    });
+
+                    // Update the appointments database
+                    appointments.consultations = updatedConsultations;
+
+                    // Refresh the calendar and consultation list
+                    populateCalendar(currentMonth, currentYear);
+                    highlightCurrentDay();
+                    updateConsultationList(new Date(year, month, day));
+
+                    // Show cancellation success message
+                    Ti.UI.createAlertDialog({
+                        title: "Cancellation Successful",
+                        message: "Your consultation with " + consultationToCancel.doctorName + " has been successfully canceled.",
+                        buttonNames: ['OK']
+                    }).show();
+                }
+            });
+
+            dialog.show();
+        } else {
+            alert("Unable to find the selected consultation.");
+        }
+    } else {
+        alert("No consultation selected for cancellation.");
+    }
 }
 
-function cancelConsultation() {
-    alert("NOT IMPLEMENTED - cancelConsultation");
-}
 
 function selectDay(e) {
     $.scheduleScheduleConsultation.visible = false;
@@ -324,9 +382,10 @@ function updateConsultationList(date) {
     var month = date.getMonth();
     var year = date.getFullYear();
 
-    // Remove existing consultations
+    // Clear the previous list
     $.consultationList.removeAllChildren();
 
+    // Filter consultations for the selected date
     var consultations = getConsultationsByDate(day, month, year);
 
     consultations.forEach(function (consultation, i) {
@@ -353,28 +412,27 @@ function updateConsultationList(date) {
         timeView.add(endTimeLabel);
 
         var infoView = Ti.UI.createView({
-            left_: "30%",
             width: "70%",
             layout: "vertical"
         });
 
         var infoTextView = Ti.UI.createView({
-            height:"50%",
+            height: "50%",
             layout: "horizontal"
         });
 
         var consultationColor = Ti.UI.createView({
             top: "35%",
-            left:"10%",
-            width:"5%",
-            height:"30%",
-            backgroundColor:"blue"	
+            left: "10%",
+            width: "5%",
+            height: "30%",
+            backgroundColor: "blue"	
         });
 
         var infoTextLabel = Ti.UI.createLabel({
-            top:"30%",
-            left:"5%",
-            color:"black",
+            top: "30%",
+            left: "5%",
+            color: "black",
             text: consultation.specialisation + " - " + consultation.doctorName
         });
 
@@ -382,17 +440,15 @@ function updateConsultationList(date) {
         infoTextView.add(infoTextLabel);
 
         var btnsView = Ti.UI.createView({
-            width:"70%",
-            left:"30%",
+            width: "70%",
             layout: "horizontal"
         });
 
         var joinCallBtn = Ti.UI.createButton({
             width: "20%",
             height: "80%",
-            top:"10%",
+            top: "10%",
             left: "10%",
-            right: "0%",
             backgroundColor: "green"
         });
         joinCallBtn.addEventListener('click', joinCall);
@@ -400,23 +456,21 @@ function updateConsultationList(date) {
         var rescheduleBtn = Ti.UI.createButton({
             width: "20%",
             height: "80%",
-            top:"10%",
+            top: "10%",
             left: "10%",
-            right: "0%",
             backgroundColor: "yellow"
         });
-        // Store the consultation index on the button
         rescheduleBtn.consultationIndex = i; 
         rescheduleBtn.addEventListener('click', rescheduleConsultation);
 
         var cancelBtn = Ti.UI.createButton({
             width: "20%",
             height: "80%",
-            top:"10%",
+            top: "10%",
             left: "10%",
-            right: "0%",
             backgroundColor: "red"
         });
+        cancelBtn.consultationIndex = i; 
         cancelBtn.addEventListener('click', cancelConsultation);
 
         btnsView.add(joinCallBtn);
@@ -432,6 +486,7 @@ function updateConsultationList(date) {
         $.consultationList.add(consultationView);
     });
 }
+
 
 // Initial setup
 populateCalendar(currentMonth, currentYear);
