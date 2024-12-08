@@ -42,7 +42,7 @@
                 <TextField id="emergencyName" hintText="Nome" class="input"></TextField>
                 <TextField id="emergencyPhoneNumber" hintText="Num. Telemóvel" class="input"></TextField>
                 <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
-                <Button id="next3" title="Próximo (3/4)" onClick="showRegisterFormPage4"></Button> <!--TODO registerpage2-->
+                <Button id="next3" title="Próximo (3/4)" onClick="validatePage3"></Button> <!--TODO registerpage2-->
                 <Button id="back3" title="Voltar Atrás" onClick="showRegisterFormPage2"></Button>
             </View>
 

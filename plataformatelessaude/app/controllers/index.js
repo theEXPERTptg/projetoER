@@ -184,6 +184,51 @@ function validatePage2() {
     }
 }    
 
+function validatePage3(){
+    var emergencyName = $.emergencyName.value;
+    var emergencyPhoneNumber = $.emergencyPhoneNumber.value;
+    var relationship = $.relationship.value;
+
+    function validateEmergencyPhoneNumber(emergencyPhoneNumber){
+        const onlyNumbers = /^\d+$/.test(emergencyPhoneNumber);
+
+        if (!onlyNumbers) {
+        alert("O número de telemóvel deve conter apenas números. Insira um número de telemóvel válido.");
+            return false;
+        }
+
+        if (emergencyPhoneNumber.length !== 9) {
+            alert("O número de telemóvel deve conter exatamente 9 dígitos. Insira um número de telemóvel válido.");
+            return false;
+        }
+
+        return true;
+    }
+
+    if (!emergencyName && !emergencyPhoneNumber && !relationship) {
+        alert("Não foram inseridos dados. Insira a informação necessária.");
+        return false; 
+    } else if (!emergencyName){
+        alert("Nenhum nome para o contacto de emergência foi inserido. Insira a informação necessária.")
+        return false;
+    } else if (!emergencyPhoneNumber){
+        alert("Nenhum número de telemóvel para o contacto de emergência foi inserido. Insira a informação necessária.")
+        return false;
+    } else if (validateEmergencyPhoneNumber(emergencyPhoneNumber) === false){
+        return false;
+    } else if (!relationship){
+        alert("Nenhuma relação com o contacto de emergência foi inserida. Insira a informação necessária.");
+        return false;
+    } else if (emergencyName && validateEmergencyPhoneNumber(emergencyPhoneNumber) === true && relationship){
+        $.loginForm.visible = false; 
+        $.registerFormPage1.visible = false;
+        $.registerFormPage2.visible = false;
+        $.registerFormPage3.visible = false;
+        $.registerFormPage4.visible = true;
+        return true;
+    }
+
+}
 
 function showRegisterFormPage1() {
     $.loginForm.visible = false;  // Hide login form
