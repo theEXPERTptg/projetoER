@@ -1,21 +1,180 @@
 <Alloy>
     <Window id="mainWindow" class="container">
-        <!-- Top Container for User Profile -->
+
+        <View id="schedulePopup" visible="false" class="popupContainer">
+            <View class="popupContent">
+                <Label text="Schedule Consultation" class="popupTitle"></Label>
+
+                <Picker id="timePicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="09:00" />
+                        <PickerRow title="09:30" />
+                        <PickerRow title="10:00" />
+                        <PickerRow title="10:30" />
+                        <PickerRow title="11:00" />
+                        <PickerRow title="11:30" />
+                        <PickerRow title="12:00" />
+                        <PickerRow title="12:30" />
+                        <PickerRow title="13:00" />
+                        <PickerRow title="13:30" />
+                        <PickerRow title="14:00" />
+                        <PickerRow title="14:30" />
+                        <PickerRow title="15:00" />
+                        <PickerRow title="15:30" />
+                        <PickerRow title="16:00" />
+                        <PickerRow title="16:30" />
+                        <PickerRow title="17:00" />
+                        <PickerRow title="17:30" />
+                        <PickerRow title="18:00" />
+                        <PickerRow title="18:30" />
+                        <PickerRow title="19:00" />
+                        <PickerRow title="19:30" />
+                        <PickerRow title="20:00" />
+                        <PickerRow title="20:30" />
+                    </PickerColumn>
+                </Picker>
+
+                <Picker id="specialtyPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="Cardiology" />
+                        <PickerRow title="Dermatology" />
+                        <PickerRow title="Pediatrics" />
+                        <PickerRow title="Orthopedics" />
+                    </PickerColumn>
+                </Picker>
+
+                <Picker id="doctorPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="Dr. Carlos" />
+                        <PickerRow title="Dr. Francisco" />
+                        <PickerRow title="Dr. Helder" />
+                        <PickerRow title="Dr. Zé" />
+                        <PickerRow title="Dr. Otávio" />
+                        <PickerRow title="Dr. Miguel" />
+                    </PickerColumn>
+                </Picker>
+
+                <View layout="horizontal" top="20" bottom="20" height="50dp">
+                    <Button id="confirmBtn" title="Confirm" width="50%" onClick="confirmPopup"></Button>
+                    <Button id="cancelBtn" title="Cancel" width="50%" onClick="cancelPopup"></Button>
+                </View>
+            </View>
+        </View>
+        <View id="reschedulePopup" visible="false" class="popupContainer">
+            <View class="popupContent">
+                <Label text="Reschedule Consultation" class="popupTitle"></Label>
+
+                <Picker id="rescheduleDayPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="1" />
+                        <PickerRow title="2" />
+                        <PickerRow title="3" />
+                        <PickerRow title="4" />
+                        <PickerRow title="5" />
+                        <PickerRow title="6" />
+                        <PickerRow title="7" />
+                        <PickerRow title="8" />
+                        <PickerRow title="9" />
+                        <PickerRow title="10" />
+                        <PickerRow title="11" />
+                        <PickerRow title="12" />
+                        <PickerRow title="13" />
+                        <PickerRow title="14" />
+                        <PickerRow title="15" />
+                        <PickerRow title="16" />
+                        <PickerRow title="17" />
+                        <PickerRow title="18" />
+                        <PickerRow title="19" />
+                        <PickerRow title="20" />
+                        <PickerRow title="21" />
+                        <PickerRow title="22" />
+                        <PickerRow title="23" />
+                        <PickerRow title="24" />
+                        <PickerRow title="25" />
+                        <PickerRow title="26" />
+                        <PickerRow title="27" />
+                        <PickerRow title="28" />
+                        <PickerRow title="29" />
+                        <PickerRow title="30" />
+                        <PickerRow title="31" />
+                    </PickerColumn>
+                </Picker>
+
+                <Picker id="rescheduleMonthPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="January" />
+                        <PickerRow title="February" />
+                        <PickerRow title="March" />
+                        <PickerRow title="April" />
+                        <PickerRow title="May" />
+                        <PickerRow title="June" />
+                        <PickerRow title="July" />
+                        <PickerRow title="August" />
+                        <PickerRow title="September" />
+                        <PickerRow title="October" />
+                        <PickerRow title="November" />
+                        <PickerRow title="December" />
+                    </PickerColumn>
+                </Picker>
+
+                <Picker id="rescheduleYearPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="2024" />
+                        <PickerRow title="2025" />
+                    </PickerColumn>
+                </Picker>
+
+                <Picker id="rescheduleTimePicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="09:00" />
+                        <PickerRow title="09:30" />
+                        <PickerRow title="10:00" />
+                        <PickerRow title="10:30" />
+                        <PickerRow title="11:00" />
+                        <PickerRow title="11:30" />
+                        <PickerRow title="12:00" />
+                        <PickerRow title="12:30" />
+                        <PickerRow title="13:00" />
+                        <PickerRow title="13:30" />
+                        <PickerRow title="14:00" />
+                        <PickerRow title="14:30" />
+                        <PickerRow title="15:00" />
+                        <PickerRow title="15:30" />
+                        <PickerRow title="16:00" />
+                        <PickerRow title="16:30" />
+                        <PickerRow title="17:00" />
+                        <PickerRow title="17:30" />
+                        <PickerRow title="18:00" />
+                        <PickerRow title="18:30" />
+                        <PickerRow title="19:00" />
+                        <PickerRow title="19:30" />
+                        <PickerRow title="20:00" />
+                        <PickerRow title="20:30" />
+
+                    </PickerColumn>
+                </Picker>
+
+                <View layout="horizontal" top="20" bottom="20" height="50dp">
+                    <Button id="confirmRescheduleBtn" title="Confirm" width="50%"
+                        onClick="confirmReschedulePopup"></Button>
+                    <Button id="cancelRescheduleBtn" title="Cancel" width="50%"
+                        onClick="cancelReschedulePopup"></Button>
+                </View>
+            </View>
+        </View>
+
         <View class="profileContainer">
-            <!-- User Info Container -->
             <View id="userInfo" class="userInfo">
                 <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
                 <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
             </View>
 
-            <!-- Upcoming Appointments Container -->
             <View id="upcomingAppointments">
                 <Label id="appointmentTitle" class="appointmentTitle" text="Upcoming Appointments"></Label>
                 <Label id="appointmentDetails" class="appointmentDetails"
                     text="Consultation - General - 25-12 13:15"></Label>
             </View>
 
-            <!-- Buttons Container -->
             <View id="buttonContainer" class="buttonContainer">
                 <Button id="HomeBtn" title="Home" class="button" onClick="showHome"
                     backgroundColor="#789E9E"></Button>
@@ -72,7 +231,6 @@
                         <Label class="weekDayLabel">S</Label>
                     </View>
                 </View>
-
                 <View id="row1" class="dayRow">
                     <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
@@ -253,74 +411,67 @@
                 <View id="row5" class="dayRow">
                     <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel">29</Label>
+                            <Label class="calendarDayLabel">22</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
                     <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel">30</Label>
+                            <Label class="calendarDayLabel">23</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
                     <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel">31</Label>
+                            <Label class="calendarDayLabel">24</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">25</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">26</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">27</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
-                    <View class="calendarDay">
+                    <View class="calendarDay" onClick="selectDay">
                         <View class="calendarDayNumber">
-                            <Label class="calendarDayLabel"></Label>
+                            <Label class="calendarDayLabel">28</Label>
                         </View>
                         <View class="calendarDayEventMarkersContainer"></View>
                     </View>
                 </View>
+
             </View>
             <View id="consultationListDate">
-                <Label color="black">25 December - Wednesday</Label>
+                <Label id="consultationListDateLabel" color="black" text="25 December - Wednesday"></Label>
             </View>
-            <ScrollView layout="vertical" height="Ti.UI.FILL">
-                <View class="consultationList">
 
-                    <View class="consultationOnList" backgroundColor="black">
-                        <View class="consultationOnListTime"></View>
-                        <View layout="horizontal">
-                            <View></View>
-                            <View></View>
-                        </View>
-                    </View>
-                    <View class="consultationOnList" backgroundColor="yellow">
-                        <View class="consultationOnListTime"></View>
-                        <View layout="horizontal">
-                            <View></View>
-                            <View></View>
-                        </View>
-                    </View>
+
+            <ScrollView layout="vertical" height="Ti.UI.FILL">
+                <View id="consultationList" class="consultationList">
+                    <!-- Dynamically added consultation views will go here -->
                 </View>
             </ScrollView>
 
-            <View id="scheduleScheduleConsultation" visible="false">
+
+            <View id="scheduleScheduleConsultation" visible="false" layout="vertical">
+
 
             </View>
+
+
             <View id="scheduleRescheduleConsultation" visible="false">
 
             </View>
@@ -328,12 +479,9 @@
         </View>
 
 
-        <!-- Scrollable View for Additional Content -->
         <!-- HOME SCREEN-->
-
         <ScrollView id="homeContent" class="scrollableContainer" visible="true">
             <View id="scrollableInnerView" class="scrollableInnerView">
-            <!-- Add multiple child views here -->
             <View class="scrollableItem">
                 <View class="scrollableItemImage" backgroundColor="#000"></View>
                 <View class="scrollableItemContent" backgroundColor="#888">
@@ -420,7 +568,5 @@
                 </View>
             </View>
         </ScrollView>
-
-
     </Window>
 </Alloy>

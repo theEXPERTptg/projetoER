@@ -1,3 +1,9 @@
+"Label": {
+    color : "black"	
+}
+
+
+
 ".container": {
     backgroundColor: "#789E9E"
 }
@@ -309,7 +315,60 @@
     height: "5%"
 }
 
-".consultationOnList": {
-    layout: "horizontal",
-    height: "80%"
+"#scheduleScheduleConsultation": {
+    height: Ti.UI.FILL,
+    backgroundColor: "red"
+}
+
+
+"#scheduleScheduleConsultation": {
+    top: "5%",
+    left: "5%",
+    right: "5%",
+    height: Ti.UI.SIZE,
+    backgroundColor: "#EEF3D8",
+    borderRadius: 10,
+    layout: "vertical"
+}
+
+"#scheduleDateLabel": {
+    color: "#000",
+    font: {
+        fontSize: 16,
+        fontWeight: "bold"
+    },
+    top: "5%",
+    textAlign: "center"
+}
+
+".popupContainer": {
+    width: Ti.UI.FILL,
+    height: Ti.UI.FILL,
+    backgroundColor: "black",
+    zIndex: 999,
+    layout: "composite"
+}
+
+".popupContent": {
+    width: "80%",
+    height: Ti.UI.SIZE,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    borderColor: "#000",
+    borderWidth: 1,
+    layout: "vertical",
+    center: {x: "50%", y: "50%"}
+}
+
+".popupTitle": {
+    top: 10,
+    left: 10,
+    font: {
+        fontSize: 18,
+        fontWeight: "bold"
+    },
+    color: "#000"
+}
+"#reschedulePopup": {
+    visible: false
 }
