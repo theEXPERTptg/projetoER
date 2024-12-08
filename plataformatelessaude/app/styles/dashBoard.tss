@@ -1,3 +1,9 @@
+"Label": {
+    color : "black"	
+}
+
+
+
 ".container": {
     backgroundColor: "#789E9E"
 }
@@ -309,9 +315,65 @@
     height: "5%"
 }
 
-".consultationOnList": {
-    layout: "horizontal",
-    height: "80%"
+
+
+
+
+".consultationOnListInfo": {
+    left_:"30%",
+    width: "70%",
+    backgroundColor: "white"
+}
+
+".consultationOnListInfoText": {
+    height:"50%"	
+}
+
+
+".consultationOnListInfoBtns": {
+    width:"70%",
+    left:"30%"	
+}
+
+
+".joinCallBtn":{
+     width: "20%",
+    height: "80%",
+    top:"10%",
+    left: "10%",
+    right: "0%",
+    backgroundColor: "green"	
+}
+
+".rescheduleConsultationBtn":{
+     width: "20%",
+    height: "80%",
+    top:"10%",
+    left: "10%",
+    right: "0%",
+    backgroundColor: "yellow"	
+}
+
+".cancelConsultationBtn":{
+     width: "20%",
+    height: "80%",
+    top:"10%",
+    left: "10%",
+    right: "0%",
+    backgroundColor: "red"	
+}
+
+".consultationColor": {
+    top: "35%",
+    left:"10%",
+    width:"5%",
+    height:"30%",
+    backgroundColor:"blue"	
+}
+
+".consultationOnListInfoTextLabel": {
+    top:"30%",
+    left:"5%"	
 }
 
 

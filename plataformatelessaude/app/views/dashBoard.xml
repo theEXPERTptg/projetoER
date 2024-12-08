@@ -297,23 +297,11 @@
                      <Label id="consultationListDateLabel" color="black" text="25 December - Wednesday"></Label>
             </View>
             <ScrollView layout="vertical" height="Ti.UI.FILL">
-                <View class="consultationList">
-
-                    <View class="consultationOnList" backgroundColor="black">
-                        <View class="consultationOnListTime" layout="horizontal">
-                            <View > </View>
-                            <View></View>
-                        </View>
-                    </View>
-                    <View class="consultationOnList" backgroundColor="yellow">
-                        <View class="consultationOnListTime"></View>
-                        <View layout="horizontal">
-                            <View></View>
-                            <View></View>
-                        </View>
-                    </View>
+                <View id="consultationList" class="consultationList">
+                    <!-- Dynamically added consultation views will go here -->
                 </View>
             </ScrollView>
+
 
             <View id="scheduleScheduleConsultation" visible="false">
 

@@ -3,10 +3,33 @@ var currentDay = currentDate.getDay();
 var currentMonth = currentDate.getMonth();
 var currentYear = currentDate.getFullYear();
 
+//MONTHS ARE FROM 0 TO 11
+var appointments = {
+    "consultations": [
+        {
+            "doctorName": "Dr. John Doe",
+            "specialisation": "Cardiology",
+            "day": 8,
+            "month": 11, // December (0-based)
+            "year": 2024,
+            "startTime": "13:15",
+            "endTime": "14:00"
+        },
+        {
+            "doctorName": "Dr. Jane Smith",
+            "specialisation": "Dermatology",
+            "day": 8,
+            "month": 11, // December (0-based)
+            "year": 2024,
+            "startTime": "10:00",
+            "endTime": "10:30"
+        }
+    ]
+};
+
 var init = true;
 
 function highlightCurrentDay() {
-
     clearAllHighlights();
 
     var today = new Date();
@@ -16,13 +39,9 @@ function highlightCurrentDay() {
 
     if (currentMonth === todayMonth && currentYear === todayYear) {
         var rows = [$.row1, $.row2, $.row3, $.row4, $.row5];
-
-        // Loop through each row and each day cell to find today's date
         rows.forEach(row => {
             row.children.forEach(dayCell => {
-                var label = dayCell.children[0].children[0]; 
-                // .calendarDayNumber -> .calendarDayLabel
-
+                var label = dayCell.children[0].children[0];
                 if (label.text == todayDay) {
                     dayCell.backgroundColor = '#FFB74D';  // Highlight today's date
                 }
@@ -32,7 +51,7 @@ function highlightCurrentDay() {
 }
 
 function clearAllHighlights() {
-    var allRows = $.scheduleCalendar.children.filter((element) => 
+    var allRows = $.scheduleCalendar.children.filter((element) =>
         element.id && element.id.startsWith("row")
     );
 
@@ -43,33 +62,30 @@ function clearAllHighlights() {
     });
 }
 
-
-function showHome(){
-    $.schedule.visible=false;
-    $.homeContent.visible=true;
-
-    $.HomeBtn.backgroundColor = "#789E9E" ;
+function showHome() {
+    $.schedule.visible = false;
+    $.homeContent.visible = true;
+    $.HomeBtn.backgroundColor = "#789E9E";
     $.ScheduleBtn.backgroundColor = "#B7D8D6";
     $.HealthBtn.backgroundColor = "#B7D8D6";
 }
 
-function showSchedule(){
-    $.homeContent.visible=false;
-    $.schedule.visible=true;
-    $.HomeBtn.backgroundColor = "#B7D8D6" ;
+function showSchedule() {
+    $.homeContent.visible = false;
+    $.schedule.visible = true;
+    $.HomeBtn.backgroundColor = "#B7D8D6";
     $.ScheduleBtn.backgroundColor = "#789E9E";
     $.HealthBtn.backgroundColor = "#B7D8D6";
 }
 
-function showHealth(){
-    $.homeContent.visible=false;
-    $.schedule.visible=false;
-    $.HomeBtn.backgroundColor = "#B7D8D6" ;
+function showHealth() {
+    $.homeContent.visible = false;
+    $.schedule.visible = false;
+    $.HomeBtn.backgroundColor = "#B7D8D6";
     $.ScheduleBtn.backgroundColor = "#B7D8D6";
     $.HealthBtn.backgroundColor = "#789E9E";
 }
 
-// Called when user taps the previous month arrow
 function prevMonth() {
     currentMonth--;
     if (currentMonth < 0) {
@@ -78,9 +94,10 @@ function prevMonth() {
     }
     populateCalendar(currentMonth, currentYear);
     highlightCurrentDay();
+    // Update consultations for current day if applicable
+    updateConsultationList(new Date(currentYear, currentMonth, currentDate.getDate()));
 }
 
-// Called when user taps the next month arrow
 function nextMonth() {
     currentMonth++;
     if (currentMonth > 11) {
@@ -89,17 +106,32 @@ function nextMonth() {
     }
     populateCalendar(currentMonth, currentYear);
     highlightCurrentDay();
-}
-function newAppointment(){
-    alert("NOT IMPLEMENTED - newAppointment")
+    // Update consultations for current day if applicable
+    updateConsultationList(new Date(currentYear, currentMonth, currentDate.getDate()));
 }
 
-function appointmentHistory(){
-    alert("NOT IMPLEMENTED - appointmentHistory")
+function newAppointment() {
+    alert("NOT IMPLEMENTED - newAppointment");
+}
+
+function appointmentHistory() {
+    alert("NOT IMPLEMENTED - appointmentHistory");
+}
+
+function joinCall() {
+    alert("NOT IMPLEMENTED - joinCall");
+}
+
+function rescheduleConsultation() {
+    alert("NOT IMPLEMENTED - rescheduleConsultation");
+}
+
+function cancelConsultation() {
+    alert("NOT IMPLEMENTED - cancelConsultation");
 }
 
 function selectDay(e) {
-    var allRows = $.scheduleCalendar.children.filter((element) => 
+    var allRows = $.scheduleCalendar.children.filter((element) =>
         element.id && element.id.includes("row")
     );
     allRows.forEach(row => {
@@ -108,93 +140,188 @@ function selectDay(e) {
         });
     });
 
-    var dayUI = e.source.parent; 
+    var dayUI = e.source.parent;
     if (e.source instanceof Ti.UI.Label) {
         // if the event source is the label, the calendarDay view is a parent of a parent
         dayUI = e.source.parent.parent;
     }
 
-    // Re-highlight today's date if on the current month and year
     highlightCurrentDay();
-
-    // Highlight the selected day
     dayUI.backgroundColor = '#789E9E';
 
-    // Get the selected day's number
     var label = dayUI.children[0].children[0];
     var selectedDay = label.text;
 
     if (selectedDay) {
         var selectedDate = new Date(currentYear, currentMonth, selectedDay);
-        var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var weekdayName = weekdays[selectedDate.getDay()];
-
         $.consultationListDateLabel.text = selectedDay + " " + getMonthName(currentMonth) + " - " + weekdayName;
+        updateConsultationList(selectedDate);
     }
 }
 
-
-
-/**
- * Dynamically populate the calendar for a given month and year.
- * month: 0-based index (0 = January, 11 = December)
- * year: full year (e.g. 2024)
- */
 function populateCalendar(month, year) {
-    // Get the first day of the month (0 = Sunday)
     var firstDay = new Date(year, month, 1).getDay();
-    // Get total days in month
     var daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    // Rows
     var rows = [$.row1, $.row2, $.row3, $.row4, $.row5];
 
-    var currentDay = 1;
+    var currentDayCounter = 1;
     for (var r = 0; r < rows.length; r++) {
         var row = rows[r];
-        var dayCells = row.children; // Each of these is a .calendarDay view
+        var dayCells = row.children;
         for (var c = 0; c < dayCells.length; c++) {
             var dayCell = dayCells[c];
-            var label = dayCell.children[0].children[0]; 
-            // children[0] is .calendarDayNumber, children[0].children[0] is the Label .calendarDayLabel
-
-            var cellIndex = r * 7 + c; // index in the full 5-row * 7-cols grid
-            if (cellIndex < firstDay || currentDay > daysInMonth) {
+            var label = dayCell.children[0].children[0];
+            var cellIndex = r * 7 + c;
+            if (cellIndex < firstDay || currentDayCounter > daysInMonth) {
                 label.text = "";
             } else {
-                label.text = currentDay;
-                currentDay++;
+                label.text = currentDayCounter;
+                currentDayCounter++;
             }
         }
     }
 
-    // Update the month/year label
     $.currentMonthAndYear.children[0].text = getMonthName(month) + " " + year;
-    if (init ){
+    if (init) {
         updateConsultationDateLabel(new Date());
+        updateConsultationList(new Date()); // show current day's consultations at start
         init = false;
     }
 }
 
 function getMonthName(monthIndex) {
-    var monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     return monthNames[monthIndex];
 }
+
 function updateConsultationDateLabel(date) {
     var selectedDay = date.getDate();
     var selectedMonth = date.getMonth();
     var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var weekdayName = weekdays[date.getDay()];
-
-    // Update the label with the correct date and weekday
     $.consultationListDateLabel.text = selectedDay + " " + getMonthName(selectedMonth) + " - " + weekdayName;
 }
 
+// Directly filter from local `appointments`
+function getConsultationsByDate(day, month, year) {
+    return appointments.consultations.filter(function (consultation) {
+        return consultation.day === day && consultation.month === month && consultation.year === year;
+    });
+}
+
+function updateConsultationList(date) {
+    var day = date.getDate();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+
+    // Remove existing consultations
+    $.consultationList.removeAllChildren();
+
+    var consultations = getConsultationsByDate(day, month, year);
+
+    consultations.forEach(function (consultation) {
+        var consultationView = Ti.UI.createView({
+            layout: "horizontal",
+            height: "80%",
+            borderColor: "black",
+            borderWidth: 1
+        });
+
+        var timeView = Ti.UI.createView({
+            width: "30%",
+            layout: 'vertical',
+        });
+
+        var empty = Ti.UI.createLabel();
+        var startTimeLabel = Ti.UI.createLabel({ text: "[" + consultation.startTime + "]", color: "black" });
+        var dashLabel = Ti.UI.createLabel({ text: "-", color: "black" });
+        var endTimeLabel = Ti.UI.createLabel({ text: "[" + consultation.endTime + "]", color: "black" });
+
+        timeView.add(empty)
+        timeView.add(startTimeLabel);
+        timeView.add(dashLabel);
+        timeView.add(endTimeLabel);
+
+        var infoView = Ti.UI.createView({
+            left_: "30%",
+            width: "70%",
+            backgroundColor: "white",
+            layout: "vertical"
+        });
+
+        var infoTextView = Ti.UI.createView({
+            height:"50%",
+            layout: "horizontal"
+        });
+
+        var consultationColor = Ti.UI.createView({
+            top: "35%",
+            left:"10%",
+            width:"5%",
+            height:"30%",
+            backgroundColor:"blue"	
+        });
+
+        var infoTextLabel = Ti.UI.createLabel({
+            top:"30%",
+            left:"5%",
+            color:"black",
+            text: consultation.specialisation + " - " + consultation.doctorName
+        });
+
+        infoTextView.add(consultationColor);
+        infoTextView.add(infoTextLabel);
+
+        var btnsView = Ti.UI.createView({
+            width:"70%",
+            left:"30%",
+            layout: "horizontal"
+        });
+
+        var joinCallBtn = Ti.UI.createButton({
+            width: "20%",
+            height: "80%",
+            top:"10%",
+            left: "10%",
+            right: "0%",
+            backgroundColor: "green"
+        });
+        joinCallBtn.addEventListener('click', joinCall);
+        var rescheduleBtn = Ti.UI.createButton({
+            width: "20%",
+            height: "80%",
+            top:"10%",
+            left: "10%",
+            right: "0%",
+            backgroundColor: "yellow"
+        });
+        rescheduleBtn.addEventListener('click', rescheduleConsultation);
+        var cancelBtn = Ti.UI.createButton({
+            width: "20%",
+            height: "80%",
+            top:"10%",
+            left: "10%",
+            right: "0%",
+            backgroundColor: "red"
+        });
+        cancelBtn.addEventListener('click', cancelConsultation);
+        btnsView.add(joinCallBtn);
+        btnsView.add(rescheduleBtn);
+        btnsView.add(cancelBtn);
+
+        infoView.add(infoTextView);
+        infoView.add(btnsView);
+
+        consultationView.add(timeView);
+        consultationView.add(infoView);
+
+        $.consultationList.add(consultationView);
+    });
+}
+
+// Initial setup
 populateCalendar(currentMonth, currentYear);
 highlightCurrentDay();
-
-
-
 showSchedule();
-
-
