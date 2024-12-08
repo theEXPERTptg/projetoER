@@ -4,6 +4,8 @@ var currentMonth = currentDate.getMonth();
 var currentYear = currentDate.getFullYear();
 
 var selectedDate = new Date();
+var consultationToReschedule = null;
+
 
 //MONTHS ARE FROM 0 TO 11
 var appointments = {
@@ -315,6 +317,8 @@ function getConsultationsByDate(day, month, year) {
     });
 }
 
+var consultationToReschedule = null;
+
 function updateConsultationList(date) {
     var day = date.getDate();
     var month = date.getMonth();
@@ -325,7 +329,7 @@ function updateConsultationList(date) {
 
     var consultations = getConsultationsByDate(day, month, year);
 
-    consultations.forEach(function (consultation) {
+    consultations.forEach(function (consultation, i) {
         var consultationView = Ti.UI.createView({
             layout: "horizontal",
             height: "80%",
@@ -343,7 +347,7 @@ function updateConsultationList(date) {
         var dashLabel = Ti.UI.createLabel({ text: "-", color: "black" });
         var endTimeLabel = Ti.UI.createLabel({ text: "[" + consultation.endTime + "]", color: "black" });
 
-        timeView.add(empty)
+        timeView.add(empty);
         timeView.add(startTimeLabel);
         timeView.add(dashLabel);
         timeView.add(endTimeLabel);
@@ -392,6 +396,7 @@ function updateConsultationList(date) {
             backgroundColor: "green"
         });
         joinCallBtn.addEventListener('click', joinCall);
+
         var rescheduleBtn = Ti.UI.createButton({
             width: "20%",
             height: "80%",
@@ -400,7 +405,10 @@ function updateConsultationList(date) {
             right: "0%",
             backgroundColor: "yellow"
         });
+        // Store the consultation index on the button
+        rescheduleBtn.consultationIndex = i; 
         rescheduleBtn.addEventListener('click', rescheduleConsultation);
+
         var cancelBtn = Ti.UI.createButton({
             width: "20%",
             height: "80%",
@@ -410,6 +418,7 @@ function updateConsultationList(date) {
             backgroundColor: "red"
         });
         cancelBtn.addEventListener('click', cancelConsultation);
+
         btnsView.add(joinCallBtn);
         btnsView.add(rescheduleBtn);
         btnsView.add(cancelBtn);
@@ -495,6 +504,96 @@ function getEndTime(startTime) {
     var minutes = parseInt(parts[1], 10);
 
     // Add 30 minutes to create an end time
+    minutes += 30;
+    if (minutes >= 60) {
+        hours += 1;
+        minutes -= 60;
+    }
+
+    var endHours = hours < 10 ? "0" + hours : "" + hours;
+    var endMinutes = minutes < 10 ? "0" + minutes : "" + minutes;
+    return endHours + ":" + endMinutes;
+}
+
+
+
+
+
+
+function rescheduleConsultation(e) {
+    var consultationIndex = e.source.consultationIndex;
+    if (typeof consultationIndex === 'number') {
+        // Use the currently selected date (which includes the correct year)
+        var day = selectedDate.getDate();
+        var month = selectedDate.getMonth();
+        var year = selectedDate.getFullYear();
+        var consultations = getConsultationsByDate(day, month, year);
+
+        if (consultationIndex >= 0 && consultationIndex < consultations.length) {
+            consultationToReschedule = consultations[consultationIndex];
+            $.reschedulePopup.visible = true;
+        } else {
+            alert("Unable to find the selected consultation.");
+        }
+    } else {
+        alert("No consultation selected for rescheduling.");
+    }
+}
+
+// Cancel the reschedule action
+function cancelReschedulePopup() {
+    $.reschedulePopup.visible = false;
+}
+
+// Confirm the new date/time for the consultation
+function confirmReschedulePopup() {
+    if (!consultationToReschedule) {
+        alert("No consultation selected to reschedule.");
+        return;
+    }
+
+    var selectedDayRow = $.rescheduleDayPicker.getSelectedRow(0);
+    var selectedMonthRow = $.rescheduleMonthPicker.getSelectedRow(0);
+    var selectedYearRow = $.rescheduleYearPicker.getSelectedRow(0);
+    var selectedTimeRow = $.rescheduleTimePicker.getSelectedRow(0);
+
+    if (!selectedDayRow || !selectedMonthRow || !selectedYearRow || !selectedTimeRow) {
+        alert("Please select day, month, year, and time.");
+        return;
+    }
+
+    var newDay = parseInt(selectedDayRow.title, 10);
+    var monthNames = ["January", "February", "March", "April", "May", "June", 
+                      "July", "August", "September", "October", "November", "December"];
+    var newMonth = monthNames.indexOf(selectedMonthRow.title); 
+    var newYear = parseInt(selectedYearRow.title, 10);
+    var newTime = selectedTimeRow.title;
+
+    consultationToReschedule.day = newDay;
+    consultationToReschedule.month = newMonth;
+    consultationToReschedule.year = newYear;
+    consultationToReschedule.startTime = newTime;
+    consultationToReschedule.endTime = getEndTime(newTime);
+
+    $.reschedulePopup.visible = false;
+
+    // Refresh the calendar and consultation list
+    populateCalendar(currentMonth, currentYear);
+    highlightCurrentDay();
+
+    // If the newly rescheduled consultation matches the currently selected date, update the list
+    if (selectedDate && selectedDate.getDate() === newDay && selectedDate.getMonth() === newMonth && selectedDate.getFullYear() === newYear) {
+        updateConsultationList(new Date(newYear, newMonth, newDay));
+    }
+
+    consultationToReschedule = null;
+}
+
+function getEndTime(startTime) {
+    var parts = startTime.split(":");
+    var hours = parseInt(parts[0], 10);
+    var minutes = parseInt(parts[1], 10);
+
     minutes += 30;
     if (minutes >= 60) {
         hours += 1;

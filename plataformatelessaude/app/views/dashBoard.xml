@@ -1,7 +1,7 @@
 <Alloy>
     <Window id="mainWindow" class="container">
 
-         <View id="schedulePopup" visible="false" class="popupContainer">
+        <View id="schedulePopup" visible="false" class="popupContainer">
             <View class="popupContent">
                 <Label text="Schedule Consultation" class="popupTitle"></Label>
 
@@ -14,7 +14,7 @@
                         <PickerRow title="10:30" />
                         <PickerRow title="11:00" />
                         <PickerRow title="11:30" />
-                        <!-- Add more times as needed -->
+                        <!-- TODO Add more times as needed -->
                     </PickerColumn>
                 </Picker>
 
@@ -48,7 +48,73 @@
                 </View>
             </View>
         </View>
+        <!-- Reschedule Popup -->
+        <View id="reschedulePopup" visible="false" class="popupContainer">
+            <View class="popupContent">
+                <Label text="Reschedule Consultation" class="popupTitle"></Label>
 
+                <!-- Day Picker -->
+                <Picker id="rescheduleDayPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="1" />
+                        <PickerRow title="2" />
+                        <PickerRow title="3" />
+                        <PickerRow title="4" />
+                        <PickerRow title="5" />
+                        <!-- ... add more days as needed ... -->
+                        <PickerRow title="30" />
+                        <PickerRow title="31" />
+                    </PickerColumn>
+                </Picker>
+
+                <!-- Month Picker -->
+                <Picker id="rescheduleMonthPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="January" />
+                        <PickerRow title="February" />
+                        <PickerRow title="March" />
+                        <PickerRow title="April" />
+                        <PickerRow title="May" />
+                        <PickerRow title="June" />
+                        <PickerRow title="July" />
+                        <PickerRow title="August" />
+                        <PickerRow title="September" />
+                        <PickerRow title="October" />
+                        <PickerRow title="November" />
+                        <PickerRow title="December" />
+                    </PickerColumn>
+                </Picker>
+
+                <!-- Year Picker -->
+                <Picker id="rescheduleYearPicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="2024" />
+                        <PickerRow title="2025" />
+                        <!-- Add more years as needed -->
+                    </PickerColumn>
+                </Picker>
+
+                <!-- Time Picker -->
+                <Picker id="rescheduleTimePicker" top="10">
+                    <PickerColumn>
+                        <PickerRow title="09:00" />
+                        <PickerRow title="09:30" />
+                        <PickerRow title="10:00" />
+                        <PickerRow title="10:30" />
+                        <PickerRow title="11:00" />
+                        <PickerRow title="11:30" />
+                        <!-- Add more times as needed -->
+                    </PickerColumn>
+                </Picker>
+
+                <View layout="horizontal" top="20" bottom="20" height="50dp">
+                    <Button id="confirmRescheduleBtn" title="Confirm" width="50%"
+                        onClick="confirmReschedulePopup"></Button>
+                    <Button id="cancelRescheduleBtn" title="Cancel" width="50%"
+                        onClick="cancelReschedulePopup"></Button>
+                </View>
+            </View>
+        </View>
 
         <!-- Top Container for User Profile -->
         <View class="profileContainer">
@@ -463,8 +529,6 @@
             </View>
         </ScrollView>
 
-
-       
 
     </Window>
 </Alloy>

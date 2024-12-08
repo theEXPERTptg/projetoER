@@ -371,3 +371,6 @@
     },
     color: "#000"
 }
+"#reschedulePopup": {
+    visible: false
+}
