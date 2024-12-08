@@ -197,11 +197,6 @@
 
 }
 
-"#scheduleConsultationList":{
-    backgroundColor: "#F00",
-    height: "60%"
-}
-
 "#scheduleScheduleConsultation":{
     backgroundColor: "#0F0",
     height: "40%"
@@ -232,7 +227,6 @@
 "#weekDays":{
 
     height:"5%",
-    backgroundColor: "#000",
     top: "12%",
     layout: 'horizontal'
     
@@ -267,7 +261,7 @@
     layout: 'vertical'
 }
 
-".weekDayLable": {
+".weekDayLabel": {
     color:"black",
     font:{
         fontSize: 10,
@@ -286,10 +280,36 @@
     height: Ti.UI.FILL	
 }
 
-".calendarDayLable": {
-    color: 'black',
+".calendarDayLabel": {
+    color:"#000",
     font:{
         font:14,
         fontWeight: "bold"
     }	
+}
+
+"#scheduleMenuButtons":{
+    height: "10%",
+    layout: 'horizontal'
+}
+
+".scheduleBtn": {
+    width:"48%",
+    left:"1%",
+    right:"1%"	
+}
+
+".consultationList": {
+    layout: "vertical",
+    height: Ti.UI.SIZE
+}
+
+"#consultationListDate":{
+    backgroundColor: "#B7D8D6",
+    height: "5%"
+}
+
+".consultationOnList": {
+    layout: "horizontal",
+    height: "80%"
 }

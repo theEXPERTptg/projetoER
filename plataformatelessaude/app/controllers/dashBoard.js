@@ -36,14 +36,30 @@ function nextMonth(){
     alert("NOT IMPLEMENTED - nextMonth")
 }
 
+function newAppointment(){
+    alert("NOT IMPLEMENTED - newAppointment")
+}
+
+function appointmentHistory(){
+    alert("NOT IMPLEMENTED - appointmentHistory")
+}
+
 
 function selectDay(e){
-    var allDays = $.scheduleCalendar.children.filter(child => child.class == "dayRow")
+    var allDays = $.scheduleCalendar.children;
 
+   
+   
+
+    allDays = allDays.filter((element) => element.id.includes( "row"));
     allDays.forEach(element => {
-        element.backgroundColor = "#F00";
+        element.children.forEach(e => e.backgroundColor ="#B7D8D6")
     });
 
-    var dayUI = e.source; 
-    dayUI.backgroundColor = '#FFD700'; 
+    var dayUI = e.source.parent; 
+    if(e.source instanceof Ti.UI.Label){
+        dayUI = e.source.parent.parent;
+    }
+
+    dayUI.backgroundColor = '#789E9E'; 
 }

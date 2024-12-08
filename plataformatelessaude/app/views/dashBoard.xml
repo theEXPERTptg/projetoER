@@ -11,100 +11,318 @@
             <!-- Upcoming Appointments Container -->
             <View id="upcomingAppointments">
                 <Label id="appointmentTitle" class="appointmentTitle" text="Upcoming Appointments"></Label>
-                <Label id="appointmentDetails" class="appointmentDetails" text="Consultation - General - 25-12 13:15"></Label>
+                <Label id="appointmentDetails" class="appointmentDetails"
+                    text="Consultation - General - 25-12 13:15"></Label>
             </View>
 
             <!-- Buttons Container -->
             <View id="buttonContainer" class="buttonContainer">
-                <Button id="HomeBtn" title="Home" class="button" onClick="showHome" backgroundColor="#789E9E"></Button>
+                <Button id="HomeBtn" title="Home" class="button" onClick="showHome"
+                    backgroundColor="#789E9E"></Button>
                 <Button id="ScheduleBtn" title="Schedule" class="button" onClick="showSchedule"></Button>
                 <Button id="HealthBtn" title="Health Metrics" class="button" onClick="showHealth"></Button>
             </View>
+
         </View>
 
 
         <!-- SCHEDULE-->
         <View id="schedule" visible="false">
+
+            <View id="scheduleMenuButtons">
+                <Button class="scheduleBtn" onClick="newAppointment" backgroundColor="#69AA70">New
+                    Appointment</Button>
+                <Button class="scheduleBtn" onClick="appointmentHistory" backgroundColor="#4D6466">Appointment
+                    History</Button>
+            </View>
             <View id="scheduleCalendar">
                 <View id="monthSelector">
-                    <View id="prevMonthArrow" class="monthSelectorText" onClick="prevMonth"><Label text="<" color="black"></Label></View>
-                    <View id="currentMonthAndYear" class="monthSelectorText"><Label text="December 2024" color="black"></Label></View>
-                    <View id="prevMonthArrow" class="monthSelectorText" onClick="nextMonth"><Label text=">" color="black"></Label></View>
-                    
-                
-                </View>
-                <View id="weekDays">
-                    <View class="calendarDay"><Label class="weekDayLable">S</Label></View>
-                    <View class="calendarDay"><Label class="weekDayLable">M</Label></View>
-                    <View class="calendarDay"><Label class="weekDayLable">T</Label></View>
-                    <View class="calendarDay"><Label class="weekDayLable">W</Label></View>
-                    <View class="calendarDay"><Label class="weekDayLable">T</Label></View>
-                    <View class="calendarDay"><Label class="weekDayLable">F</Label></View>
-                    <View class="calendarDay"><Label class="weekDayLable">S</Label></View>
-                </View>
-                <View id="row1" class="dayRow">
-                    <View class="calendarDay" onClick="selectDay" >
-                        <View class="calendarDayNumber" backgroundColor="#FFF" ><Label class="calendarDayLable">1</Label></View>
-                        <View class="calendarDayEventMarkersContainer" backgroundColor="#000">
-                        </View>
+                    <View id="prevMonthArrow" class="monthSelectorText" onClick="prevMonth">
+                        <Label text="<" color="black" fontWeight="bold"></Label>
                     </View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
+                    <View id="currentMonthAndYear" class="monthSelectorText" fontWeight="bold">
+                        <Label text="December 2024" color="black"></Label>
+                    </View>
+                    <View id="nextMonthArrow" class="monthSelectorText" onClick="nextMonth"
+                        fontWeight="bold">
+                        <Label text=">" color="black"></Label>
+                    </View>
                 </View>
-                 <View id="row2" class="dayRow">
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                
+
+                <View id="weekDays">
+                    <View class="calendarDay">
+                        <Label class="weekDayLabel">S</Label>
+                    </View>
+                    <View class="calendarDay">
+                        <Label class="weekDayLabel">M</Label>
+                    </View>
+                    <View class="calendarDay">
+                        <Label class="weekDayLabel">T</Label>
+                    </View>
+                    <View class="calendarDay">
+                        <Label class="weekDayLabel">W</Label>
+                    </View>
+                    <View class="calendarDay">
+                        <Label class="weekDayLabel">T</Label>
+                    </View>
+                    <View class="calendarDay">
+                        <Label class="weekDayLabel">F</Label>
+                    </View>
+                    <View class="calendarDay">
+                        <Label class="weekDayLabel">S</Label>
+                    </View>
                 </View>
-                 <View id="row3" class="dayRow">
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                
+
+                <View id="row1" class="dayRow">
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">1</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">2</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">3</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">4</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">5</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">6</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">7</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
                 </View>
-                 <View id="row4" class="dayRow">
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                
+
+                <View id="row2" class="dayRow">
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">8</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">9</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">10</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">11</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">12</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">13</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">14</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
                 </View>
-                 <View id="row5" class="dayRow">
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                    <View class="calendarDay"></View>
-                
+                <View id="row3" class="dayRow">
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">15</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">16</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">17</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">18</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">19</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">20</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">21</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                </View>
+                <View id="row4" class="dayRow">
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">22</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">23</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">24</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">25</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">26</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">27</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">28</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                </View>
+                <View id="row5" class="dayRow">
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">29</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">30</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay" onClick="selectDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel">31</Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel"></Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel"></Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel"></Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
+                    <View class="calendarDay">
+                        <View class="calendarDayNumber">
+                            <Label class="calendarDayLabel"></Label>
+                        </View>
+                        <View class="calendarDayEventMarkersContainer"></View>
+                    </View>
                 </View>
             </View>
-            <ScrollView id="scheduleConsultationList">
-            
-            
+            <View id="consultationListDate">
+                <Label color="black">25 December - Wednesday</Label>
+            </View>
+            <ScrollView layout="vertical" height="Ti.UI.FILL">
+                <View class="consultationList">
+
+                    <View class="consultationOnList" backgroundColor="black">
+                        <View class="consultationOnListTime"></View>
+                        <View layout="horizontal">
+                            <View></View>
+                            <View></View>
+                        </View>
+                    </View>
+                    <View class="consultationOnList" backgroundColor="yellow">
+                        <View class="consultationOnListTime"></View>
+                        <View layout="horizontal">
+                            <View></View>
+                            <View></View>
+                        </View>
+                    </View>
+                </View>
             </ScrollView>
+
             <View id="scheduleScheduleConsultation" visible="false">
 
             </View>
             <View id="scheduleRescheduleConsultation" visible="false">
-            
+
             </View>
 
         </View>
@@ -112,87 +330,87 @@
 
         <!-- Scrollable View for Additional Content -->
         <!-- HOME SCREEN-->
-        
+
         <ScrollView id="homeContent" class="scrollableContainer" visible="true">
             <View id="scrollableInnerView" class="scrollableInnerView">
-                <!-- Add multiple child views here -->
-                <View class="scrollableItem" >
-                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
-                    <View class="scrollableItemContent" backgroundColor="#888">
-                        <View class="scrollableItemApointmentText">
-                            <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
-                            <Label class="scollableItemContextText" text="Consultation - General"></Label>
-                            <Label class="scollableItemContextText" text="25-12-2024 13:15"></Label>
-                        </View>
-      
-                        <View class="scrollableItemButtons">
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
-                        </View>
+            <!-- Add multiple child views here -->
+            <View class="scrollableItem">
+                <View class="scrollableItemImage" backgroundColor="#000"></View>
+                <View class="scrollableItemContent" backgroundColor="#888">
+                    <View class="scrollableItemApointmentText">
+                        <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
+                        <Label class="scollableItemContextText" text="Consultation - General"></Label>
+                        <Label class="scollableItemContextText" text="25-12-2024 13:15"></Label>
+                    </View>
+
+                    <View class="scrollableItemButtons">
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
                     </View>
                 </View>
-                <View class="scrollableItem" >
-                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
-                    <View class="scrollableItemContent" backgroundColor="#888">
-                        <View class="scrollableItemApointmentText">
-                            <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
-                            <Label class="scollableItemContextText" text="Surgery"></Label>
-                            <Label class="scollableItemContextText" text="26-12-2024 19:15"></Label>
-                        </View>
-      
-                        <View class="scrollableItemButtons">
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
-                        </View>
+            </View>
+            <View class="scrollableItem">
+                <View class="scrollableItemImage" backgroundColor="#000"></View>
+                <View class="scrollableItemContent" backgroundColor="#888">
+                    <View class="scrollableItemApointmentText">
+                        <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
+                        <Label class="scollableItemContextText" text="Surgery"></Label>
+                        <Label class="scollableItemContextText" text="26-12-2024 19:15"></Label>
+                    </View>
+
+                    <View class="scrollableItemButtons">
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
                     </View>
                 </View>
-                <View class="scrollableItem" >
-                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
-                    <View class="scrollableItemContent" backgroundColor="#888">
-                        <View class="scrollableItemApointmentText">
-                            <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
-                            <Label class="scollableItemContextText" text="Consultation - Check Up"></Label>
-                            <Label class="scollableItemContextText" text="12-01-2024 12:00"></Label>
-                        </View>
-      
-                        <View class="scrollableItemButtons">
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
-                        </View>
+            </View>
+            <View class="scrollableItem">
+                <View class="scrollableItemImage" backgroundColor="#000"></View>
+                <View class="scrollableItemContent" backgroundColor="#888">
+                    <View class="scrollableItemApointmentText">
+                        <Label class="scrollableItemContentTitle" text="Upcoming Appointments"></Label>
+                        <Label class="scollableItemContextText" text="Consultation - Check Up"></Label>
+                        <Label class="scollableItemContextText" text="12-01-2024 12:00"></Label>
+                    </View>
+
+                    <View class="scrollableItemButtons">
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
                     </View>
                 </View>
-                <View class="scrollableItem">           
-                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
-                    <View class="scrollableItemContent" backgroundColor="#888">
-                        <View class="scrollableItemApointmentText">
-                            <Label class="scrollableItemContentTitle" text="Notification"></Label>
-                            <Label class="scollableItemContextText" text="Your results are back!"></Label>
-                            <Label class="scollableItemContextText" text="by: Dr Johnny"></Label>
-                        </View>
-      
-                        <View class="scrollableItemButtons">
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
-                            <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
-                        </View>
+            </View>
+            <View class="scrollableItem">
+                <View class="scrollableItemImage" backgroundColor="#000"></View>
+                <View class="scrollableItemContent" backgroundColor="#888">
+                    <View class="scrollableItemApointmentText">
+                        <Label class="scrollableItemContentTitle" text="Notification"></Label>
+                        <Label class="scollableItemContextText" text="Your results are back!"></Label>
+                        <Label class="scollableItemContextText" text="by: Dr Johnny"></Label>
+                    </View>
+
+                    <View class="scrollableItemButtons">
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
+                        <Button class="scrollableItemButtonsButton , cancelButton" text="Button 1"></Button>
                     </View>
                 </View>
-                <View class="scrollableItem">
-                    <View class="scrollableItemImage" backgroundColor="#000" ></View>
-                    <View class="scrollableItemContent" backgroundColor="#888">
+            </View>
+            <View class="scrollableItem">
+                <View class="scrollableItemImage" backgroundColor="#000"></View>
+                <View class="scrollableItemContent" backgroundColor="#888">
                     <View class="scrollableItemApointmentText">
                         <Label class="scrollableItemContentTitle" text="Reminder"></Label>
                         <Label class="scollableItemContextText" text="TAKE YOUR PILLS"></Label>
                         <Label class="scollableItemContextText" text="Today - 20:00"></Label>
                     </View>
-    
+
                     <View class="scrollableItemButtons">
                         <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
                         <Button class="scrollableItemButtonsButton" text="Button 1"></Button>
@@ -202,7 +420,7 @@
                 </View>
             </View>
         </ScrollView>
-        
+
 
     </Window>
 </Alloy>
