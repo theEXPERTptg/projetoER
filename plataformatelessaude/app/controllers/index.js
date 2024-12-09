@@ -227,8 +227,26 @@ function validatePage3(){
         $.registerFormPage4.visible = true;
         return true;
     }
-
 }
+
+function validatePage4(){
+    const isChecked = $.checkbox1.value;
+    if (!isChecked) {
+        alert("É necessário aceitar os termos e condições para terminar o registo.");
+        return false;
+    } else if(isChecked){
+        alert("O Registo foi efetuado com sucesso!")
+        $.loginForm.visible = false; 
+        $.registerFormPage1.visible = false;
+        $.registerFormPage2.visible = false;
+        $.registerFormPage3.visible = false;
+        $.registerFormPage4.visible = false; 
+        //TODO REGISTER PROCESS
+        showLoginForm();
+    }
+}
+
+
 
 function showRegisterFormPage1() {
     $.loginForm.visible = false;  // Hide login form

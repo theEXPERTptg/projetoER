@@ -49,13 +49,18 @@
             <!--Page 4-->
             <View id="registerFormPage4" class="form" visible="false"> 
                 <Label text="Registo" class="titleBox"></Label>
-                <TextField id="namePage4" hintText="Nome" class="input"></TextField>
-                <TextField id="NifNumberPage4" hintText="NIF" class="input"></TextField>
-                <View id="checkboxContainer">
-                    <Switch id="checkbox1" />
-                    <Label id="checkboxLabel" text="Texto" />
-                    </View>
-                <Button id="next4" title="Completar Registo" onClick="register"></Button> <!--TODO register-->
+                    <ScrollView class="scroll-container">
+                        <View class="content-container">
+                            <Label id="agreementTitle" text="Termos e Condições."></Label>
+                            <Label id="agreementText" text="Aqui encontram-se os vários termos e condições que o utlizador deve aceitar para prosseguir com o seu registo na plataforma de TeleMedicina."
+                                textWrap="true" />
+                            </View>
+                    </ScrollView>
+                    <View id="checkboxContainer">
+                        <Switch id="checkbox1" />
+                            <Label id="checkboxLabel" text="Eu aceito os termos e condições." />
+                    </View>   
+                <Button id="next4" title="Completar Registo" onClick="validatePage4"></Button>
                 <Button id="back4" title="Voltar Atrás" onClick="showRegisterFormPage3"></Button>
             </View>
 

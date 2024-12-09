@@ -105,3 +105,50 @@
     font: { fontSize: 16 },
     color: "#333"
 }
+
+".scroll-container": {
+    width: "90%",
+    height: "40%", /* Altura ajustada para caber na tela */
+    borderWidth: 2,
+    borderColor: "#ccc",
+    borderRadius: 10,
+    backgroundColor: "#FFFFFF",
+    padding: 10,
+    top: 20,
+    bottom: 20
+}
+
+".content-container": {
+    layout: "vertical",
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE
+}
+
+"#agreementText": {
+    font: { fontSize: 14 },
+    color: "#333333",
+    textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+    textWrap: true,
+    left: 10, 
+    top: 5  
+}
+
+"#checkboxContainer": {
+    layout: "horizontal", /* Organiza o checkbox e texto lado a lado */
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    top: 10,
+    left: 10
+}
+
+"#checkbox1": {
+    style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX,
+    width: 30,
+    height: 30
+}
+
+"#checkboxLabel": {
+    left: 10, /* Espaço entre checkbox e texto */
+    font: { fontSize: 16 },
+    color: "#333"
+}
