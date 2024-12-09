@@ -1,0 +1,34 @@
+<Alloy>
+    <Window class="container">
+        <!-- Imagem (Avatar) -->
+        <View id="avatarContainer">
+            <ImageView id="avatar" image="/path/to/avatar.png" />
+            <View id="notificationDot"></View>
+        </View>
+
+        <!-- Formulário 
+        <View id="form">
+            <View class="formField">
+                <Label class="fieldLabel" text="Name" />
+                <TextField id="nameField" hintText="Enter name" />
+            </View>
+            <View class="formField">
+                <Label class="fieldLabel" text="Surname" />
+                <TextField id="surnameField" hintText="Enter surname" />
+            </View>
+            <View class="formField">
+                <Label class="fieldLabel" text="Weight" />
+                <TextField id="weightField" hintText="Enter weight" keyboardType="decimal-pad" />
+            </View>
+            <View class="formField">
+                <Label class="fieldLabel" text="Height" />
+                <TextField id="heightField" hintText="Enter height" keyboardType="decimal-pad" />
+            </View>
+        </View>
+
+        <View id="buttonsContainer">
+            <Button id="saveButton" title="Save" />
+            <Button id="backButton" title="Back" onClick="goBack" />
+        </View> -->
+    </Window>
+</Alloy>

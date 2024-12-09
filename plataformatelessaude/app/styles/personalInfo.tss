@@ -1,0 +1,12 @@
+".container": {
+    backgroundColor: "#EDF0E1", // Cor de fundo clara
+    layout: "vertical"
+},
+
+".header": {
+    width: Ti.UI.FILL,
+    height: 60,
+    backgroundColor: "#EEF3D8",
+    layout: "horizontal",
+    alignItems: "center"
+},

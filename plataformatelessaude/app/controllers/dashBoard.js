@@ -624,3 +624,14 @@ function getEndTime(startTime) {
 populateCalendar(currentMonth, currentYear);
 highlightCurrentDay();
 showSchedule();
+
+function goToProfile() {
+    var profileController = Alloy.createController('profile');
+    var profileWindow = profileController.getView();
+    profileWindow.open(); // Abre a nova janela
+}
+
+$.userPhoto.addEventListener('click', function () {
+    goToProfile();
+});
+

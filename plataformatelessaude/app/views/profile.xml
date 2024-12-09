@@ -1,0 +1,7 @@
+<Alloy>
+    <Window id="mainWindow" class="container" backgroundColor="#789E9E">
+        <View id="mainContainer" class="OutterLayoutBox">
+            
+        </View>
+    </Window>
+</Alloy>
