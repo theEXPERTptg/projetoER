@@ -1,7 +1,51 @@
 <Alloy>
     <Window id="mainWindow" class="container" backgroundColor="#789E9E">
         <View id="mainContainer" class="OutterLayoutBox">
-            
+            <View id="screenTitle">
+                <ImageView image="/left-arrow.png" left="10%" top="20%" height="60%"></ImageView>
+                <View>
+                    <Label class="sectionTitle" text="My Profile" color="black" top="10%" left="40%"> </Label>
+                </View>
+
+            </View>
+            <View id="pacientInfo">
+                <ImageView id="userPhoto" image="/ProfilePic.png" ></ImageView>
+                <View layout="vertical" justifyText="center" left="35%" top="25%">
+                    <Label id="userName" text="John Doe" color="black" top="10%"> </Label>
+                    <Label id="userEmail" text="JohnDoe@gmail.com" color="black"> </Label>
+                </View>
+            </View>
+            <View id="personalSettings" layout="vertical">
+                <View class="sectionTitleContainer">
+                    <Label class="sectionTitle" text="Pacient Details"></Label>
+                </View>
+                <View class="settingsButton">
+                    <Label width="75%" top="28%" left="8%" text="Personal Info"></Label>
+                    <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
+                </View>
+                <View class="settingsButton">
+                    <Label width="75%" top="28%" left="8%" text="Password"></Label>
+                    <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
+                </View>
+                <View class="settingsButton">
+                    <Label width="75%" top="28%" left="8%" text="Delegate"></Label>
+                    <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
+                </View>
+            </View>
+            <View id="appSettings" layout="vertical">
+                <View class="sectionTitleContainer">
+                    <Label class="sectionTitle" text="App Details"></Label>
+                </View>
+                <View class="settingsButton">
+                    <Label width="75%" top="28%" left="8%" text="Display Settings"></Label>
+                    <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
+                </View>
+                <View class="settingsButton">
+                    <Label width="75%" top="28%" left="8%" text="Notification"></Label>
+                    <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
+                </View>
+            </View>
+
         </View>
     </Window>
 </Alloy>

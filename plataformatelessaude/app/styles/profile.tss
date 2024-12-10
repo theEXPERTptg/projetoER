@@ -12,59 +12,6 @@
     
 }
 
-
-".form": {
-    layout: "vertical",
-    width: Ti.UI.FILL,
-    height: Ti.UI.SIZE
-}
-
-".titleBox": {
-    font: { fontSize: 55, fontWeight: "bold" },
-    textAlign: "center",
-    color: "#000",
-    marginBottom: 20
-}
-
-".input": {
-    height: 60,
-    width: "90%",
-    borderColor: "#ccc",
-    backgroundColor: "#B7D8D6",
-    borderWidth: 4,
-    borderColor: "#4D6466",
-    borderRadius: 50,
-    hintTextColor: "#999",
-    fontStyle: "Concert One",
-    top: 10,
-    bottom: 10
-
-}
-
-"Button": {
-    width: "90%",
-    height: 56,
-    font: { fontSize: 18 },
-    backgroundColor: "#252525",
-    borderRadius: 50,
-    fontStyle: "Concert One",
-    top: 5,
-    bottom: 10,
-
-}
-
-".Button2": {
-    width: "70%",
-    height: 45,
-    font: { fontSize: 18 },
-    backgroundColor: "#D6D6D6",
-    borderRadius: 0,
-    fontStyle: "Concert One",
-    top: 5,
-    bottom: 5,
-    hintTextColor: 'black'
-}
-
 ".OutterLayoutBox": {
     width: "80%",
     height: "85%",
@@ -72,83 +19,81 @@
     borderRadius: "50px",
 }
 
-"#EmergencyContactText":{
-     font: {
-        fontSize: 38 
+"#screenTitle": {
+    height:"5%",
+    top: "2%"
+}
+
+"#backArrowContainer": {
+    width: "20%",
+    left: "10%"
+}
+
+"#pacientInfo":{
+    height: "20%",
+    top:"7%"
+}
+
+"#userPhoto":{
+    top: "20%",
+    height: "60%",
+    width: "25%",
+    left: "10%",
+    backgroundColor: "#AAA",
+    borderRadius: "30px"
+}
+
+"#personalSettings": {
+    top: "27%",
+    height: "36%",
+}
+
+"#appSettings": {
+    top:"63%",
+    height: Ti.UI.FILL,
+}
+
+".sectionTitleContainer":{
+    height: "10%",
+    top: "2%"
+}
+".sectionTitle":{
+   font: {
+        fontSize: 18,
+        fontWeight: "bold",
+
     },
-    top: 10,
-    padding: 10
+    left: "10%"
 }
 
-"#checkboxContainer": {
-    layout: "horizontal", // Organiza os elementos lado a lado
-    width: Ti.UI.SIZE,
-    height: Ti.UI.SIZE,
-    top: 10,
-    left: 20
 
+"Label": {
+    color: "black"	
 }
 
-"#checkbox1": {
+"#userName": {
+    font: {
+        fontSize: 20,
+        fontWeight: "bold",
 
-    style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX, // Aplica estilo de checkbox no Android
-    width: 20,
-    height: 20,
-    backgroundColor: "grey",
-    borderWidth: 10,
-    borderColor: "darkGrey"
-
+    },
+    left:"10%"
 }
 
-"#checkboxLabel": {
-    left: 10, // Espaço entre o checkbox e o texto
-    font: { fontSize: 16 },
-    color: "#333"
+
+"#userEmail": {
+    font: {
+        fontSize: 14,
+        fontWeight: "bold",
+
+    },
+    left:"10%"
 }
 
-".scroll-container": {
-    width: "90%",
-    height: "40%", /* Altura ajustada para caber na tela */
-    borderWidth: 2,
-    borderColor: "#ccc",
-    borderRadius: 10,
-    backgroundColor: "#FFFFFF",
-    padding: 10,
-    top: 20,
-    bottom: 20
-}
-
-".content-container": {
-    layout: "vertical",
-    width: Ti.UI.FILL,
-    height: Ti.UI.SIZE
-}
-
-"#agreementText": {
-    font: { fontSize: 14 },
-    color: "#333333",
-    textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-    textWrap: true,
-    left: 10, 
-    top: 5  
-}
-
-"#checkboxContainer": {
-    layout: "horizontal", /* Organiza o checkbox e texto lado a lado */
-    width: Ti.UI.FILL,
-    height: Ti.UI.SIZE,
-    top: 10,
-    left: 10
-}
-
-"#checkbox1": {
-    style: Ti.UI.Android.SWITCH_STYLE_CHECKBOX,
-    width: 30,
-    height: 30
-}
-
-"#checkboxLabel": {
-    left: 10, /* Espaço entre checkbox e texto */
-    font: { fontSize: 16 },
-    color: "#333"
+".settingsButton": {
+    height: "20%",
+    top:"3%",
+    left: "10%",
+    width: "80%",
+    backgroundColor: "#B7D8D6"
 }
