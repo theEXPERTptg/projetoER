@@ -4,9 +4,9 @@
 }
 
 ".header": {
-    top: "0%",
-    left: "1%",
-    right: "1%",    
+    top: "-1%",
+    left: "-2%",
+    right: "-2%",    
     width: Ti.UI.FILL,
     height: "20%",
     backgroundColor: "#EEF3D8",
@@ -18,11 +18,11 @@
 }
 
 ".container2": {
-    top: "1%",
+    top: "-17.5%",
     bottom: "1%",
     left: "1%",
     right: "1%",
-    height: "20%", 
+    height: "35%", 
     width: Ti.UI.FILL,
     layout: "vertical",
     backgroundColor: "#EEF3D8",
@@ -34,12 +34,17 @@
 
 ".userInfo": {
     width: Ti.UI.FILL,
-    height: "80%", 
-    top: "10%",
+    height: "100%", 
+    top: "0%",
     bottom: "10%",
     layout: "horizontal", 
     justifyContent: "space-between", 
     alignItems: "center"
+}
+
+".bigScreenContainer": {
+    width: "100%",
+    layout: "horizontal"
 }
 
 ".userName": {
@@ -52,40 +57,111 @@
     },
     color: "#000",
     textAlign: "left",
-    left: "5%"
+    left: "5%",
+    top: "35%"
 }
 
-".docTextBox": {
-    width: "50%"
+"#topContainer2":{
+    layout: 'horizontal',
+    height: "50%"
 }
 
+"#bottomContainer2": {
+    layout: "vertical"	
+}
+
+"#expectedTimeBox":{
+    backgroundColor: "yellow"
+}
+
+".docName": {
+    color: "#ffffff",
+    width: "65%",
+    font: {
+        fontSize: 20,
+        fontWeight: "bold"
+        
+    },
+    color: "#000",
+    textAlign: "left",
+    left: "5%",
+    top: "15%"	
+}
+
+".speciality": {
+    color: "#ffffff",
+    width: "65%",
+    font: {
+        fontSize: 15,
+    },
+    color: "#000",
+    textAlign: "left",
+    left: "5%",
+    top: "5%"
+}
 
 ".userPhoto": {
     width: "25%", 
-    height: "85%", 
+    height: "70%", 
     backgroundColor: "#FFF",
-    top : "5%",
+    top : "15%",
     borderRadius: 40,
     borderWidth: 5,
     borderColor: "#4D6466"
 }
 
-
 "#docPhoto":{
-    width: "25%", 
-    height: "70%",
-    top: "10%"
+    width: "21%", 
+    height: "80%", 
+    backgroundColor: "#FFF",
+    top : "20%",
+    left: "4%",
+    borderRadius: 40,
+    borderWidth: 5,
+    borderColor: "#4D6466"
+
+}
+
+"#expectedTimeBox":{
+    color: "#ffffff",
+    font: {
+        fontSize: 20,
+        fontWeight: "bold"
+        
+    },
+    textAlign: "center",
+    top: "7%",
+    layout: "vertical"
+}
+
+"#expectedTimeBoxContainer":{
+    height: "30%"
+}
+
+"#statusBox":{
+    borderRadius: 90,
+    textAlign: "center",
+    top: "5%",
+    height: "47%",
+    width: "50%",
+    backgroundColor: "red"
+}
+
+"#statusText":{
+    font:{
+        fontWeight: "bold",
+        fontSize: 18
+    }
 }
 
 "#callInfoBox":{
-    top: "1%",
+    top: "0%",
     left: "3%",
     right: "3%",    
-    width: Ti.UI.FILL,
-    height: "30%",
-    backgroundColor: "#EEF3D8",
+    width: "60%",
+    height: "100%",
     borderRadius: 10,
-    layout: "horizontal",
+    layout: "vertical",
     borderRadius: 5
 }
 
@@ -94,7 +170,6 @@
     left: "3%",
     right: "3%",    
     width: Ti.UI.FILL,
-    height: "30%",
     backgroundColor: "#EEF3D8",
     borderRadius: 10,
     layout: "vertical",
@@ -113,9 +188,46 @@
 }
 
 ".footer":{
-    "width": Ti.UI.FILL,
-    "height": "50dp",
-    "backgroundColor": "#EEF3D8",
-    "bottom": 0,
-    "layout": "vertical"
+    width: Ti.UI.FILL,
+    height: "50%",
+    backgroundColor: "red",
+    bottom: "-5%",
+    layout: "vertical"
 }
+
+".container3": {
+    top: "18%",
+    height: "20%", 
+    left: "-2%",
+    right: "-2%",
+    width: Ti.UI.FILL,
+    layout: "vertical",
+    backgroundColor: "#EEF3D8",
+    borderWidth: 5,
+    borderColor: "#B7D8D6"
+}
+
+".container4": {
+    top: "0.5%",
+    height: "20%", 
+    left: "-2%",
+    right: "-2%",
+    width: Ti.UI.FILL,
+    layout: "vertical",
+    backgroundColor: "#EEF3D8",
+    borderWidth: 5,
+    borderColor: "#B7D8D6"
+}
+
+".footer": {
+    top: "0.5%",
+    height: "30%", 
+    left: "-2%",
+    right: "-2%",
+    width: Ti.UI.FILL,
+    layout: "vertical",
+    backgroundColor: "#EEF3D8",
+    borderWidth: 10,
+    borderColor: "#B7D8D6"
+}
+

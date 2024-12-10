@@ -1,56 +1,85 @@
 <Alloy>
-    <Window id="callRoom" class="container">
-        <!-- Top Container for User Profile -->
+<Window id="callRoom" class="container">
+
+    <!--Estado 1 (sala de Espera)-->
+    </View id="waitingRoom" visible="true">
         <View class="header">
-            <!-- User Info Container -->
-            <View id="userInfo" class="userInfo">
-                <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
-                <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
-            </View>   
-        </View>
+                <!-- User Info Container -->
+                <View id="userInfo" class="userInfo">
+                    <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
+                    <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
+                    </View>   
+            </View>
 
-        <View class="container2">
-            <View id="callInfoBox" class="userInfo">
-                <View class="doctextBox">
-                    <Label id="userName1" class="userName" text="Doutor Fábio Mendonça"></Label>
-                    <Label id="speciality" class="speciality" text="Medicina Geral"></Label>
-                <View>
-                <ImageView id="docPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
+        <!-- inclui todas as caixas menos o rodape e o header-->
+        <View class="bigScreenContainer">
+
+            <!--Caixa 1-->
+            <View class="container2">
+                <!--com a imagem de perfil e dados do doutor-->
+                    <View id="topContainer2">            
+                        <View id="callInfoBox" class="userInfo"> <!--Caixa com dados do doutor-->
+                            <Label id="docName" class="docName" text="Doutor Fábio de Mendonça"></Label>
+                            <Label id="speciality" class="speciality" text="Medicina Geral"></Label>
+                        </View>
+                        <ImageView id="docPhoto" image="/ProfilePic.png"></ImageView>
+
+                    </View>
+                    <View id="bottomContainer2">
+                        <View id="expectedTimeBoxContainer">
+                            <Label id="expectedTimeBox" text="Hora de começo: 20:45"></Label>
+                        </View>
+                        <View id="statusBox">
+                            <Label id="statusText" text="Em espera"></Label>
+                        </View>
+                    </View>
+                </View>
+
+            <!--Caixa 2-->
+            <View class="container3">
+                <View id="checkQuestionsBox" class="userInfo">
+                    <Label id="userName2" class="userName" text="Questões Pré-Consulta"></Label>
+                    <Label id="userName3" class="userName" text="Realizou alguma consulta nos últimos dois meses?"></Label>
+                    </View> 
+                </View>
+
+            <!--Caixa 3-->
+            <View class="container4">
+                <View id="notificationsBox" class="userInfo">
+                    <Label id="userName4" class="userName" text="Notificações"></Label>
+                    <Label id="userName5" class="userName" text="10mg Necotinazol antes de dormir"></Label>
+                    <Label id="userName6" class="userName" text="notificações do sistema"></Label>
+                    
+                    <ImageView id="userPhoto2" class="userPhoto" image="/ProfilePic.png"></ImageView>
+                    </View>
+                </View>
+
+            <!--Rodape-->
+            <View class="footer">
+
+        
+                </View>
+        
+            
+            
             </View>
         </View>
-
-        <View class="container2">
-            <View id="checkQuestionsBox" class="userInfo">
-                <Label id="userName2" class="userName" text="Questões Pré-Consulta"></Label>
-                <Label id="userName3" class="userName" text="Realizou alguma consulta nos últimos dois meses?"></Label>
-            </View> 
-        </View>
-
-        <View class="container2">
-            <View id="notificationsBox" class="userInfo">
-                <Label id="userName4" class="userName" text="Notificações"></Label>
-                <Label id="userName5" class="userName" text="10mg Necotinazol antes de dormir"></Label>
-                <Label id="userName6" class="userName" text="notificações do sistema"></Label>
-                
-                <ImageView id="userPhoto2" class="userPhoto" image="/ProfilePic.png"></ImageView>
-            </View>
-        </View>
-
-        <View class="footer">
-            <View id="footer" class="userInfo">
-                
-                <ImageView id="userPhoto3" class="userPhoto" image="/ProfilePic.png"></ImageView>
-            </View>
-        </View>
-
-        <View class="callScreen" visible="false">
+    <!--Estado 2 (chamada visual)-->
+    <View class="callScreen" visible="false">
         <!--chamada-->
         </View>
 
         <View class="callMessage" visible="false">
+    
+        </View>
+    <!--Estado 3 (texto)-->
+    <View class="textScreen" visible="false">
+        <!--chamada-->
+        </View>
 
-        
+        <View class="callMessage" visible="false">
+    
         </View>
         
-    </Window>
+</Window>
 </Alloy>
