@@ -54,17 +54,19 @@
             <!--Caixa 3-->
             <View class="container4">
                 <View id="notificationImage">
-
-
+                    <ImageView id="userPhoto2" image="/ProfilePic.png"></ImageView>
                     </View>
                 
-                <View id="notificationsBox" class="userInfo">
+                <View id="notificationMessageBox">
+                    <View>
+                        <Label id="notificationTitle" text="Notificações"></Label>
+                        </View>
                 
-                    <Label id="notificationTitle" text="Notificações"></Label>
+                    
                     <Label id="notificationBody" text="10mg Necotinazol antes de dormir"></Label>
                     <Label id="userName6" class="userName" text="notificações do sistema"></Label>
                     
-                    <ImageView id="userPhoto2" class="userPhoto" image="/ProfilePic.png"></ImageView>
+                    
                     </View>
                 </View>
 

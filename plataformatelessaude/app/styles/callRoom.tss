@@ -31,7 +31,6 @@
     borderColor: "#B7D8D6"
 }
 
-
 ".userInfo": {
     width: Ti.UI.FILL,
     height: "100%", 
@@ -176,23 +175,34 @@
     borderRadius: 5
 }
 
-"#notificationsBox":{
-    top: "1%",
-    left: "3%",
-    right: "3%",    
-    width: Ti.UI.FILL,
-    height: "30%",
-    backgroundColor: "#EEF3D8",
+"#userPhoto2" :{
+    width: "50%", 
+    height: "70%", 
+    top : "15%",
+    left: "25%",
     borderRadius: 10,
-    layout: "vertical",
+    borderWidth: 5,
+    borderColor: "#4D6466"
 }
 
-".footer":{
+"#notificationMessageBox":{ 
     width: Ti.UI.FILL,
-    height: "50%",
+    layout: "vertical",
+    backgroundColor: "blue"
+}
+
+"#notificationImage" :{
     backgroundColor: "red",
-    bottom: "-5%",
-    layout: "vertical"
+    width: "40%"
+}
+
+"#notificationTitle": {
+    font:{
+        fontWeight: "bold",
+        fontSize: 20
+    },
+
+
 }
 
 ".container3": {
@@ -213,7 +223,7 @@
     left: "-2%",
     right: "-2%",
     width: Ti.UI.FILL,
-    layout: "vertical",
+    layout: "horizontal",
     backgroundColor: "#EEF3D8",
     borderWidth: 5,
     borderColor: "#B7D8D6"
