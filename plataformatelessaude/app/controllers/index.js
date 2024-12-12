@@ -377,8 +377,43 @@ function generateOtpCode(){
 
 
 $.mainWindow.open();
+// index.js
+if (OS_ANDROID) {
+    var requiredPermissions = [
+        'android.permission.CAMERA',
+        'android.permission.RECORD_AUDIO',
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.INTERNET" ,
+      "android.permission.ACCESS_NETWORK_STATE"
+    ];
+    
+    // Check if we already have permissions
+    var missingPermissions = [];
+    for (var i = 0; i < requiredPermissions.length; i++) {
+        if (!Ti.Android.hasPermission(requiredPermissions[i])) {
+            missingPermissions.push(requiredPermissions[i]);
+        }
+    }
+    
+    if (missingPermissions.length > 0) {
+        // Request permissions at runtime
+        Ti.Android.requestPermissions(missingPermissions, function(e) {
+            if (e.success) {
+                // All permissions granted
+                Alloy.createController("settings").getView().open();
+            } else {
+                alert("Permissions for Camera and Microphone are required. Please grant them in the device settings.");
+            }
+        });
+    } else {
+        // Already have all permissions
+        Alloy.createController("settings").getView().open();
+    }
+} else {
+    // For non-Android platforms, just open video
+    Alloy.createController("settings").getView().open();
+}
 
-Alloy.createController("settings").getView().open();
 
 
 

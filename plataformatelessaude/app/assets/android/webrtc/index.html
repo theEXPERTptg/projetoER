@@ -36,54 +36,66 @@
             localStream = stream;
             document.getElementById('localVideo').srcObject = stream;
             console.log("Got local video/audio stream successfully.");
+            initPeer();
         })
         .catch(err => {
             console.error("Failed to get local stream:", err);
             alert("No local stream yet. Check camera/mic permissions. Error: " + err.message);
         });
+        function initPeer() {
+            peer = new Peer(); // Uses PeerJS Cloud server
+            peer.on('open', function(id) {
+                console.log("My peer ID: " + id);
+                currentPeerId = id;
+            });
 
-        peer.on('open', function(id) {
-            console.log("My peer ID is: " + id);
-            currentPeerId = id;
-        });
+            peer.on('error', function(err) {
+                console.error("Peer error:", err);
+                alert("PeerJS error: " + err.type + " " + err.message);
+            });
 
-        peer.on('error', function(err) {
-            console.error("Peer error:", err);
-            alert("PeerJS error: " + err.type + " " + err.message);
-        });
+            peer.on('call', function(call) {
+                console.log("Incoming call from: ", call.peer);
+                if (localStream) {
+                    call.answer(localStream);
+                    call.on('stream', function(remoteStream) {
+                        console.log("Received remote stream");
+                        document.getElementById('remoteVideo').srcObject = remoteStream;
+                    });
+                    call.on('error', function(error) {
+                        console.error("Call error:", error);
+                        alert("Call error: " + error.message);
+                    });
+                } else {
+                    console.log("No local stream available to answer call.");
+                }
+            });
+        }
 
-        peer.on('call', function(call) {
-            console.log("Incoming call from: ", call.peer);
-            if (localStream) {
-                call.answer(localStream);
-                call.on('stream', function(remoteStream) {
-                    console.log("Received remote stream");
-                    document.getElementById('remoteVideo').srcObject = remoteStream;
-                });
-                call.on('error', function(error) {
-                    console.error("Call error:", error);
-                });
-            } else {
-                console.log("No local stream available to answer call.");
-            }
-        });
 
         function startCall(friendId) {
             if (!localStream) {
                 alert("No local stream yet. Check camera/mic permissions.");
                 return;
             }
+            if (!peer || !peer.open) {
+                alert("Peer not ready yet. Wait a moment.");
+                return;
+            }
+            console.log("Placing call to " + friendId);
             var call = peer.call(friendId, localStream);
             if (!call) {
-                console.error("Failed to initiate call. No call object returned.");
+                console.error("Failed to initiate call.");
                 return;
             }
             call.on('stream', function(remoteStream) {
                 console.log("Connected and received remote stream.");
                 document.getElementById('remoteVideo').srcObject = remoteStream;
+                alert("000");
             });
             call.on('error', function(error) {
                 console.error("Call error:", error);
+                alert("Call error: " + error.message);
             });
         }
     </script>
