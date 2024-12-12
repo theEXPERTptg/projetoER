@@ -1,12 +1,10 @@
 var webView = $.webView;
 
 webView.addEventListener('load', function() {
-    // Poll for the peer ID every second until we have it
+    // Wait until webView is loaded, then periodically check for currentPeerId
     var checkInterval = setInterval(function() {
         var result = webView.evalJS('currentPeerId');
-        // evalJS returns a string. If it's 'null' or empty, we don't have an ID yet.
         if (result && result !== 'null' && result !== '') {
-            // result might be quoted. Just trim quotes if present.
             result = result.replace(/^"|"$/g, '');
             $.myPeerIdLabel.text = "Your Peer ID: " + result;
             clearInterval(checkInterval);
@@ -20,7 +18,7 @@ $.callButton.addEventListener('click', function() {
         alert("Please enter your friend's Peer ID");
         return;
     }
-    // Initiate the call in the WebView
     webView.evalJS('startCall("' + friendId + '")');
 });
+
 

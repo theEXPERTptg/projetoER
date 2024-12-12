@@ -1,59 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.tidev.io">
-	<id>com.er.pts</id>
-	<name>Plataforma_TeleSaude</name>
-	<version>1.0</version>
-	<publisher>not specified</publisher>
-	<url />
-	<description />
-	<copyright>not specified</copyright>
-	<icon>appicon.png</icon>
-	<fullscreen>false</fullscreen>
-	<navbar-hidden>false</navbar-hidden>
-	<guid>bee1d1cd-8dfb-4f40-b658-f9b22354ab47</guid>
-	<property name="ti.ui.defaultunit" type="string">dp</property>
-	<property name="run-on-main-thread" type="bool">true</property>
-	<ios>
-		<enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
-		<use-app-thinning>true</use-app-thinning>
-		<plist>
-			<dict>
-				<key>UISupportedInterfaceOrientations~iphone</key>
-				<array>
-					<string>UIInterfaceOrientationPortrait</string>
-				</array>
-				<key>UISupportedInterfaceOrientations~ipad</key>
-				<array>
-					<string>UIInterfaceOrientationPortrait</string>
-					<string>UIInterfaceOrientationPortraitUpsideDown</string>
-					<string>UIInterfaceOrientationLandscapeLeft</string>
-					<string>UIInterfaceOrientationLandscapeRight</string>
-				</array>
-				<key>UIRequiresPersistentWiFi</key>
-				<false />
-				<key>UIPrerenderedIcon</key>
-				<false />
-				<key>UIStatusBarHidden</key>
-				<false />
-				<key>UIStatusBarStyle</key>
-				<string>UIStatusBarStyleDefault</string>
-			</dict>
-		</plist>
-	</ios>
-	<android xmlns:android="http://schemas.android.com/apk/res/android">
-		<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1">
-			<application android:icon="@mipmap/ic_launcher" />
-			<uses-permission android:name="android.permission.CAMERA" />
-			<uses-permission android:name="android.permission.RECORD_AUDIO" />
-		</manifest>
-	</android>
-	<modules>
-	</modules>
-	<deployment-targets>
-		<target device="android">true</target>
-	</deployment-targets>
-	<sdk-version>12.5.1.GA</sdk-version>
-	<plugins>
-		<plugin version="1.0">ti.alloy</plugin>
-	</plugins>
+    <id>com.er.pts</id>
+    <name>Plataforma_TeleSaude</name>
+    <version>1.0</version>
+    <publisher>not specified</publisher>
+    <description />
+    <copyright>not specified</copyright>
+    <icon>appicon.png</icon>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <guid>bee1d1cd-8dfb-4f40-b658-f9b22354ab47</guid>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <property name="run-on-main-thread" type="bool">true</property>
+    <property name="ti.android.webkit.webview" type="bool">true</property>
+    <property name="ti.android.webview.ignoreSslError" type="bool">true</property>
+    
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest android:versionCode="1" android:hardwareAccelerated="true">
+            <application android:icon="@mipmap/ic_launcher" />
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO" />
+            <!-- Optional: declare hardware features -->
+            <uses-feature android:name="android.hardware.camera" android:required="false" />
+            <uses-feature android:name="android.hardware.microphone" android:required="false" />
+        </manifest>
+    </android>
+    
+
+    
+    <deployment-targets>
+        <target device="android">true</target>
+    </deployment-targets>
+    
+    <sdk-version>12.5.1.GA</sdk-version>
+    
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
 </ti:app>
