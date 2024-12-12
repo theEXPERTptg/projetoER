@@ -378,7 +378,7 @@ function generateOtpCode(){
 
 $.mainWindow.open();
 
-Alloy.createController("settings").getView().open();
+Alloy.createController("profile").getView().open();
 
 
 
