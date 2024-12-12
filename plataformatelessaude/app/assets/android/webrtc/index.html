@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head><title>Video Chat</title></head>
+<head>
+  <title>WebRTC Video Chat</title>
+</head>
 <body>
-  <video id="localVideo" autoplay playsinline></video>
+  <h2>Your Peer ID: <span id="peerIdDisplay">Connecting...</span></h2>
+
+  <video id="localVideo" autoplay playsinline muted></video>
   <video id="remoteVideo" autoplay playsinline></video>
 
   <script src="https://cdn.jsdelivr.net/npm/peerjs@1.3.1/dist/peerjs.min.js"></script>
   <script>
-    const peer = new Peer();
-    const localVideo = document.getElementById('localVideo');
-    const remoteVideo = document.getElementById('remoteVideo');
+    const peer = new Peer({
+      host: "peerjs-server.herokuapp.com", // Use a free PeerJS server
+      secure: true,
+      port: 443,
+    });
 
+    const localVideo = document.getElementById("localVideo");
+    const remoteVideo = document.getElementById("remoteVideo");
+
+    peer.on("open", id => {
+      if (id) {
+        document.getElementById("peerIdDisplay").textContent = id;
+        console.log("Your Peer ID:", id);
+      } else {
+        console.error("Failed to retrieve Peer ID.");
+      }
+    });
+
+    peer.on("error", err => {
+      console.error("PeerJS Error:", err);
+      alert("Error connecting to PeerJS: " + err.type);
+    });
+
+    // Access the camera and set up local video
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then(stream => {
         localVideo.srcObject = stream;
-        peer.on('call', call => {
-          call.answer(stream);
-          call.on('stream', remoteStream => {
+
+        peer.on("call", call => {
+          call.answer(stream);  // Send our stream back
+          call.on("stream", remoteStream => {
             remoteVideo.srcObject = remoteStream;
           });
         });
       });
-
-    function callPeer(peerId) {
-      const call = peer.call(peerId, localVideo.srcObject);
-      call.on('stream', remoteStream => {
-        remoteVideo.srcObject = remoteStream;
-      });
-    }
   </script>
 </body>
 </html>
