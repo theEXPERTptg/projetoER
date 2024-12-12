@@ -4,11 +4,14 @@
         <TextField id="peerIdField" hintText="Enter friend's Peer ID" width="80%" top="20" height="40" borderStyle="Ti.UI.INPUT_BORDERSTYLE_ROUNDED"/>
         <Button id="callButton" title="Start Call" top="20" height="40" width="150"/>
         
-        <!-- IMPORTANT: Use a remote HTTPS URL to ensure getUserMedia works -->
+        <!-- Using local file URL. Ensure we have all needed properties. -->
         <WebView id="webView"
             allowsInlineMediaPlayback="true"
             mediaPlaybackRequiresUserAction="false"
+            allowFileAccess="true"
+            allowFileAccessFromFileURLs="true"
+            allowUniversalAccessFromFileURLs="true"
             width="100%" height="60%" top="20"
-            url="webrtc/index.html" />
+            url="/webrtc/index.html" />
     </Window>
 </Alloy>

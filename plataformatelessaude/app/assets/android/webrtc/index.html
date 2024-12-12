@@ -11,6 +11,11 @@
     #localVideo, #remoteVideo {
         margin-bottom: 10px;
     }
+    body {
+        background: #555;
+        color: #fff;
+        font-family: Arial, sans-serif;
+    }
 </style>
 </head>
 <body>
@@ -21,18 +26,20 @@
     <script>
         var currentPeerId = "";
         var localStream = null;
-        var peer = new Peer(); // Uses PeerJS Cloud server
+        var peer = new Peer(); // Uses PeerJS cloud server
 
-        // Try video-only first
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        console.log("Initializing...");
+
+        // Request audio and video
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
         .then(stream => {
             localStream = stream;
             document.getElementById('localVideo').srcObject = stream;
-            console.log("Got local video stream successfully.");
+            console.log("Got local video/audio stream successfully.");
         })
         .catch(err => {
             console.error("Failed to get local stream:", err);
-            alert("No local stream yet. Check camera/mic permissions. Error " + err.message);
+            alert("No local stream yet. Check camera/mic permissions. Error: " + err.message);
         });
 
         peer.on('open', function(id) {
@@ -40,12 +47,21 @@
             currentPeerId = id;
         });
 
+        peer.on('error', function(err) {
+            console.error("Peer error:", err);
+            alert("PeerJS error: " + err.type + " " + err.message);
+        });
+
         peer.on('call', function(call) {
             console.log("Incoming call from: ", call.peer);
             if (localStream) {
                 call.answer(localStream);
                 call.on('stream', function(remoteStream) {
+                    console.log("Received remote stream");
                     document.getElementById('remoteVideo').srcObject = remoteStream;
+                });
+                call.on('error', function(error) {
+                    console.error("Call error:", error);
                 });
             } else {
                 console.log("No local stream available to answer call.");
@@ -58,8 +74,16 @@
                 return;
             }
             var call = peer.call(friendId, localStream);
+            if (!call) {
+                console.error("Failed to initiate call. No call object returned.");
+                return;
+            }
             call.on('stream', function(remoteStream) {
+                console.log("Connected and received remote stream.");
                 document.getElementById('remoteVideo').srcObject = remoteStream;
+            });
+            call.on('error', function(error) {
+                console.error("Call error:", error);
             });
         }
     </script>
