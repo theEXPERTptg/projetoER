@@ -1,5 +1,5 @@
 <Alloy>
-<Window id="callRoom" class="container">
+    <Window id="callRoom" class="container">
 
     <!--Estado 1 (sala de Espera)-->
     </View id="waitingRoom" visible="true">
@@ -11,7 +11,7 @@
                     </View>   
             </View>
 
-        <!-- inclui todas as caixas menos o rodape e o header-->
+        <!-- inclui todas as caixas menos o header-->
         <View class="bigScreenContainer">
 
             <!--Caixa 1-->
@@ -37,17 +37,31 @@
 
             <!--Caixa 2-->
             <View class="container3">
-                <View id="checkQuestionsBox" class="userInfo">
-                    <Label id="userName2" class="userName" text="Questões Pré-Consulta"></Label>
-                    <Label id="userName3" class="userName" text="Realizou alguma consulta nos últimos dois meses?"></Label>
-                    </View> 
+                    <View id="container3TitleBox">
+                        <Label id="container3title" text="Questões Pré-Consulta"></Label>
+                        </View> 
+                    <View id="container3QuestionBox"> 
+                        <Label id="container3Question" text="Realizou alguma consulta nos últimos dois meses?"></Label>
+                        </View>
+                    <View id="buttonContainer" class= "justify-center">
+                        <Button class="questionButton">Sim</Button>
+                        <Button class="questionButton">Não</Button>
+                        <Button class="questionButton">➤</Button>
+                        </View>
+                    
                 </View>
 
             <!--Caixa 3-->
             <View class="container4">
+                <View id="notificationImage">
+
+
+                    </View>
+                
                 <View id="notificationsBox" class="userInfo">
-                    <Label id="userName4" class="userName" text="Notificações"></Label>
-                    <Label id="userName5" class="userName" text="10mg Necotinazol antes de dormir"></Label>
+                
+                    <Label id="notificationTitle" text="Notificações"></Label>
+                    <Label id="notificationBody" text="10mg Necotinazol antes de dormir"></Label>
                     <Label id="userName6" class="userName" text="notificações do sistema"></Label>
                     
                     <ImageView id="userPhoto2" class="userPhoto" image="/ProfilePic.png"></ImageView>

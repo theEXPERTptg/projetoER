@@ -231,3 +231,41 @@
     borderColor: "#B7D8D6"
 }
 
+"#container3TitleBox":{
+    height: "30%",
+}
+
+"#container3title": {
+    color: "#000000",
+    top: "25%",
+    font:{
+        fontSize: 18,
+        fontWeight: "bold"
+    }	
+}
+
+"#container3QuestionBox":{
+    height: "30%",
+    top: "-5%"
+}
+
+"#container3Question":{
+    font: {
+        fontWeight: "bold",	
+        color: "#000000"
+    }
+}
+
+"#buttonContainer": {
+    top: "0%",
+    bottom: "3%",
+    width: "70%",
+    layout: "horizontal"
+}
+
+".questionButton": {
+    width: "25%",
+    left: "4%",
+    right: "4%"
+}
+
