@@ -1,7 +1,7 @@
 <Alloy>
-    <Window id="mainWindow" class="container">
-        <View id="mainContainer" class="mainContainer">
-    
-        </View>
-    </Window>
+  <Window class="container" layout="vertical">
+    <TextField id="peerIdField" hintText="Enter Peer ID" />
+    <Button id="callButton" title="Call Peer" onClick="callPeer" />
+    <WebView id="webRTCView" url="/webrtc/index.html" />
+  </Window>
 </Alloy>
