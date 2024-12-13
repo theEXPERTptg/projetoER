@@ -1,103 +1,140 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="device-width, initial-scale=1.0"/>
-<style>
-    video {
-        width: 100%;
-        max-height: 200px;
-        background: #000;
-    }
-    #localVideo, #remoteVideo {
-        margin-bottom: 10px;
-    }
-    body {
-        background: #555;
-        color: #fff;
-        font-family: Arial, sans-serif;
-    }
-</style>
+    <title>Debugged PeerJS Video Chat</title>
+    <style>
+        video {
+            width: 45%;
+            margin: 10px;
+            border: 1px solid #ccc;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
+
 <body>
-    <video id="localVideo" autoplay muted playsinline></video>
-    <video id="remoteVideo" autoplay playsinline></video>
+    <h1>PeerJS Video Chat (Debug Mode)</h1>
+    <p>Your Peer ID: <span id="yourId"></span></p>
+    <input type="text" id="remoteId" placeholder="Remote peer ID" />
+    <button id="callBtn">Call</button>
+    <div id="container">
+        <video id="localVideo" autoplay muted playsinline></video>
+        <video id="remoteVideo" autoplay muted playsinline></video>
+    </div>
 
-    <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <script>
-        var currentPeerId = "";
-        var localStream = null;
-        var peer = new Peer(); // Uses PeerJS cloud server
+        (async function () {
+            // Debugging: Add logging for each step
+            console.log("Initializing PeerJS...");
 
-        console.log("Initializing...");
-
-        // Request audio and video
-        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-        .then(stream => {
-            localStream = stream;
-            document.getElementById('localVideo').srcObject = stream;
-            console.log("Got local video/audio stream successfully.");
-            initPeer();
-        })
-        .catch(err => {
-            console.error("Failed to get local stream:", err);
-            alert("No local stream yet. Check camera/mic permissions. Error: " + err.message);
-        });
-        function initPeer() {
-            peer = new Peer(); // Uses PeerJS Cloud server
-            peer.on('open', function(id) {
-                console.log("My peer ID: " + id);
-                currentPeerId = id;
+            // 1. Initialize Peer with debug mode enabled
+            const peer = new Peer({
+                // If using PeerServer Cloud:
+                // key: 'your-api-key',  // Uncomment and put your key if you have one
+                debug: 3  // Most verbose debug level
+                // If self-hosted, you can specify host, port, path, secure, config, etc.
             });
 
-            peer.on('error', function(err) {
-                console.error("Peer error:", err);
-                alert("PeerJS error: " + err.type + " " + err.message);
+            const yourIdElement = document.getElementById('yourId');
+            const remoteIdInput = document.getElementById('remoteId');
+            const callBtn = document.getElementById('callBtn');
+            const localVideo = document.getElementById('localVideo');
+            const remoteVideo = document.getElementById('remoteVideo');
+
+            let localStream = null;
+
+            // 2. Get local media stream with full error handling
+            try {
+                console.log("Requesting local media (camera & mic)...");
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                console.log("Local media obtained successfully.");
+                localVideo.srcObject = localStream;
+            } catch (err) {
+                console.error("Failed to get local stream:", err);
+                alert("Could not access camera/microphone. Check permissions and secure context (HTTPS).");
+                return;
+            }
+
+            // Peer event listeners for full debugging
+            peer.on('open', id => {
+                console.log("Peer connection open with ID:", id);
+                yourIdElement.textContent = id;
             });
 
-            peer.on('call', function(call) {
-                console.log("Incoming call from: ", call.peer);
-                if (localStream) {
-                    call.answer(localStream);
-                    call.on('stream', function(remoteStream) {
-                        console.log("Received remote stream");
-                        document.getElementById('remoteVideo').srcObject = remoteStream;
-                    });
-                    call.on('error', function(error) {
-                        console.error("Call error:", error);
-                        alert("Call error: " + error.message);
-                    });
-                } else {
-                    console.log("No local stream available to answer call.");
-                }
+            peer.on('close', () => {
+                console.warn("Peer connection closed.");
             });
-        }
 
+            peer.on('disconnected', () => {
+                console.warn("Peer connection disconnected.");
+            });
 
-        function startCall(friendId) {
-            if (!localStream) {
-                alert("No local stream yet. Check camera/mic permissions.");
-                return;
-            }
-            if (!peer || !peer.open) {
-                alert("Peer not ready yet. Wait a moment.");
-                return;
-            }
-            console.log("Placing call to " + friendId);
-            var call = peer.call(friendId, localStream);
-            if (!call) {
-                console.error("Failed to initiate call.");
-                return;
-            }
-            call.on('stream', function(remoteStream) {
-                console.log("Connected and received remote stream.");
-                document.getElementById('remoteVideo').srcObject = remoteStream;
+            peer.on('error', err => {
+                console.error("Peer encountered an error:", err);
+            });
+
+            peer.on('connection', conn => {
+                console.log("Data connection established with peer:", conn.peer);
+                // This example focuses on video calls, but you can handle data connections here.
+            });
+
+            // 3. Handling incoming calls
+            peer.on('call', call => {
+                console.log('Incoming call from:', call.peer);
                 alert("000");
+                call.answer(localStream);
+                call.on('stream', stream => {
+                    console.log('Received remote stream from:', call.peer);
+                    if ('srcObject' in remoteVideo) {
+                        remoteVideo.srcObject = stream;
+                    } else {
+                        remoteVideo.src = URL.createObjectURL(stream);
+                    }
+                    remoteVideo.play().catch(console.error);
+                });
+                call.on('error', err => console.error('Call error:', err));
             });
-            call.on('error', function(error) {
-                console.error("Call error:", error);
-                alert("Call error: " + error.message);
+
+            // 4. Initiate a call when the button is clicked
+            callBtn.addEventListener('click', () => {
+                const remoteId = remoteIdInput.value.trim();
+                if (!remoteId) {
+                    alert('Please enter a remote peer ID');
+                    return;
+                }
+
+                console.log("Attempting to call:", remoteId);
+                const call = peer.call(remoteId, localStream);
+
+                // Call event listeners for debugging
+                call.on('stream', remoteStream => {
+                    console.log("Received remote stream from callee:", remoteId);
+                    remoteVideo.srcObject = remoteStream;
+                });
+
+                call.on('close', () => {
+                    console.warn("Call with", remoteId, "ended.");
+                });
+
+                call.on('error', err => {
+                    console.error("Call error with:", remoteId, err);
+                });
             });
-        }
+
+            // Just an extra layer of debugging: listen to iceCandidate events if needed
+            // Although PeerJS handles ICE internally, we can log the PeerConnection config events by:
+            // (This is advanced usage and may not always be needed.)
+            // peer._connections and peer._peers may contain underlying RTCPeerConnection details
+            // but direct access is not part of the official PeerJS public API.
+
+        })();
     </script>
 </body>
+
 </html>
