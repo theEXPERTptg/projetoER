@@ -149,6 +149,7 @@ var accounts = {
             "emergencyName": "John Doe",
             "emergencyNumber": "9610101234",
             "relationship": "Husband",
+            "pacient": "test",
             "consultations": [
                 
             ]

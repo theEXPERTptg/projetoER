@@ -237,14 +237,9 @@ function validatePage4(){
     if (!isChecked) {
         alert("É necessário aceitar os termos e condições para terminar o registo.");
         return false;
-    } else if(isChecked){
-        alert("O Registo foi efetuado com sucesso!")
-        $.loginForm.visible = false; 
-        $.registerFormPage1.visible = false;
-        $.registerFormPage2.visible = false;
-        $.registerFormPage3.visible = false;
-        $.registerFormPage4.visible = false; 
+    } else {
         //TODO REGISTER PROCESS
+        submitRegister();
         showLoginForm();
     }
 }
@@ -315,6 +310,9 @@ function submitLogin() {
     if (matchedAccount) {
         alert("Login successful!");
         loggedInAccount = matchedAccount;
+        if(loggedInAccount.pacient){
+            loggedInAccount.consultations = accounts.accounts.find(account => account.username === loggedInAccount.pacient).consultations
+        }
         var dashBoard = Alloy.createController("dashBoard").getView();
         dashBoard.open();
     } else {
@@ -333,10 +331,7 @@ function submitLogin() {
 
 // Handle Registration Submission
 function submitRegister() {
-    if(!validatePage4()){
-        alert("Terms have to be accepted!");
-        return;
-    } 
+
     const regexData = /^(\d{2})\/(\d{2})\/(\d{4})$/;
     const match = $.birthDate.value.match(regexData);
     const [_, diaStr, mesStr, anoStr] = match;
@@ -346,8 +341,8 @@ function submitRegister() {
     const birthDate = new Date(ano, mes, dia);
 
     const newAccount = {
-        "username": $.registerUsername.value,
-        "password": $.registerPassword.value,
+        "username": $.name.value,
+        "password": $.password.value,
         "name": $.name.value,
         "nif": $.NifNumber.value,
         "gender": $.gender.value,
@@ -364,7 +359,8 @@ function submitRegister() {
 
     // Add to accounts
     accounts.accounts.push(newAccount);
-    alert("Account successfully registered!");
+    alert(accounts.accounts[2].username + " " + accounts.accounts[2].password)
+    //alert("Account successfully registered!");
     showLoginForm();
 }
 
@@ -380,16 +376,6 @@ function generateOtpCode(){
     Alloy.createController("callRoom").getView().open();
 
 }
-
-
-//DBUGGING APAGAR DEPOIS---------------
-// Open the main window
-//$.registerFormPage4.visible = false;
-//$.registerFormPage2.visible = false;
-//$.registerFormPage3.visible = false;
-//$.registerFormPage4.visible = true;
-
-//---------------------------------------------
 
 
 $.mainWindow.open();

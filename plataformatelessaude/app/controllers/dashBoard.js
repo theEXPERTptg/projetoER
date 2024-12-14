@@ -6,7 +6,7 @@ var currentYear = currentDate.getFullYear();
 var selectedDate = new Date();
 var consultationToReschedule = null;
 
-
+$.userName.text = "Welcome, "+loggedInAccount.name;
 
 //MONTHS ARE FROM 0 TO 11
 
