@@ -8,118 +8,7 @@ var consultationToReschedule = null;
 
 
 //MONTHS ARE FROM 0 TO 11
-var appointments = {
-    "consultations": [
-        {
-            "doctorName": "Dr. Johnny ",
-            "specialisation": "Cardiology",
-            "day": 9,
-            "month": 11, // December (0-based)
-            "year": 2024,
-            "startTime": "13:15",
-            "endTime": "14:00"
-        },
-        {
-            "doctorName": "Dr. Carlos",
-            "specialisation": "Dermatology",
-            "day": 8,
-            "month": 11, // December (0-based)
-            "year": 2024,
-            "startTime": "10:00",
-            "endTime": "10:30"
-        },
-        {
-            "doctorName": "Dr. Francisco",
-            "specialisation": "Pediatrics",
-            "day": 6,
-            "month": 11,
-            "year": 2024,
-            "startTime": "14:00",
-            "endTime": "14:30"
-        },
-        {
-            "doctorName": "Dr. Helder",
-            "specialisation": "Cardiology",
-            "day": 13,
-            "month": 11,
-            "year": 2024,
-            "startTime": "10:30",
-            "endTime": "11:00"
-        },
-        {
-            "doctorName": "Dr. Zé",
-            "specialisation": "Orthopedics",
-            "day": 7,
-            "month": 0,
-            "year": 2025,
-            "startTime": "15:15",
-            "endTime": "15:45"
-        },
-        {
-            "doctorName": "Dr. Otávio",
-            "specialisation": "Cardiology",
-            "day": 26,
-            "month": 11,
-            "year": 2024,
-            "startTime": "11:30",
-            "endTime": "12:00"
-        },
-        {
-            "doctorName": "Dr. Miguel",
-            "specialisation": "Pediatrics",
-            "day": 26,
-            "month": 11,
-            "year": 2024,
-            "startTime": "16:15",
-            "endTime": "16:45"
-        },
-        {
-            "doctorName": "Dr. Miguel",
-            "specialisation": "Dermatology",
-            "day": 6,
-            "month": 0,
-            "year": 2025,
-            "startTime": "15:30",
-            "endTime": "16:00"
-        },
-        {
-            "doctorName": "Dr. Carlos",
-            "specialisation": "Dermatology",
-            "day": 15,
-            "month": 11,
-            "year": 2024,
-            "startTime": "14:30",
-            "endTime": "15:00"
-        },
-        {
-            "doctorName": "Dr. Carlos",
-            "specialisation": "Dermatology",
-            "day": 11,
-            "month": 11,
-            "year": 2024,
-            "startTime": "16:45",
-            "endTime": "17:00"
-        },
-        {
-            "doctorName": "Dr. Zé",
-            "specialisation": "Orthopedics",
-            "day": 11,
-            "month": 0,
-            "year": 2025,
-            "startTime": "16:15",
-            "endTime": "16:45"
-        },
-        {
-            "doctorName": "Dr. Helder",
-            "specialisation": "Pediatrics",
-            "day": 28,
-            "month": 11,
-            "year": 2024,
-            "startTime": "12:45",
-            "endTime": "13:00"
-        }
-    ]
-};
+
 
 var init = true;
 
@@ -233,7 +122,7 @@ function cancelConsultation(e) {
 
             dialog.addEventListener('click', function (event) {
                 if (event.index === 0) {
-                    var updatedConsultations = appointments.consultations.filter(function (consultation) {
+                    var updatedConsultations = loggedInAccount.consultations.filter(function (consultation) {
                         return !(
                             consultation.day === consultationToCancel.day &&
                             consultation.month === consultationToCancel.month &&
@@ -243,7 +132,7 @@ function cancelConsultation(e) {
                         );
                     });
 
-                    appointments.consultations = updatedConsultations;
+                    loggedInAccount.consultations = updatedConsultations;
 
                     populateCalendar(currentMonth, currentYear);
                     highlightCurrentDay();
@@ -360,7 +249,7 @@ function updateConsultationDateLabel(date) {
 }
 
 function getConsultationsByDate(day, month, year) {
-    return appointments.consultations.filter(function (consultation) {
+    return loggedInAccount.consultations.filter(function (consultation) {
         return consultation.day === day && consultation.month === month && consultation.year === year;
     });
 }
@@ -515,7 +404,7 @@ function confirmPopup() {
         "endTime": getEndTime(selectedTime) 
     };
 
-    appointments.consultations.push(newConsultation);
+    loggedInAccount.consultations.push(newConsultation);
 
     $.schedulePopup.visible = false;
 

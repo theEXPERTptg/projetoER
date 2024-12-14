@@ -1,4 +1,3 @@
-
 // Show the Register Form
 
 function validatePage1() {
@@ -47,6 +46,7 @@ function validatePage1() {
     }
 
     function validateNIF(value) {
+        return true;
     const nif = typeof value === 'string' ? value : value.toString();
     const validationSets = {
         one: ['1', '2', '3', '5', '6', '8'],
@@ -277,29 +277,17 @@ function showRegisterFormPage4(){
     $.registerFormPage4.visible = true;
 }
 
-function register(){
-    $.loginForm.visible = false; 
-    $.registerFormPage1.visible = false;
-    $.registerFormPage2.visible = false;
-    $.registerFormPage3.visible = false;
-    $.registerFormPage4.visible = false; 
-    //TODO REGISTER PROCESS
-    showLoginForm();
-}
 
-
-// Show the Login Form
 function showLoginForm() {
-    $.registerFormPage1.visible = false;  // Hide register form
+    $.registerFormPage1.visible = false;  
     $.registerFormPage4.visible = false;
-    $.loginForm.visible = true; // Show login form
+    $.loginForm.visible = true; 
 }
 
-// Handle Login Submission
 function submitLogin() {
     var username = $.loginUsername.value;
     var password = $.loginPassword.value;
-    var serverConection = true;
+    var serverConnection = true;
     var serverMaintenance = true;
     
     if (!username || !password) {
@@ -308,54 +296,79 @@ function submitLogin() {
     }
 
 
-    // Simulated login process
-    if (serverConection === true){
-        if (username === "test" && password === "1234") {
-            alert("Login successful!");
-            var dashBoard = Alloy.createController("dashBoard").getView();
-            dashBoard.open();
+    if (!serverConnection) {
+        if (serverMaintenance) {
+            alert("The server is currently under maintenance.");
         } else {
-            if (username !== "test" && password !== "1234") {
-                alert("The username and password are incorrect.");
-            } else if (password !== "1234") {
-                alert("The password is incorrect.");
-            } else {
-                alert("This username is incorrect for this password.");
-            }
+            alert("There currently isn't a connection to the server.");
         }
-    }else {
-        if (serverMaintenance === true){
-            alert("The server is currently under maintenance.")
+        return;
+    }
+
+    var matchedAccount = accounts.accounts.find(account => 
+        account.username === username && account.password === password
+    );
+
+    if (matchedAccount) {
+        alert("Login successful!");
+        loggedInAccount = matchedAccount;
+        var dashBoard = Alloy.createController("dashBoard").getView();
+        dashBoard.open();
+    } else {
+        var userExists = accounts.accounts.some(account => account.username === username);
+        var passwordCorrect = accounts.accounts.some(account => account.password === password);
+
+        if (!userExists && !passwordCorrect) {
+            alert("The username and password are incorrect.");
+        } else if (!passwordCorrect) {
+            alert("The password is incorrect.");
         } else {
-            alert("There currently isn't a connection to the server.")
+            alert("This username is incorrect for this password.");
         }
-        
     }
 }
 
 // Handle Registration Submission
 function submitRegister() {
-    var username = $.registerUsername.value;
-    var password = $.registerPassword.value;
-    var confirmPassword = $.confirmPassword.value;
-
-    if (!username || !password || !confirmPassword) {
-        alert("All fields are required.");
+    if(!validatePage4()){
+        alert("Terms have to be accepted!");
         return;
-    }
+    } 
+    const regexData = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+    const match = $.birthDate.value.match(regexData);
+    const [_, diaStr, mesStr, anoStr] = match;
+    const dia = parseInt(diaStr, 10);
+    const mes = parseInt(mesStr, 10) - 1; // Ajustar mês
+    const ano = parseInt(anoStr, 10);
+    const birthDate = new Date(ano, mes, dia);
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-    }
+    const newAccount = {
+        "username": $.registerUsername.value,
+        "password": $.registerPassword.value,
+        "name": $.name.value,
+        "nif": $.NifNumber.value,
+        "gender": $.gender.value,
+        "birthDate": birthDate,
+        "email": $.email.value,
+        "phoneNumber": $.phoneNumber.value,
+        "emergencyName": $.emergencyName.value,
+        "emergencyNumber": $.emergencyPhoneNumber.value,
+        "relationship": $.relationship.value,
+        "consultations":[
+            
+        ]
+    };
 
-    alert("Registration successful!");
+    // Add to accounts
+    accounts.accounts.push(newAccount);
+    alert("Account successfully registered!");
+    showLoginForm();
 }
 
 function forgotPassword(){
 
-      //TODO FOR TESTING ONLY
-    //alert("fake login");
+    //TODO FOR TESTING ONLY
+    alert("fake login");
     Alloy.createController("dashBoard").getView().open();
     return;
 }
@@ -377,6 +390,7 @@ function generateOtpCode(){
 
 
 $.mainWindow.open();
+
 // index.js
 if (OS_ANDROID) {
     var requiredPermissions = [
@@ -400,18 +414,15 @@ if (OS_ANDROID) {
         Ti.Android.requestPermissions(missingPermissions, function(e) {
             if (e.success) {
                 // All permissions granted
-                Alloy.createController("settings").getView().open();
             } else {
                 alert("Permissions for Camera and Microphone are required. Please grant them in the device settings.");
             }
         });
     } else {
         // Already have all permissions
-        Alloy.createController("settings").getView().open();
     }
 } else {
     // For non-Android platforms, just open video
-    Alloy.createController("settings").getView().open();
 }
 
 
