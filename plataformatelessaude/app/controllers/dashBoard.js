@@ -7,6 +7,7 @@ var selectedDate = new Date();
 var consultationToReschedule = null;
 
 
+
 //MONTHS ARE FROM 0 TO 11
 
 
@@ -371,6 +372,7 @@ function newAppointment() {
     }
     $.schedulePopup.visible = true;
     $.scheduleScheduleConsultation.visible = false;
+
 }
 
 function cancelPopup() {
@@ -493,21 +495,6 @@ function confirmReschedulePopup() {
     consultationToReschedule = null;
 }
 
-function getEndTime(startTime) {
-    var parts = startTime.split(":");
-    var hours = parseInt(parts[0], 10);
-    var minutes = parseInt(parts[1], 10);
-
-    minutes += 30;
-    if (minutes >= 60) {
-        hours += 1;
-        minutes -= 60;
-    }
-
-    var endHours = hours < 10 ? "0" + hours : "" + hours;
-    var endMinutes = minutes < 10 ? "0" + minutes : "" + minutes;
-    return endHours + ":" + endMinutes;
-}
 
 // Initial setup
 populateCalendar(currentMonth, currentYear);

@@ -1,3 +1,6 @@
+
+
+
 // Show the Register Form
 
 function validatePage1() {
