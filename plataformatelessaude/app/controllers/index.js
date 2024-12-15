@@ -418,7 +418,7 @@ if (OS_ANDROID) {
 
 
 
-//var callRoom = Alloy.createController("callRoom").getView();
+var callRoom = Alloy.createController("video").getView().open();
 //callRoom.open();
 
 

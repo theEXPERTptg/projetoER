@@ -63,7 +63,8 @@
 
         }
 
-
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
 
         function startCall(idremote) {
             const id = idremote.trim();
@@ -71,12 +72,11 @@
                 alert('Please enter a remote peer ID');
                 return;
             }
-            //alert("Starting call with ID: " + id);
-            alert("!" + id + "!")
             const outgoingCall = peer.call(id, localStream);
 
             outgoingCall.on('stream', remoteStream => {
                 remoteVideo.srcObject = remoteStream;
+
             });
             outgoingCall.on('error', err => {
                 alert(err);
@@ -90,8 +90,7 @@
 
 
             //const peer = new Peer("ERG5-Skipper");
-            const localVideo = document.getElementById('localVideo');
-            const remoteVideo = document.getElementById('remoteVideo');
+
 
             let localStream = null;
 

@@ -11,6 +11,7 @@ var webView = $.webView;
 webView.addEventListener('load', function() {
     var checkInterval = setInterval(function() {
         var result = webView.evalJS('currentPeerId');
+        Ti.API.info(result);
         if (result && result !== 'null' && result !== '') {
             result = result.replace(/^"|"$/g, '');
             $.myPeerIdLabel.text = "Your Peer ID: " + result;
@@ -26,6 +27,5 @@ $.callButton.addEventListener('click', function() {
         return;
     }
     var result = webView.evalJS('startCall("' + friendId + '")');
-    Ti.API.info("Result from evalJS: " + result);
 });
 
