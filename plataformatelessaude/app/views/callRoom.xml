@@ -4,9 +4,9 @@
     <!--Estado 1 (sala de Espera)-->
     </View id="waitingRoom" visible="true">
         <View class="header">
-                <!-- User Info Container -->
-                <View id="userInfo" class="userInfo">
-                    <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
+            <!-- User Info Container -->
+            <View id="userInfo" class="userInfo">
+                <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
                     <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
                     </View>   
             </View>
@@ -58,32 +58,29 @@
                     </View>
                 
                 <View id="notificationMessageBox">
-                    <View>
+                    <View id="notificationTitleBox">
                         <Label id="notificationTitle" text="Notificações"></Label>
                         </View>
-                
-                    
-                    <Label id="notificationBody" text="10mg Necotinazol antes de dormir"></Label>
-                    <Label id="userName6" class="userName" text="notificações do sistema"></Label>
-                    
-                    
+                    <View id="notificationBodyBox">
+                        <Label id="notificationBody" text="10mg Necotinazol antes de dormir"></Label>
+                        </View>
+                    <View id="notificationSenderBox">
+                        <Label id="notificationSender" text="notificações do sistema"></Label>
+                        </View>
                     </View>
                 </View>
 
             <!--Rodape-->
             <View class="footer">
-
-        
+                <Button onClick="enterTextRoom" class="button1"></Button>
+                <Button onClick="enterCallRoom" class="button1"></Button>
+                <Button onClick="backToDashboard" class="button3"></Button>
                 </View>
-        
-            
-            
             </View>
         </View>
     <!--Estado 2 (chamada visual)-->
     <View class="callScreen" visible="false">
         <!--chamada-->
-        </View>
 
         <View class="callMessage" visible="false">
     
@@ -91,7 +88,6 @@
     <!--Estado 3 (texto)-->
     <View class="textScreen" visible="false">
         <!--chamada-->
-        </View>
 
         <View class="callMessage" visible="false">
     
