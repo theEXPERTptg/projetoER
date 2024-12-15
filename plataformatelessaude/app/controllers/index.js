@@ -419,9 +419,6 @@ if (OS_ANDROID) {
 
 var callRoom = Alloy.createController("callRoom").getView();
 
-$.callScreen.visible = false;
-$.textScreen.visible = false;
-$.waitingRoom.visible = true;
 callRoom.open();
 
 

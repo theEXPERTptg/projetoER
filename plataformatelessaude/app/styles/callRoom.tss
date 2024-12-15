@@ -1,6 +1,5 @@
 ".container": {
     backgroundColor: "#789E9E",
-    layout: 'vertical'
 }
 
 ".header": {
@@ -262,7 +261,7 @@
 }
 
 ".footer": {
-    top: "1%",
+    bottom: "1%",
     height: "30%", 
     left: "-2%",
     right: "-2%",

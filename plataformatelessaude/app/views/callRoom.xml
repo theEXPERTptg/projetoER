@@ -1,24 +1,70 @@
 <Alloy>
     <Window id="callRoom" class="container">
+        <!--Estado2(chamadavisual)-->
+        <View id="callScreen" visible="true" backgroundColor="#555" layout="vertical" top="0">
+            <View class="header">
+                <!-- User Info Container -->
+                <View id="userInfo" class="userInfo">
+                    <View layout="vertical" width="70%">
+                        <Label id="userName" class="userName" text="Em chamada com Fábio Mendonça"
+                            top="2%" width="Ti.UI.FILL"></Label>
+                        <Label id="myPeerIdLabel" text="Your Peer ID: \n (waiting)" top="5"
+                            left="5%"></Label>
+                    </View>
+                    <ImageView id="userPhoto"
+                        class="userPhoto" image="/ProfilePic.png"></ImageView>
+                </View>
 
-    <!--Estado 1 (sala de Espera)-->
-    </View id="waitingRoom" visible="true">
-        <View class="header">
-            <!-- User Info Container -->
-            <View id="userInfo" class="userInfo">
-                <Label id="userName" class="userName" text="Welcome, Jon Doe"></Label>
+            </View>
+            <View layout="vertical" height= "10%">
+                <TextField id="peerIdField" hintText="Enter friend's Peer ID" width="80%" top="5" height="50%"
+                    borderStyle="Ti.UI.INPUT_BORDERSTYLE_ROUNDED" />
+                <View layout="horizontal" height="Ti.UI.FILL">
+                    <Button id="callButton" title="Start Call" top="5" height="100%" width="40%"
+                        left="5%" right="5%" />
+                    <Button backgroundColor="red" onClick="backToDashboard" top="5" height="100%" width="40%"
+                        left="5%" right="5%" title="End Call"></Button>
+                </View>
+            </View>
+            <!--chamada-->
+
+
+            <!-- Using local file URL. Ensure we have all needed properties. -->
+            <WebView id="webView"
+                allowsInlineMediaPlayback="true"
+                mediaPlaybackRequiresUserAction="false"
+                allowFileAccess="true"
+                allowFileAccessFromFileURLs="true"
+                allowUniversalAccessFromFileURLs="true"
+                width="100%" height="50%"
+                enableZoomControls="false"
+                scalesPageToFit="true"
+                url="/webrtc/index.html" />
+
+        </View>
+
+        <!--EstadoUM(sala
+        deEspera)-->
+        <View id="waitingRoom" layout="vertical" visible="false">
+            <View class="header">
+                <!-- User Info Container -->
+                <View id="userInfo" class="userInfo">
+                    <Label id="userName" class="userName" text="Bem vindo, Jon Doe"></Label>
                     <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
-                    </View>   
+                </View>
             </View>
 
-        <!-- inclui todas as caixas menos o header-->
-        <View class="bigScreenContainer">
+            <!-- inclui todas as caixas menos o header-->
+            <View class="bigScreenContainer">
 
-            <!--Caixa 1-->
-            <View class="container2">
-                <!--com a imagem de perfil e dados do doutor-->
-                    <View id="topContainer2">            
-                        <View id="callInfoBox" class="userInfo"> <!--Caixa com dados do doutor-->
+                <!--Caixa
+                1-->
+                <View class="container2">
+                    <!--com
+                    a imagem de perfil e dados do doutor-->
+                    <View id="topContainer2">
+                        <View id="callInfoBox" class="userInfo"> <!--Caixa
+                            com dados do doutor-->
                             <Label id="docName" class="docName" text="Doutor Fábio de Mendonça"></Label>
                             <Label id="speciality" class="speciality" text="Medicina Geral"></Label>
                         </View>
@@ -35,63 +81,66 @@
                     </View>
                 </View>
 
-            <!--Caixa 2-->
-            <View class="container3">
+                <!--Caixa
+                2-->
+                <View class="container3">
                     <View id="container3TitleBox">
                         <Label id="container3title" text="Questões Pré-Consulta"></Label>
-                        </View> 
-                    <View id="container3QuestionBox"> 
-                        <Label id="container3Question" text="Realizou alguma consulta nos últimos dois meses?"></Label>
-                        </View>
-                    <View id="buttonContainer" class= "justify-center">
+                    </View>
+                    <View id="container3QuestionBox">
+                        <Label id="container3Question"
+                            text="Realizou alguma consulta nos últimos dois meses?"></Label>
+                    </View>
+                    <View id="buttonContainer" class="justify-center">
                         <Button class="questionButton">Sim</Button>
                         <Button class="questionButton">Não</Button>
                         <Button class="questionButton">➤</Button>
-                        </View>
-                    
+                    </View>
+
                 </View>
 
-            <!--Caixa 3-->
-            <View class="container4">
-                <View id="notificationImage">
-                    <ImageView id="userPhoto2" image="/ProfilePic.png"></ImageView>
+                <!--Caixa
+                3-->
+                <View class="container4">
+                    <View id="notificationImage">
+                        <ImageView id="userPhoto2" image="/ProfilePic.png"></ImageView>
                     </View>
-                
-                <View id="notificationMessageBox">
-                    <View id="notificationTitleBox">
-                        <Label id="notificationTitle" text="Notificações"></Label>
+
+                    <View id="notificationMessageBox">
+                        <View id="notificationTitleBox">
+                            <Label id="notificationTitle" text="Notificações"></Label>
                         </View>
-                    <View id="notificationBodyBox">
-                        <Label id="notificationBody" text="10mg Necotinazol antes de dormir"></Label>
+                        <View id="notificationBodyBox">
+                            <Label id="notificationBody" text="10mg Necotinazol antes de dormir"></Label>
                         </View>
-                    <View id="notificationSenderBox">
-                        <Label id="notificationSender" text="notificações do sistema"></Label>
+                        <View id="notificationSenderBox">
+                            <Label id="notificationSender" text="notificações do sistema"></Label>
                         </View>
                     </View>
                 </View>
 
-            <!--Rodape-->
-            <View class="footer">
-                <Button onClick="enterTextRoom" class="button1"></Button>
-                <Button onClick="enterCallRoom" class="button1"></Button>
-                <Button onClick="backToDashboard" class="button3"></Button>
+                <!--Rodape-->
+                <View class="footer">
+                    <Button onClick="enterTextRoom" class="button1"></Button>
+                    <Button onClick="enterCallRoom" class="button1"></Button>
+                    <Button onClick="backToDashboard" class="button3"></Button>
                 </View>
             </View>
         </View>
-    <!--Estado 2 (chamada visual)-->
-    <View class="callScreen" visible="false">
-        <!--chamada-->
 
+        <!--Estado3(texto)-->
         <View class="callMessage" visible="false">
-    
-        </View>
-    <!--Estado 3 (texto)-->
-    <View class="textScreen" visible="false">
-        <!--chamada-->
+            <View class="header">
+                <!-- User Info Container -->
+                <View id="userInfo" class="userInfo">
+                    <Label id="userName" class="userName" text="Mensagens - Fábio Mendonça"></Label>
+                    <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
+                </View>
+            </View>
 
-        <View class="callMessage" visible="false">
-    
+            <!--chamada-->
+
         </View>
-        
-</Window>
+
+    </Window>
 </Alloy>
