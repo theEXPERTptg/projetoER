@@ -96,7 +96,7 @@ function appointmentHistory() {
 }
 
 function joinCall() {
-    alert("NOT IMPLEMENTED - joinCall");
+    Alloy.createController("/callRoom").getView().open();
 }
 
 
