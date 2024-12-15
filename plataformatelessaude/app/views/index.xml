@@ -28,7 +28,7 @@
             <View id="registerFormPage2" class="form" visible="false"> 
                 <Label text="Registo" class="titleBox"></Label>
                 <TextField id="email" hintText="Email" class="input"></TextField>
-                <TextField id="phoneNumber" hintText="Phone Number" class="input"></TextField>
+                <TextField id="phoneNumber" hintText="Número de telemóvel" class="input"></TextField>
                 <TextField id="password" hintText="Password" class="input"></TextField>
                 <TextField id="confirmPassword" hintText="Confirm Password" class="input"></TextField>
                 <Button id="next2" title="Próximo (2/4)" onClick="validatePage2"></Button> <!--TODO registerpage2-->
