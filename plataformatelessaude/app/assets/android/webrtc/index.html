@@ -50,50 +50,10 @@
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <script>
         var currentPeerId = "";
-
-        function callhotman() {
-            const outgoingCall = peer.call("hotman", localStream);
-
-            outgoingCall.on('stream', remoteStream => {
-                remoteVideo.srcObject = remoteStream;
-            });
-            outgoingCall.on('error', err => {
-                alert(err);
-            });
-
-        }
-
-        const localVideo = document.getElementById('localVideo');
-        const remoteVideo = document.getElementById('remoteVideo');
-
-        function startCall(idremote) {
-            const id = idremote.trim();
-            if (!id) {
-                alert('Please enter a remote peer ID');
-                return;
-            }
-            const outgoingCall = peer.call(id, localStream);
-
-            outgoingCall.on('stream', remoteStream => {
-                remoteVideo.srcObject = remoteStream;
-
-            });
-            outgoingCall.on('error', err => {
-                alert(err);
-            });
-        }
-
-
-
+        var localStream = null;
+        var peer = null;
+    
         (async function () {
-            var peer = new Peer();;
-
-
-            //const peer = new Peer("ERG5-Skipper");
-
-
-            let localStream = null;
-
             try {
                 localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                 localVideo.srcObject = localStream;
@@ -101,11 +61,14 @@
                 alert("Could not access camera/microphone. Check permissions.");
                 return;
             }
-
+    
+            // Add custom ICE servers if needed
+            peer = new Peer();
+    
             peer.on('open', function (id) {
                 window.currentPeerId = id;
             });
-
+    
             peer.on('call', call => {
                 call.answer(localStream);
                 call.on('stream', stream => {
@@ -115,11 +78,24 @@
                     alert(err);
                 });
             });
-
+    
+            window.startCall = function(idremote) {
+                const id = idremote.trim();
+                if (!id) {
+                    alert('Please enter a remote peer ID');
+                    return;
+                }
+                const outgoingCall = peer.call(id, localStream);
+                outgoingCall.on('stream', remoteStream => {
+                    remoteVideo.srcObject = remoteStream;
+                });
+                outgoingCall.on('error', err => {
+                    alert(err);
+                });
+            };
         })();
-
-
     </script>
+    
 </body>
 
 </html>
