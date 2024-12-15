@@ -19,18 +19,17 @@
 
 ".container2": {
     top: "-17.5%",
-    bottom: "1%",
-    left: "1%",
-    right: "1%",
+    bottom: "0.75%",
+    left: "2%",
+    right: "2%",
     height: "35%", 
     width: Ti.UI.FILL,
     layout: "vertical",
     backgroundColor: "#EEF3D8",
-    borderRadius: 5,
+    borderRadius: 10,
     borderWidth: 5,
     borderColor: "#B7D8D6"
 }
-
 
 ".userInfo": {
     width: Ti.UI.FILL,
@@ -83,19 +82,16 @@
         
     },
     color: "#000",
-    textAlign: "left",
     left: "5%",
     top: "15%"	
 }
 
 ".speciality": {
-    color: "#ffffff",
     width: "65%",
     font: {
         fontSize: 15,
     },
-    color: "#000",
-    textAlign: "left",
+    color: "#000000",
     left: "5%",
     top: "5%"
 }
@@ -123,7 +119,7 @@
 }
 
 "#expectedTimeBox":{
-    color: "#ffffff",
+    color: "#000000",
     font: {
         fontSize: 20,
         fontWeight: "bold"
@@ -176,24 +172,70 @@
     borderRadius: 5
 }
 
-"#notificationsBox":{
-    top: "1%",
-    left: "3%",
-    right: "3%",    
-    width: Ti.UI.FILL,
-    height: "30%",
-    backgroundColor: "#EEF3D8",
+"#userPhoto2" :{
+    width: "50%", 
+    height: "70%", 
+    top : "15%",
+    left: "25%",
     borderRadius: 10,
-    layout: "vertical",
+    borderWidth: 5,
+    borderColor: "#4D6466"
 }
 
-".footer":{
-    width: Ti.UI.FILL,
-    height: "50%",
-    backgroundColor: "red",
-    bottom: "-5%",
+"#notificationMessageBox":{ 
+    width: "57%",
     layout: "vertical"
 }
+
+"#notificationTitleBox": {
+    top: "5%",
+    height: "30%"
+}
+
+"#notificationImage" :{
+    width: "40%"
+}
+
+"#notificationTitle": {
+    
+    font:{
+        fontWeight: "bold",
+        fontSize: 20,
+        color: "black"
+    },
+    color:"#000000",
+    right: "5%"
+}
+
+"#notificationSender":{
+    font:{
+        fontWeight: "bold",
+        fontSize: 10,
+        color: "black",
+    },
+    color: "#000000",
+    top: "-10%",
+    right: "5%",
+    textAlign: "right"
+}
+
+
+"#notificationBodyBox": {
+    height: "40%",
+    textAlign: "left"
+    
+}
+
+"#notificationBody": {
+    color: "#000000",
+    font: {
+        fontSize: 15
+    },
+    top: "0%",
+    right: "5%",
+    textAlign: "right"
+}
+
 
 ".container3": {
     top: "18%",
@@ -213,21 +255,77 @@
     left: "-2%",
     right: "-2%",
     width: Ti.UI.FILL,
-    layout: "vertical",
+    layout: "horizontal",
     backgroundColor: "#EEF3D8",
     borderWidth: 5,
     borderColor: "#B7D8D6"
 }
 
 ".footer": {
-    top: "0.5%",
+    top: "1%",
     height: "30%", 
     left: "-2%",
     right: "-2%",
     width: Ti.UI.FILL,
-    layout: "vertical",
+    layout: "horizontal",
     backgroundColor: "#EEF3D8",
     borderWidth: 10,
     borderColor: "#B7D8D6"
+}
+
+".button1":{
+    backgroundColor: "#789E9E",
+    top: "15%",
+    width: "20%",
+    height: "50%",
+    left: "10%",
+    right: "0%"
+}
+
+".button3":{
+    backgroundColor: "#FE615A",
+    top: "15%",
+    width: "20%",
+    height: "50%",
+    left: "10%",
+    right: "0%"
+}
+
+"#container3TitleBox":{
+    height: "30%",
+}
+
+"#container3title": {
+    color: "#000000",
+    top: "25%",
+    font:{
+        fontSize: 18,
+        fontWeight: "bold"
+    }	
+}
+
+"#container3QuestionBox":{
+    height: "30%",
+    top: "-5%"
+}
+
+"#container3Question":{
+    font: {
+        fontWeight: "bold",	
+        color: "#000000"
+    }
+}
+
+"#buttonContainer": {
+    top: "0%",
+    bottom: "3%",
+    width: "70%",
+    layout: "horizontal"
+}
+
+".questionButton": {
+    width: "25%",
+    left: "4%",
+    right: "4%"
 }
 
