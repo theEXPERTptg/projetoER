@@ -19,7 +19,7 @@
                 <View class="sectionTitleContainer">
                     <Label class="sectionTitle" text="Pacient Details"></Label>
                 </View>
-                <View class="settingsButton">
+                <View class="settingsButton" onClick="openPersonalInfo">
                     <Label width="75%" top="28%" left="8%" text="Personal Info"></Label>
                     <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
                 </View>
