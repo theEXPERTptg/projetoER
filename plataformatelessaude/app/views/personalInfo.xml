@@ -9,15 +9,61 @@
                     <View backgroundColor="red" top="67%" height="20%" width="8%" left="57.5%" borderRadius="20px"></View>
                 </View>
                 <ScrollView class="scrollableItem" layout="vertical">
-                    <TextField id="name" hintText="Nome" class="input"></TextField>
-                    <TextField id="gender" hintText="Género" class="input"></TextField>
-                    <TextField id="birthDate" hintText="Data de Nascimento (dd/mm/aaaa)" class="input"></TextField>
-                    <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
-                    <TextField id="phoneNumber" hintText="Número de telemóvel" class="input"></TextField>
-                    <TextField id="email" hintText="Email" class="input"></TextField>
-                    <TextField id="emergencyName" hintText="Nome contacto de emergência" class="input"></TextField>
-                    <TextField id="emergencyPhoneNumber" hintText="Telemóvel do contacto de emergência" class="input"></TextField>
-                    <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
+
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Nome:"></Label>
+                    </View>
+
+                        <TextField id="name" hintText="Nome" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Género:"></Label>
+                    </View>
+
+                        <TextField id="gender" hintText="Género" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Data de Nascimento (dd/mm/aaaa):"></Label>
+                    </View>
+                    
+                        <TextField id="birthDate" hintText="Data de Nascimento (dd/mm/aaaa)" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="NIF:"></Label>
+                    </View>
+                    
+                        <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Número de telemóvel:"></Label>
+                    </View>
+                    
+                        <TextField id="phoneNumber" hintText="Número de telemóvel" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Email:"></Label>
+                    </View>
+                    
+                        <TextField id="email" hintText="Email" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Nome contacto de emergência:"></Label>
+                    </View>
+                    
+                        <TextField id="emergencyName" hintText="Nome contacto de emergência" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Telemóvel do contacto de emergência:"></Label>
+                    </View>
+                    
+                        <TextField id="emergencyPhoneNumber" hintText="Telemóvel do contacto de emergência" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitle" text="Relação/Parentesco:"></Label>
+                    </View>
+                    
+                        <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
+                    
                     <Button id="save" title="Save" onClick="goToProfile"></Button>
                     <Button id="back1" title="Back" onClick="goToProfile"></Button>
                 </ScrollView>

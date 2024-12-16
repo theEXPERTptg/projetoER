@@ -36,8 +36,8 @@
     borderRadius: 50,
     hintTextColor: "#999",
     fontStyle: "Concert One",
-    top: 10,
-    bottom: 10
+    top: 2,
+    bottom: 2
 
 }
 
@@ -48,8 +48,8 @@
     backgroundColor: "#252525",
     borderRadius: 50,
     fontStyle: "Concert One",
-    top: 5,
-    bottom: 10,
+    top: 15,
+    bottom: 25,
 
 }
 
@@ -161,4 +161,18 @@
 
     backgroundColor: "#AAA",
     borderRadius: "30px"
+}
+
+".sectionTitleContainer":{
+    height: "5%",
+    top: "2%"
+}
+".sectionTitle":{
+   font: {
+        fontSize: 18,
+        fontWeight: "bold",
+        
+    },
+    left: "10%",
+    color: "black"	
 }

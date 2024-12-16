@@ -18,13 +18,13 @@ var accounts = {
             "username": "test",
             "password": "1234",
             "name": "John Doe",
-            "nif": "12345678910",
+            "nif": "242727958",
             "gender": "Male",
             "birthDate": "10/06/1980",
             "email": "john_doe@gmail.com",
             "phoneNumber": "961010123",
             "emergencyName": "Jane Doe",
-            "emergencyNumber": "960101432",
+            "emergencyPhoneNumber": "960101432",
             "relationship": "Wife",
             "consultations": [
                 {
@@ -147,7 +147,7 @@ var accounts = {
             "email": "jone_doe@gmail.com",
             "phoneNumber": "960101432",
             "emergencyName": "John Doe",
-            "emergencyNumber": "9610101234",
+            "emergencyPhoneNumber": "9610101234",
             "relationship": "Husband",
             "pacient": "test",
             "consultations": [

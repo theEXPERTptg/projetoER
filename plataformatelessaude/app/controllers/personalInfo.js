@@ -8,15 +8,16 @@ function showValues(){
     $.name.value = loggedInAccount.name;
     $.gender.value = loggedInAccount.gender;
     $.birthDate.value = loggedInAccount.birthDate;
-    $.NifNumber.value = loggedInAccount.NifNumber;
+    $.NifNumber.value = loggedInAccount.nif;
     $.phoneNumber.value = loggedInAccount.phoneNumber;
     $.email.value = loggedInAccount.email;
-    $.emergencyName = loggedInAccount.emergencyName;
-    $.emergencyPhoneNumber = loggedInAccount.emergencyPhoneNumber;
-    $.relationship = loggedInAccount.relationship;
+    $.emergencyName.value = loggedInAccount.emergencyName;
+    $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
+    $.relationship.value = loggedInAccount.relationship;
 }
 
 function updateValues(){
 
 }
+
 showValues()
