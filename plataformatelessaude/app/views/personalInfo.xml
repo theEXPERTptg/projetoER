@@ -23,7 +23,7 @@
                         <TextField id="gender" hintText="Género" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Data de Nascimento (dd/mm/aaaa):"></Label>
+                        <Label class="sectionTitleSmaller" text="Data de Nascimento (dd/mm/aaaa):"></Label>
                     </View>
                     
                         <TextField id="birthDate" hintText="Data de Nascimento (dd/mm/aaaa)" class="input"></TextField>
@@ -47,13 +47,13 @@
                         <TextField id="email" hintText="Email" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Nome contacto de emergência:"></Label>
+                        <Label class="sectionTitleSmaller" text="Nome contacto de emergência:"></Label>
                     </View>
                     
                         <TextField id="emergencyName" hintText="Nome contacto de emergência" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Telemóvel do contacto de emergência:"></Label>
+                        <Label class="sectionTitleSmaller" text="Telemóvel do contacto de emergência:"></Label>
                     </View>
                     
                         <TextField id="emergencyPhoneNumber" hintText="Telemóvel do contacto de emergência" class="input"></TextField>
@@ -64,7 +64,7 @@
                     
                         <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
                     
-                    <Button id="save" title="Save" onClick="goToProfile"></Button>
+                    <Button id="save" title="Save" onClick="updateValues"></Button>
                     <Button id="back1" title="Back" onClick="goToProfile"></Button>
                 </ScrollView>
             </View>

@@ -176,3 +176,13 @@
     left: "10%",
     color: "black"	
 }
+
+".sectionTitleSmaller":{
+   font: {
+        fontSize: 14,
+        fontWeight: "bold",
+        
+    },
+    left: "10%",
+    color: "black"	
+}
