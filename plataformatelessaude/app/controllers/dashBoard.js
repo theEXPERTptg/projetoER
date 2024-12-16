@@ -10,7 +10,6 @@ $.userName.text = "Welcome, "+loggedInAccount.name;
 
 //MONTHS ARE FROM 0 TO 11
 
-
 var init = true;
 
 function highlightCurrentDay() {
@@ -99,8 +98,6 @@ function joinCall() {
     Alloy.createController("/callRoom").getView().open();
 }
 
-
-
 function cancelConsultation(e) {
     var consultationIndex = e.source.consultationIndex;
 
@@ -113,7 +110,6 @@ function cancelConsultation(e) {
 
         if (consultationIndex >= 0 && consultationIndex < consultations.length) {
             var consultationToCancel = consultations[consultationIndex];
-
             var dialog = Ti.UI.createAlertDialog({
                 title: "Cancel Consultation",
                 message: "Are you sure you want to cancel the consultation with " + consultationToCancel.doctorName + "?",
@@ -163,6 +159,7 @@ function selectDay(e) {
     var allRows = $.scheduleCalendar.children.filter((element) =>
         element.id && element.id.includes("row")
     );
+
     allRows.forEach(row => {
         row.children.forEach(dayView => {
             dayView.backgroundColor = "#B7D8D6"; // reset background
@@ -234,7 +231,6 @@ function populateCalendar(month, year) {
         init = false;
     }
 }
-
 
 function getMonthName(monthIndex) {
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -372,12 +368,12 @@ function newAppointment() {
     }
     $.schedulePopup.visible = true;
     $.scheduleScheduleConsultation.visible = false;
-
 }
 
 function cancelPopup() {
     $.schedulePopup.visible = false;
 }
+
 function confirmPopup() {
     var selectedTimeRow = $.timePicker.getSelectedRow(0);
     var selectedSpecialtyRow = $.specialtyPicker.getSelectedRow(0);
@@ -407,7 +403,6 @@ function confirmPopup() {
     };
 
     loggedInAccount.consultations.push(newConsultation);
-
     $.schedulePopup.visible = false;
 
     populateCalendar(currentMonth, currentYear);
@@ -471,8 +466,7 @@ function confirmReschedulePopup() {
     }
 
     var newDay = parseInt(selectedDayRow.title, 10);
-    var monthNames = ["January", "February", "March", "April", "May", "June", 
-                      "July", "August", "September", "October", "November", "December"];
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var newMonth = monthNames.indexOf(selectedMonthRow.title); 
     var newYear = parseInt(selectedYearRow.title, 10);
     var newTime = selectedTimeRow.title;
@@ -494,7 +488,6 @@ function confirmReschedulePopup() {
 
     consultationToReschedule = null;
 }
-
 
 // Initial setup
 populateCalendar(currentMonth, currentYear);

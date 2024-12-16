@@ -17,16 +17,6 @@ function showValues(){
 }
 
 function updateValues(){
-    /* var name = $.name.value;
-    var gender = $.gender.value;
-    var birthDate = $.birthDate.value;
-    var nifNumber = $.NifNumber.value;
-    var phoneNumber = $.phoneNumber.value;
-    var email = $.email.value;
-    var emergencyName = $.emergencyName.value;
-    var emergencyPhoneNumber = $.emergencyPhoneNumber.value
-    var relationship = $.relationship.value */
-
     //NAME
     function nameChangeCheck(){
         if(!$.name.value){
@@ -229,25 +219,7 @@ function updateValues(){
         $.emergencyName.value = loggedInAccount.emergencyName;
         $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
         $.relationship.value = loggedInAccount.relationship;
-    }else if(nameChangeCheck()){
-
-    }else if(genderChangeCheck()){
-
-    }else if(birthDateChangeCheck($.birthDate.value)){
-
-    }else if(NifNumberChangeCheck($.NifNumber.value)){
-
-    }else if(phoneNumberChangeCheck($.phoneNumber.value)){
-
-    }else if(emailChangeCheck($.email.value)){
-
-    }else if(emergencyNameChangeCheck()){
-
-    }else if(emergencyPhoneNumberChangeCheck($.emergencyPhoneNumber.value)){
-
-    }else if(relationshipChangeCheck()){
-        
-    }else if(nameChangeCheck === true && genderChangeCheck === true && birthDateChangeCheck($.birthDate.value) === true && NifNumberChangeCheck($.NifNumber.value) === true && phoneNumberChangeCheck($.phoneNumber.value) && emailChangeCheck($.email.value) && emergencyNameChangeCheck() === true && emergencyPhoneNumberChangeCheck($.emergencyPhoneNumber.value) && relationshipChangeCheck() === true){
+    }else if(nameChangeCheck() && genderChangeCheck() && birthDateChangeCheck($.birthDate.value) && NifNumberChangeCheck($.NifNumber.value) && phoneNumberChangeCheck($.phoneNumber.value) && emailChangeCheck($.email.value) && emergencyNameChangeCheck() && emergencyPhoneNumberChangeCheck($.emergencyPhoneNumber.value) && relationshipChangeCheck()){
         goToProfile();
         return true;
     }

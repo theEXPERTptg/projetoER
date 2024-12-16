@@ -3,10 +3,11 @@ var permissions = [
     'android.permission.RECORD_AUDIO',
     'android.permission.MODIFY_AUDIO_SETTINGS'
 ];
+
+var webView = $.webView;
+
 Ti.Android.requestPermissions(permissions, function(e) {
-    if (!e.success) {
-        alert('You need to grant camera and mic permissions to use video calling.');
-    }
+    if (!e.success) alert('You need to grant camera and mic permissions to use video calling.');
 });
 
 function enterWaitingRoom(){
@@ -28,10 +29,7 @@ function backToDashboard(){
     Alloy.createController("dashBoard").getView().open();
 }
 
-var webView = $.webView;
-
 webView.addEventListener('load', function() {
-    // Periodically check for peer ID from the WebView
     var checkInterval = setInterval(function() {
         var result = webView.evalJS('currentPeerId');
         Ti.API.info("currentPeerId: " + result);
@@ -44,10 +42,6 @@ webView.addEventListener('load', function() {
 });
 
 $.callButton.addEventListener('click', function() {
-
-    //webView.evalJS('startCall("skipper123")');
-    //return; 
-
     var friendId = $.peerIdField.value;
     if (!friendId) {
         alert("No ID provided.");
@@ -55,5 +49,4 @@ $.callButton.addEventListener('click', function() {
     }
 
     webView.evalJS('startCall("' + friendId + '")');
-    //$.connectionStuff.visible = false;
 });

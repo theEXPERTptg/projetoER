@@ -1,16 +1,11 @@
-
-
-
-// Show the Register Form
-
 function validatePage1() {
     var name = $.name.value;
     var nif = $.NifNumber.value;
     var gender = $.gender.value;
     var birthDate = $.birthDate.value;
-    
+
     function validarDataNascimento(dataNascimento) {
-        const dataAtual = new Date(2024, 11, 7); // 07/12/2024 (mês é zero-based internamente)
+        const dataAtual = new Date(); 
         // Regex to validate format DD/MM/YYYY
         const regexData = /^(\d{2})\/(\d{2})\/(\d{4})$/;
         const match = dataNascimento.match(regexData);
@@ -18,29 +13,28 @@ function validatePage1() {
             alert("A data de nascimento inserida não está correta.")
             return false;
         }
+
         const [_, diaStr, mesStr, anoStr] = match;
         const dia = parseInt(diaStr, 10);
         const mes = parseInt(mesStr, 10); // Aqui o mês é 1-based (1 = Janeiro, 12 = Dezembro)
         const ano = parseInt(anoStr, 10);
-        // Validar o ano
+        
         if (ano < 1900) {
             alert("O ano inserido não é válido. Apenas datas após o ano 1900 são permitidas.")
             return false;
         }
-        // Validar o mês (1 a 12)
+
         if (mes < 1 || mes > 12) {
             alert("O mês inserido não é válido. Por favor insira um valor entre 01, para Janeiro, e 12 para Dezembro.")
             return false;
         }
-        // Verificar validade dos dias para cada mês
         const diasNoMes = [31, (ano % 4 === 0 && (ano % 100 !== 0 || ano % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        if (dia < 1 || dia > diasNoMes[mes - 1]) { // Ajustar o mês para índice do array (zero-based)
+        if (dia < 1 || dia > diasNoMes[mes - 1]) { // Ajustar o mês para índice do array (0 based)
             alert("O dia inserido não é válido. Por favor confira se inseriu o valor correto. Para datas antes do dia 10 use um 0 no início, por exemplo, dia 4 escreva 04.")
             return false;
         }
-        // Criar objeto Date com a data fornecida
-        const data = new Date(ano, mes - 1, dia); // Subtrair 1 do mês para criar o objeto Date
-        // Verificar se a data é no futuro
+
+        const data = new Date(ano, mes - 1, dia); 
         if (data > dataAtual) {
             alert("Por favor insira uma data válida. A data de nascimento inserida está no futuro.")
             return false;
@@ -60,36 +54,29 @@ function validatePage1() {
         const modulo11 = (Number(total) % 11);
         const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
         return checkDigit === Number(nif[8]);
-    }   
+    }
 
-    //Below the logic for the form, validation of values and to go to the next page
+    let errorMessage = "";
 
-    if (!name && !nif && !gender && !birthDate) {
-        alert("Não foram inseridos dados. Insira a informação necessária.");
-        return false; 
-    } else if (!name){
-        alert("Nenhum nome foi inserido. Insira a informação necessária.")
+    if (!name && !nif && !gender && !birthDate) errorMessage = "Não foram inseridos dados. Insira a informação necessária."
+    else if (!name) errorMessage = "Nenhum nome foi inserido. Insira a informação necessária."
+    else if (!nif) errorMessage = "Nenhum NIF foi inserido. Insira a informação necessária."
+    else if (!validateNIF(nif)) errorMessage = "O NIF inserido está incorreto. Insira um NIF valido."
+    else if (!gender) errorMessage = "Nenhum género foi inserido. Insira a informação necessária."
+    else if (!birthDate) errorMessage = "Não foi inserida uma data de nascimento. Insira a informação necessária."
+    else if (!validarDataNascimento(birthDate)) return false;
+
+    if (errorMessage) {
+        alert(errorMessage);
         return false;
-    } else if (!nif){
-        alert("Nenhum NIF foi inserido. Insira a informação necessária.")
-        return false;
-    } else if (validateNIF(nif) === false){
-        alert("O NIF inserido está incorreto. Insira um NIF valido.")
-        return false;
-    } else if (!gender){
-        alert("Nenhum género foi inserido. Insira a informação necessária.")
-        return false;
-    } else if (!birthDate){
-        alert("Não foi inserida uma data de nascimento. Insira a informação necessária.")
-        return false;
-    } else if (validarDataNascimento(birthDate) === false){
-        return false;
-    } else if (validateNIF(nif) === true && validarDataNascimento(birthDate) === true){
+    }
+
+    else if (validateNIF(nif) && validarDataNascimento(birthDate)) {
         $.registerFormPage1.visible = false;
         $.registerFormPage2.visible = true;
         $.registerFormPage3.visible = false;
         return true;
-    }     
+    }
 }
 
 function validatePage2() {
@@ -98,36 +85,32 @@ function validatePage2() {
     var password = $.password.value;
     var confirmPassword = $.confirmPassword.value;
 
-    function validatePhoneNumber(phoneNumber){
+    function validatePhoneNumber(phoneNumber) {
         const onlyNumbers = /^\d+$/.test(phoneNumber);
 
         if (!onlyNumbers) {
-        alert("O número de telemóvel deve conter apenas números. Insira um número de telemóvel válido.");
+            alert("O número de telemóvel deve conter apenas números. Insira um número de telemóvel válido.");
             return false;
         }
-
         if (phoneNumber.length !== 9) {
             alert("O número de telemóvel deve conter exatamente 9 dígitos. Insira um número de telemóvel válido.");
             return false;
         }
-
         return true;
     }
 
-    function validateEmail(email){
-        // Regex para validar email
+    function validateEmail(email) {
         const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    
-        // Verificar se o email é válido
+
         if (!regexEmail.test(email)) {
-        alert("O endereço de email inserido não é valido. Insira um endereço de email válido.");
+            alert("O endereço de email inserido não é valido. Insira um endereço de email válido.");
             return false;
         }
 
         return true;
     }
 
-    function validatePassword(password){
+    function validatePassword(password) {
 
         if (password.length < 7) {
             alert("A password inserida é curta. Insira uma password que tenha pelo menos 7 caracteres.");
@@ -147,7 +130,7 @@ function validatePage2() {
 
     }
 
-    function validateConfirmPassword(confirmPassword){
+    function validateConfirmPassword(confirmPassword) {
         if (password !== confirmPassword) {
             alert("A confirmação de password não é igual à password inserida. Insira a mesma password inserida antes.");
             return false;
@@ -155,47 +138,39 @@ function validatePage2() {
         return true;
     }
 
-    if (!email && !phoneNumber && !password && !confirmPassword) {
-        alert("Não foram inseridos dados. Insira a informação necessária.");
-        return false; 
-    } else if (!email){
-        alert("Nenhum email foi inserido. Insira a informação necessária.")
-        return false;
-    } else if (validateEmail(email) === false){
-        return false;
-    } else if (!phoneNumber){
-        alert("Nenhum número de telemóvel foi inserido. Insira a informação necessária.")
-        return false;
-    } else if (validatePhoneNumber(phoneNumber) === false){
-        return false;
-    } else if (!password){
-        alert("Nenhuma password foi inserida. Insira a informação necessária.")
-        return false;
-    } else if (validatePassword(password) === false){
-        return false;
-    } else if (!confirmPassword){
-        alert("Não foi inserida a confirmação da password. Insira a informação necessária.")
-        return false;
-    } else if (validateConfirmPassword(confirmPassword) === false){
-        return false;
-    } else if (validateEmail(email) === true && validatePhoneNumber(phoneNumber) === true && validatePassword(password) === true &&validateConfirmPassword(confirmPassword) === true){
-        $.registerFormPage2.visible = false;
-        $.registerFormPage3.visible = true;
-        $.registerFormPage4.visible = false;
-        return true;
-    }
-}    
+    let errorMessage = "";
 
-function validatePage3(){
+    if (!email && !phoneNumber && !password && !confirmPassword) errorMessage = "Não foram inseridos dados. Insira a informação necessária.";
+    else if (!email) errorMessage = "Nenhum email foi inserido. Insira a informação necessária.";
+    else if (!validateEmail(email)) errorMessage = "Email inválido.";
+    else if (!phoneNumber) errorMessage = "Nenhum número de telemóvel foi inserido. Insira a informação necessária.";
+    else if (!validatePhoneNumber(phoneNumber)) errorMessage = "Número de telemóvel inválido.";
+    else if (!password) errorMessage = "Nenhuma password foi inserida. Insira a informação necessária.";
+    else if (!validatePassword(password)) errorMessage = "Password inválida.";
+    else if (!confirmPassword) errorMessage = "Não foi inserida a confirmação da password. Insira a informação necessária.";
+    else if (!validateConfirmPassword(confirmPassword)) errorMessage = "Confirmação da password inválida.";
+
+    if (errorMessage) {
+        alert(errorMessage);
+        return false;
+    }
+
+    $.registerFormPage2.visible = false;
+    $.registerFormPage3.visible = true;
+    $.registerFormPage4.visible = false;
+    return true;
+}
+
+function validatePage3() {
     var emergencyName = $.emergencyName.value;
     var emergencyPhoneNumber = $.emergencyPhoneNumber.value;
     var relationship = $.relationship.value;
 
-    function validateEmergencyPhoneNumber(emergencyPhoneNumber){
+    function validateEmergencyPhoneNumber(emergencyPhoneNumber) {
         const onlyNumbers = /^\d+$/.test(emergencyPhoneNumber);
 
         if (!onlyNumbers) {
-        alert("O número de telemóvel deve conter apenas números. Insira um número de telemóvel válido.");
+            alert("O número de telemóvel deve conter apenas números. Insira um número de telemóvel válido.");
             return false;
         }
 
@@ -203,26 +178,25 @@ function validatePage3(){
             alert("O número de telemóvel deve conter exatamente 9 dígitos. Insira um número de telemóvel válido.");
             return false;
         }
-
         return true;
     }
 
     if (!emergencyName && !emergencyPhoneNumber && !relationship) {
         alert("Não foram inseridos dados. Insira a informação necessária.");
-        return false; 
-    } else if (!emergencyName){
+        return false;
+    } else if (!emergencyName) {
         alert("Nenhum nome para o contacto de emergência foi inserido. Insira a informação necessária.")
         return false;
-    } else if (!emergencyPhoneNumber){
+    } else if (!emergencyPhoneNumber) {
         alert("Nenhum número de telemóvel para o contacto de emergência foi inserido. Insira a informação necessária.")
         return false;
-    } else if (validateEmergencyPhoneNumber(emergencyPhoneNumber) === false){
+    } else if (!validateEmergencyPhoneNumber(emergencyPhoneNumber)) {
         return false;
-    } else if (!relationship){
+    } else if (!relationship) {
         alert("Nenhuma relação com o contacto de emergência foi inserida. Insira a informação necessária.");
         return false;
-    } else if (emergencyName && validateEmergencyPhoneNumber(emergencyPhoneNumber) === true && relationship){
-        $.loginForm.visible = false; 
+    } else if (emergencyName && validateEmergencyPhoneNumber(emergencyPhoneNumber) && relationship) {
+        $.loginForm.visible = false;
         $.registerFormPage1.visible = false;
         $.registerFormPage2.visible = false;
         $.registerFormPage3.visible = false;
@@ -231,54 +205,51 @@ function validatePage3(){
     }
 }
 
-function validatePage4(){
-    const isChecked = $.checkbox1.value;
-    if (!isChecked) {
+function validatePage4() {
+    if (!$.checkbox1.value) {
         alert("É necessário aceitar os termos e condições para terminar o registo.");
         return false;
-    } else {
-        //TODO REGISTER PROCESS
-        submitRegister();
-        showLoginForm();
     }
+    submitRegister();
+    showLoginForm();
+    return true;
 }
 
 
 
 function showRegisterFormPage1() {
-    $.loginForm.visible = false;  // Hide login form
-    $.registerFormPage1.visible = true; // Show register form
+    $.loginForm.visible = false;
+    $.registerFormPage1.visible = true;
     $.registerFormPage2.visible = false;
     $.registerFormPage3.visible = false;
     $.registerFormPage4.visible = false;
 
 }
 
-function showRegisterFormPage2(){
+function showRegisterFormPage2() {
     $.registerFormPage1.visible = false;
     $.registerFormPage2.visible = true;
-    $.registerFormPage3.visible = false; 
+    $.registerFormPage3.visible = false;
 }
 
-function showRegisterFormPage3(){
+function showRegisterFormPage3() {
     $.registerFormPage2.visible = false;
     $.registerFormPage3.visible = true;
     $.registerFormPage4.visible = false;
 }
 
-function showRegisterFormPage4(){
-    $.loginForm.visible = false; 
+function showRegisterFormPage4() {
+    $.loginForm.visible = false;
     $.registerFormPage1.visible = false;
     $.registerFormPage2.visible = false;
     $.registerFormPage3.visible = false;
     $.registerFormPage4.visible = true;
 }
 
-
 function showLoginForm() {
-    $.registerFormPage1.visible = false;  
+    $.registerFormPage1.visible = false;
     $.registerFormPage4.visible = false;
-    $.loginForm.visible = true; 
+    $.loginForm.visible = true;
 }
 
 function submitLogin() {
@@ -286,12 +257,11 @@ function submitLogin() {
     var password = $.loginPassword.value;
     var serverConnection = true;
     var serverMaintenance = true;
-    
+
     if (!username || !password) {
         alert("Please enter both username and password.");
         return;
     }
-
 
     if (!serverConnection) {
         if (serverMaintenance) {
@@ -302,14 +272,14 @@ function submitLogin() {
         return;
     }
 
-    var matchedAccount = accounts.accounts.find(account => 
+    var matchedAccount = accounts.accounts.find(account =>
         account.username === username && account.password === password
     );
 
     if (matchedAccount) {
         alert("Login successful!");
         loggedInAccount = matchedAccount;
-        if(loggedInAccount.pacient){
+        if (loggedInAccount.pacient) {
             loggedInAccount.consultations = accounts.accounts.find(account => account.username === loggedInAccount.pacient).consultations
         }
         var dashBoard = Alloy.createController("dashBoard").getView();
@@ -323,19 +293,17 @@ function submitLogin() {
         } else if (!passwordCorrect) {
             alert("The password is incorrect.");
         } else {
-            alert("This username is incorrect for this password.");
+            alert("This username is incorrect for this password. (brincadeira)");
         }
     }
 }
 
-// Handle Registration Submission
 function submitRegister() {
-
-    const regexData = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+    const regexData = /^(\d{2})\/(\d{2})\/(\d{4})$/; // 2 digitos + / + 2 digitos + / + 4 digitos
     const match = $.birthDate.value.match(regexData);
     const [_, diaStr, mesStr, anoStr] = match;
     const dia = parseInt(diaStr, 10);
-    const mes = parseInt(mesStr, 10) - 1; // Ajustar mês
+    const mes = parseInt(mesStr, 10) - 1; // Ajustar mês (0-11)
     const ano = parseInt(anoStr, 10);
     const birthDate = new Date(ano, mes, dia);
 
@@ -351,68 +319,53 @@ function submitRegister() {
         "emergencyName": $.emergencyName.value,
         "emergencyNumber": $.emergencyPhoneNumber.value,
         "relationship": $.relationship.value,
-        "consultations":[
-            
+        "consultations": [
+
         ]
     };
 
-    // Add to accounts
     accounts.accounts.push(newAccount);
-    alert(accounts.accounts[2].username + " " + accounts.accounts[2].password)
-    //alert("Account successfully registered!");
+    alert("Account successfully registered!");
     showLoginForm();
 }
 
-function forgotPassword(){
-
-    //TODO FOR TESTING ONLY
-    alert("fake login");
-    Alloy.createController("dashBoard").getView().open();
+function forgotPassword() {
+    alert("Feature not implemented - forgotPassword()");
     return;
 }
 
-function generateOtpCode(){
-    Alloy.createController("callRoom").getView().open();
-
+function generateOtpCode() {
+    alert("Feature not implemented - generateOtpCode()")
+    return;
 }
 
 
 $.mainWindow.open();
 
-// index.js
 if (OS_ANDROID) {
     var requiredPermissions = [
         'android.permission.CAMERA',
         'android.permission.RECORD_AUDIO',
         "android.permission.MODIFY_AUDIO_SETTINGS",
-        "android.permission.INTERNET" ,
-      "android.permission.ACCESS_NETWORK_STATE"
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE"
     ];
-    
-    // Check if we already have permissions
+
     var missingPermissions = [];
     for (var i = 0; i < requiredPermissions.length; i++) {
         if (!Ti.Android.hasPermission(requiredPermissions[i])) {
             missingPermissions.push(requiredPermissions[i]);
         }
     }
-    
+
     if (missingPermissions.length > 0) {
-        // Request permissions at runtime
-        Ti.Android.requestPermissions(missingPermissions, function(e) {
-            if (e.success) {
-                // All permissions granted
-            } else {
+        Ti.Android.requestPermissions(missingPermissions, function (e) {
+            if (!e.success) {
                 alert("Permissions for Camera and Microphone are required. Please grant them in the device settings.");
             }
         });
-    } else {
-        // Already have all permissions
     }
-} else {
-    // For non-Android platforms, just open video
 }
-
 
 
 
