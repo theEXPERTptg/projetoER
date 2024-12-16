@@ -45,8 +45,8 @@ webView.addEventListener('load', function() {
 
 $.callButton.addEventListener('click', function() {
 
-    webView.evalJS('startCall("skipper123")');
-    return; 
+    //webView.evalJS('startCall("skipper123")');
+    //return; 
 
     var friendId = $.peerIdField.value;
     if (!friendId) {
@@ -55,5 +55,5 @@ $.callButton.addEventListener('click', function() {
     }
 
     webView.evalJS('startCall("' + friendId + '")');
-    $.connectionStuff.visible = false;
+    //$.connectionStuff.visible = false;
 });
