@@ -151,20 +151,70 @@ function updateValues(){
         }
     }
 
-    function emailChangeCheck(){
-
+    function emailChangeCheck(email){
+        if(!email){
+            alert(`O email foi deixado em branco. A reverter alteração para o número de telemóvel inserido anteriormente: ${loggedInAccount.email}`);
+            $.email.value = loggedInAccount.email;
+            return false;
+        }else if(email != loggedInAccount.email){
+            const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!regexEmail.test(email)) {
+                alert(`O endereço de email inserido não é valido. O email ${$.email.value} não é válido. A reverter alteração para o email inserido anteriormente: ${loggedInAccount.email}`);
+                $.email.value = loggedInAccount.email;
+                return false;
+            }else{
+                alert(`O email foi alterado de ${loggedInAccount.email} para ${$.email.value}.`)
+                loggedInAccount.email = $.email.value;
+                return true;
+            }
+        }
     }
 
     function emergencyNameChangeCheck(){
-
+        if(!$.emergencyName.value){
+            alert(`O nome do contacto de emergência foi deixado em branco. A reverter alteração para o nome do contacto de emergência inserido anteriormente: ${loggedInAccount.emergencyName}`);
+            $.emergencyName.value = loggedInAccount.emergencyName;
+            return false;
+        }else if($.emergencyName.value != loggedInAccount.emergencyName){
+            alert(`O nome foi alterado de ${loggedInAccount.emergencyName} para ${$.emergencyName.value}.`);
+            loggedInAccount.emergencyName = $.emergencyName.value;
+            return true;
+        }
     }    
 
-    function emergencyPhoneNumberChangeCheck(){
-
+    function emergencyPhoneNumberChangeCheck(phoneNumber){
+        if(!phoneNumber){
+            alert(`O número de telemóvel do contacto de emergência foi deixado em branco. A reverter alteração para o número de telemóvel do contacto de emergência inserido anteriormente: ${loggedInAccount.emergencyPhoneNumber}`);
+            $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
+            return false;
+        }else if(phoneNumber != loggedInAccount.emergencyPhoneNumber){
+            const onlyNumbers = /^\d+$/.test(phoneNumber);
+            if (!onlyNumbers) {
+                alert(`O número de telemóvel do contacto de mergência deve conter apenas números. O número de telemóvel ${$.phoneNumber.emergencyPhoneNumber} não é válido. A reverter alteração para o número de telemóvel inserido anteriormente: ${loggedInAccount.emergencyPhoneNumber}`);
+                $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
+                return false;
+            }
+            if (phoneNumber.length !== 9) {
+                alert(`O número de telemóvel do contacto de emergência deve conter exatamente 9 dígitos. O número de telemóvel ${$.emergencyPhoneNumber.value} não é válido. A reverter alteração para o número de telemóvel inserido anteriormente: ${loggedInAccount.emergencyPhoneNumber}`);
+                $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
+                return false;
+            }
+            alert(`O número de telemóvel foi alterado de ${loggedInAccount.emergencyPhoneNumber} para ${$.emergencyPhoneNumber.value}.`);
+            loggedInAccount.emergencyPhoneNumber = $.emergencyPhoneNumber.value;
+            return true;
+        }
     }
 
     function relationshipChangeCheck(){
-
+        if(!$.relationship.value){
+            alert(`A relação com o contacto de emergência foi deixada em branco. A reverter alteração para a relação inserida anteriormente: ${loggedInAccount.relationship}`);
+            $.relationship.value = loggedInAccount.relationship;
+            return false;
+        }else if($.relationship.value != loggedInAccount.relationship){
+            alert(`A relação foi alterada de ${loggedInAccount.relationship} para ${$.relationship.value}.`);
+            loggedInAccount.relationship = $.relationship.value;
+            return true;
+        }
     }
 
 
@@ -189,24 +239,18 @@ function updateValues(){
 
     }else if(phoneNumberChangeCheck($.phoneNumber.value)){
 
-    }else if(!$.email.value){
-
-    }else if(emailChangeCheck()){
-
-    }else if(!$.emergencyName.value){
+    }else if(emailChangeCheck($.email.value)){
 
     }else if(emergencyNameChangeCheck()){
 
-    }else if(!$.emergencyPhoneNumber.value){
-
-    }else if(emergencyPhoneNumberChangeCheck()){
-
-    }else if(!$.relationship.value){
+    }else if(emergencyPhoneNumberChangeCheck($.emergencyPhoneNumber.value)){
 
     }else if(relationshipChangeCheck()){
         
+    }else if(nameChangeCheck === true && genderChangeCheck === true && birthDateChangeCheck($.birthDate.value) === true && NifNumberChangeCheck($.NifNumber.value) === true && phoneNumberChangeCheck($.phoneNumber.value) && emailChangeCheck($.email.value) && emergencyNameChangeCheck() === true && emergencyPhoneNumberChangeCheck($.emergencyPhoneNumber.value) && relationshipChangeCheck() === true){
+        goToProfile();
+        return true;
     }
-    
 
 }
 
