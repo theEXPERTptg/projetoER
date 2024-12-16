@@ -5,6 +5,7 @@ var permissions = [
 ];
 
 var webView = $.webView;
+$.waitingRoom.visible= true;
 
 Ti.Android.requestPermissions(permissions, function(e) {
     if (!e.success) alert('You need to grant camera and mic permissions to use video calling.');
@@ -23,8 +24,8 @@ function enterCallRoom(){
 }
 
 function enterTextRoom(){
-    $.waitingRoom.visible = true;
-    $.callScreen.visible = false;
+    $.waitingRoom.visible = false;
+    $.callScreen.visible = true;
     $.webView.visible = false; //ALTERAÇÕES AQUI
 }
 
