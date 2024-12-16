@@ -29,8 +29,11 @@ function updateValues(){
 
     //NAME
     function nameChangeCheck(){
-        if($.name.value != loggedInAccount.name){
-            goToProfile();
+        if(!$.name.value){
+            alert(`O nome foi deixado em branco. A reverter alteração para o nome inserido anteriormente: ${loggedInAccount.name}`);
+            $.name.value = loggedInAccount.name;
+            return false;
+        }else if($.name.value != loggedInAccount.name){
             alert(`O nome foi alterado de ${loggedInAccount.name} para ${$.name.value}.`);
             loggedInAccount.name = $.name.value;
             // accounts.accounts.name = $.name.value; ver isto se consigo alterar
@@ -39,8 +42,11 @@ function updateValues(){
     }
     //GENDER
     function genderChangeCheck(){
-        if($.gender.value != loggedInAccount.gender){
-            goToProfile();
+        if(!$.gender.value){
+            alert(`O género foi deixado em branco. A reverter alteração para o género inserido anteriormente: ${loggedInAccount.gender}`);
+            $.gender.value = loggedInAccount.gender;
+            return false;
+        }else if($.gender.value != loggedInAccount.gender){
             alert(`O género foi alterado de ${loggedInAccount.gender} para ${$.gender.value}.`);
             loggedInAccount.gender = $.gender.value;
             return true;
@@ -48,7 +54,11 @@ function updateValues(){
     }
 
     function birthDateChangeCheck(dataNascimento){
-        if($.birthDate.value != loggedInAccount.birthDate){
+        if(!dataNascimento){
+            alert(`A data de nascimento foi deixada em branco. A reverter alteração para a data de nascimento anterior: ${loggedInAccount.birthDate}`);
+            $.birthDate.value = loggedInAccount.birthDate;
+            return false;
+        }else if(dataNascimento != loggedInAccount.birthDate){
             const dataAtual = new Date(2024, 11, 7); // 07/12/2024 (mês é zero-based internamente)
             // Regex to validate format DD/MM/YYYY
             const regexData = /^(\d{2})\/(\d{2})\/(\d{4})$/;
@@ -84,19 +94,61 @@ function updateValues(){
                 alert("Por favor insira uma data válida. A data de nascimento inserida está no futuro.")
                 return false;
             }
-            goToProfile();
             alert(`A data de nascimento foi alterada de ${loggedInAccount.birthDate} para ${$.birthDate.value}.`);
             loggedInAccount.birthDate = $.birthDate.value;
             return true;
         }
     }
 
-    function NifNumberChangeCheck(){
-
+    function NifNumberChangeCheck(value){
+        if(!value){
+            alert(`O NIF foi deixado em branco. A reverter alteração para o NIF inserido anteriormente: ${loggedInAccount.NifNumber}`);
+            $.NifNumber.value = loggedInAccount.NifNumber;
+            return false;
+        }else if(value != loggedInAccount.NifNumber){
+            const nif = typeof value === 'string' ? value : value.toString();
+            const validationSets = {
+                one: ['1', '2', '3', '5', '6', '8'],
+                two: ['45', '70', '71', '72', '74', '75', '77', '79', '90', '91', '98', '99']
+            };
+            if (nif.length !== 9) return false;
+            if (!validationSets.one.includes(nif.substr(0, 1)) && !validationSets.two.includes(nif.substr(0, 2))) return false;
+            const total = nif[0] * 9 + nif[1] * 8 + nif[2] * 7 + nif[3] * 6 + nif[4] * 5 + nif[5] * 4 + nif[6] * 3 + nif[7] * 2;
+            const modulo11 = (Number(total) % 11);
+            const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
+            if(checkDigit === Number(nif[8])){
+                alert(`O NIF foi alterado de ${loggedInAccount.NifNumber} para ${$.NifNumber.value}.`);
+                loggedInAccount.NifNumber = $.NifNumber.value;
+                return true;
+            }else{
+                alert(`O NIF inserido não é válido. A reverter alteração para o NIF inserido anteriormente: ${loggedInAccount.NifNumber}`);
+                $.NifNumber.value = loggedInAccount.NifNumber;
+                return false;
+            }
+        }
     }
 
-    function phoneNumberChangeCheck(){
-
+    function phoneNumberChangeCheck(phoneNumber){
+        if(!phoneNumber){
+            alert(`O número de telemóvel foi deixado em branco. A reverter alteração para o número de telemóvel inserido anteriormente: ${loggedInAccount.phoneNumber}`);
+            $.phoneNumber.value = loggedInAccount.phoneNumber;
+            return false;
+        }else if(phoneNumber != loggedInAccount.phoneNumber){
+            const onlyNumbers = /^\d+$/.test(phoneNumber);
+            if (!onlyNumbers) {
+                alert(`O número de telemóvel deve conter apenas números. O número de telemóvel ${$.phoneNumber.value} não é válido. A reverter alteração para o número de telemóvel inserido anteriormente: ${loggedInAccount.phoneNumber}`);
+                $.phoneNumber.value = loggedInAccount.phoneNumber;
+                return false;
+            }
+            if (phoneNumber.length !== 9) {
+                alert(`O número de telemóvel deve conter exatamente 9 dígitos. O número de telemóvel ${$.phoneNumber.value} não é válido. A reverter alteração para o número de telemóvel inserido anteriormente: ${loggedInAccount.phoneNumber}`);
+                $.phoneNumber.value = loggedInAccount.phoneNumber;
+                return false;
+            }
+            alert(`O número de telemóvel foi alterado de ${loggedInAccount.phoneNumber} para ${$.phoneNumber.value}.`);
+            loggedInAccount.phoneNumber = $.phoneNumber.value;
+            return true;
+        }
     }
 
     function emailChangeCheck(){
@@ -116,30 +168,26 @@ function updateValues(){
     }
 
 
-
-    if(!$.name.value){
+    if(!$.name.value && !$.gender.value && !$.birthDate.value && !$.NifNumber.value && !$.phoneNumber.value && !$.email.value && $.emergencyName.value && $.emergencyPhoneNumber.value && $.relationship.value){
+        alert(`Não existem dados inseridos. A reverter alterações para os últimos dados inseridos.`)
         $.name.value = loggedInAccount.name;
-        alert(`O nome foi deixado em branco. A reverter alteração para o nome anterior: ${loggedInAccount.name}`);
+        $.gender.value = loggedInAccount.gender;
+        $.birthDate.value = loggedInAccount.birthDate;
+        $.NifNumber.value = loggedInAccount.nif;
+        $.phoneNumber.value = loggedInAccount.phoneNumber;
+        $.email.value = loggedInAccount.email;
+        $.emergencyName.value = loggedInAccount.emergencyName;
+        $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
+        $.relationship.value = loggedInAccount.relationship;
     }else if(nameChangeCheck()){
 
-    }else if(!$.gender.value){
-        $.gender.value = loggedInAccount.gender;
-        alert(`O género foi deixado em branco. A reverter alteração para o nome anterior: ${loggedInAccount.gender}`);
-        return false;
     }else if(genderChangeCheck()){
-        
-    }else if(!$.birthDate.value){
-        $.birthDate.value = loggedInAccount.birthDate;
-        alert(`A data de nascimento foi deixada em branco. A reverter alteração para a data de nascimento anterior: ${loggedInAccount.birthDate}`);
+
     }else if(birthDateChangeCheck($.birthDate.value)){
 
-    }else if(!$.NifNumber.value){
+    }else if(NifNumberChangeCheck($.NifNumber.value)){
 
-    }else if(NifNumberChangeCheck()){
-
-    }else if(!$.phoneNumber.value){
-
-    }else if(phoneNumberChangeCheck()){
+    }else if(phoneNumberChangeCheck($.phoneNumber.value)){
 
     }else if(!$.email.value){
 

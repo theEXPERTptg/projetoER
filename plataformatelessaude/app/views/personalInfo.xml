@@ -11,13 +11,13 @@
                 <ScrollView class="scrollableItem" layout="vertical">
 
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Nome:"></Label>
+                        <Label class="sectionTitleSmaller" text="Nome:"></Label>
                     </View>
 
                         <TextField id="name" hintText="Nome" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Género:"></Label>
+                        <Label class="sectionTitleSmaller" text="Género:"></Label>
                     </View>
 
                         <TextField id="gender" hintText="Género" class="input"></TextField>
@@ -29,19 +29,19 @@
                         <TextField id="birthDate" hintText="Data de Nascimento (dd/mm/aaaa)" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="NIF:"></Label>
+                        <Label class="sectionTitleSmaller" text="NIF:"></Label>
                     </View>
                     
                         <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Número de telemóvel:"></Label>
+                        <Label class="sectionTitleSmaller" text="Número de telemóvel:"></Label>
                     </View>
                     
                         <TextField id="phoneNumber" hintText="Número de telemóvel" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Email:"></Label>
+                        <Label class="sectionTitleSmaller" text="Email:"></Label>
                     </View>
                     
                         <TextField id="email" hintText="Email" class="input"></TextField>
@@ -59,7 +59,7 @@
                         <TextField id="emergencyPhoneNumber" hintText="Telemóvel do contacto de emergência" class="input"></TextField>
                     
                     <View class="sectionTitleContainer">
-                        <Label class="sectionTitle" text="Relação/Parentesco:"></Label>
+                        <Label class="sectionTitleSmaller" text="Relação/Parentesco:"></Label>
                     </View>
                     
                         <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
