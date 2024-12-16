@@ -52,7 +52,6 @@
         var remoteVideo = document.getElementById("remoteVideo");
         var localVideo = document.getElementById("localVideo");
 
-        
         (async function () {
             try {
                 localStream = await navigator.mediaDevices.getUserMedia({
@@ -68,13 +67,15 @@
             peer.on('open', function (id) {
                 window.currentPeerId = id;
             });
-    
+
 
             peer.on('call', call => {
                 call.answer(localStream);
                 call.on('stream', stream => {
                     remoteVideo.srcObject = stream;
-                    //remoteVideo.muted = false;
+                    document.addEventListener('click', () => {
+                        remoteVideo.muted = false;
+                    });
                 });
                 call.on('error', err => {
                     alert(err);
@@ -90,8 +91,9 @@
                 const outgoingCall = peer.call(id, localStream);
                 outgoingCall.on('stream', remoteStream => {
                     remoteVideo.srcObject = remoteStream;
-                    remoteVideo.muted = false;
-                    //localVideo.muted = false;
+                    document.addEventListener('click', () => {
+                        remoteVideo.muted = false;
+                    });
 
                 });
                 outgoingCall.on('error', err => {
