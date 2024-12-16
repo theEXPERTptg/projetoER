@@ -282,8 +282,7 @@ function submitLogin() {
         if (loggedInAccount.pacient) {
             loggedInAccount.consultations = accounts.accounts.find(account => account.username === loggedInAccount.pacient).consultations
         }
-        var dashBoard = Alloy.createController("dashBoard").getView();
-        dashBoard.open();
+        Alloy.createController("dashBoard").getView().open();
     } else {
         var userExists = accounts.accounts.some(account => account.username === username);
         var passwordCorrect = accounts.accounts.some(account => account.password === password);

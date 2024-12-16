@@ -1,8 +1,8 @@
 <Alloy>
     <Window id="mainWindow" class="container" backgroundColor="#789E9E">
         <View id="mainContainer" class="OutterLayoutBox">
-            <View id="screenTitle">
-                <ImageView image="/left-arrow.png" left="10%" top="20%" height="60%"></ImageView>
+            <View id="screenTitle" onClick="goBack">
+                <ImageView  image="/left-arrow.png" left="10%" top="20%" height="60%" ></ImageView>
                 <View>
                     <Label class="sectionTitle" text="My Profile" color="black" top="10%" left="40%"> </Label>
                 </View>

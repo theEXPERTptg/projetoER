@@ -15,7 +15,7 @@ var loggedInAccount = "";
 var accounts = {
     accounts: [
         {
-            "username": "test",
+            "username": "johndoe",
             "password": "1234",
             "name": "John Doe",
             "nif": "272414522",
@@ -138,7 +138,7 @@ var accounts = {
             ]
         },
         {
-            "username": "test2",
+            "username": "janedoe",
             "password": "1234",
             "name": "Jane Doe",
             "nif": "234168080",
@@ -149,11 +149,28 @@ var accounts = {
             "emergencyName": "John Doe",
             "emergencyPhoneNumber": "960101432",
             "relationship": "Husband",
-            "pacient": "test",
+            "pacient": "johndoe",
+            "consultations": [
+                
+            ]
+        },
+        {
+            "username": "skipper",
+            "password": "1234",
+            "name": "Skipper",
+            "nif": "234168080",
+            "gender": "Male",
+            "birthDate": "01/10/2000",
+            "email": "skipper@gmail.com",
+            "phoneNumber": "960101432",
+            "emergencyName": "N/A",
+            "emergencyPhoneNumber": "960101432",
+            "relationship": "N/A",
             "consultations": [
                 
             ]
         }
+
     ]
 };
 
