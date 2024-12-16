@@ -1,6 +1,7 @@
 <Alloy>
     <Window id="callRoom" class="container">
-        <View id="callScreen" visible="true" backgroundColor="#555" layout="vertical" top="0">
+        <!--Estado2(videochamada)-->
+        <View id="callScreen" visible="false" backgroundColor="#555" layout="vertical" top="0">
             <View class="header">
                 <View id="userInfo" class="userInfo">
                     <View layout="vertical" width="70%">
@@ -26,7 +27,7 @@
                 </View>
             </View>
 
-            <WebView
+            <WebView visible="true"
                 id="webView"
                 allowsInlineMediaPlayback="true"
                 mediaPlaybackRequiresUserAction="false"
@@ -124,17 +125,15 @@
         </View>
 
         <!--Estado3(texto)-->
-        <View class="callMessage" visible="false">
+        <View class="callMessage" visible="true">
             <View class="header">
                 <!-- User Info Container -->
-                <View id="userInfo" class="userInfo">
-                    <Label id="userName" class="userName" text="Mensagens - Fábio Mendonça"></Label>
+                <View class="userInfo">
+                    <Label class="userName" text="Mensagens - Fábio Mendonça"></Label>
                     <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
                 </View>
             </View>
-
-            <!--chamada-->
-
+            
         </View>
 
     </Window>

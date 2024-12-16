@@ -13,16 +13,19 @@ Ti.Android.requestPermissions(permissions, function(e) {
 function enterWaitingRoom(){
     $.waitingRoom.visible = true;
     $.callScreen.visible = false;
+    $.webView.visible = false; //ALTERAÇÕES AQUI
 }
 
 function enterCallRoom(){
     $.waitingRoom.visible = false;
     $.callScreen.visible = true;
+    $.webView.visible = true; //ALTERAÇÕES AQUI
 }
 
 function enterTextRoom(){
     $.waitingRoom.visible = true;
     $.callScreen.visible = false;
+    $.webView.visible = false; //ALTERAÇÕES AQUI
 }
 
 function backToDashboard(){
@@ -40,6 +43,8 @@ webView.addEventListener('load', function() {
         }
     }, 1000);
 });
+
+
 
 $.callButton.addEventListener('click', function() {
     var friendId = $.peerIdField.value;
