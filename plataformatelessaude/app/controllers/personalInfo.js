@@ -14,6 +14,8 @@ function showValues(){
     $.emergencyName.value = loggedInAccount.emergencyName;
     $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
     $.relationship.value = loggedInAccount.relationship;
+    $.weight.value = loggedInAccount.weight;
+    $.height.value = loggedInAccount.height;
 }
 
 function updateValues(){
@@ -29,6 +31,7 @@ function updateValues(){
             // accounts.accounts.name = $.name.value; ver isto se consigo alterar
             return true;
         }
+        return true;
     }
     //GENDER
     function genderChangeCheck(){
@@ -41,6 +44,7 @@ function updateValues(){
             loggedInAccount.gender = $.gender.value;
             return true;
         }
+        return true;
     }
 
     function birthDateChangeCheck(dataNascimento){
@@ -88,6 +92,7 @@ function updateValues(){
             loggedInAccount.birthDate = $.birthDate.value;
             return true;
         }
+        return true;
     }
 
     function NifNumberChangeCheck(value){
@@ -116,6 +121,7 @@ function updateValues(){
                 return false;
             }
         }
+        return true;
     }
 
     function phoneNumberChangeCheck(phoneNumber){
@@ -139,6 +145,7 @@ function updateValues(){
             loggedInAccount.phoneNumber = $.phoneNumber.value;
             return true;
         }
+        return true;
     }
 
     function emailChangeCheck(email){
@@ -158,6 +165,7 @@ function updateValues(){
                 return true;
             }
         }
+        return true;
     }
 
     function emergencyNameChangeCheck(){
@@ -170,6 +178,7 @@ function updateValues(){
             loggedInAccount.emergencyName = $.emergencyName.value;
             return true;
         }
+        return true;
     }    
 
     function emergencyPhoneNumberChangeCheck(phoneNumber){
@@ -193,6 +202,7 @@ function updateValues(){
             loggedInAccount.emergencyPhoneNumber = $.emergencyPhoneNumber.value;
             return true;
         }
+        return true;
     }
 
     function relationshipChangeCheck(){
@@ -205,10 +215,36 @@ function updateValues(){
             loggedInAccount.relationship = $.relationship.value;
             return true;
         }
+        return true;
     }
 
+    function weightChangeCheck(){
+        if(!$.weight.value){
+            alert(`O peso foi deixado em branco. A reverter alteração para o peso inserido anteriormente: ${loggedInAccount.weight}`);
+            $.weight.value = loggedInAccount.weight;
+            return false;
+        }else if($.weight.value != loggedInAccount.weight){
+            alert(`O peso foi alterado de ${loggedInAccount.weight} para ${$.weight.value}.`);
+            loggedInAccount.weight = $.weight.value;
+            return true;
+        }
+        return true;
+    }
 
-    if(!$.name.value && !$.gender.value && !$.birthDate.value && !$.NifNumber.value && !$.phoneNumber.value && !$.email.value && $.emergencyName.value && $.emergencyPhoneNumber.value && $.relationship.value){
+    function heightChangeCheck(){
+        if(!$.height.value){
+            alert(`A altura foi deixada em branco. A reverter alteração para a altura inserida anteriormente: ${loggedInAccount.height}`);
+            $.height.value = loggedInAccount.height;
+            return false;
+        }else if($.height.value != loggedInAccount.height){
+            alert(`A altura foi alterada de ${loggedInAccount.height} para ${$.height.value}.`);
+            loggedInAccount.height = $.height.value;
+            return true;
+        }
+        return true;
+    }
+
+    if(!$.name.value && !$.gender.value && !$.birthDate.value && !$.NifNumber.value && !$.phoneNumber.value && !$.email.value && !$.emergencyName.value && !$.emergencyPhoneNumber.value && !$.relationship.value && !$.weight.value && !$.height.value){
         alert(`Não existem dados inseridos. A reverter alterações para os últimos dados inseridos.`)
         $.name.value = loggedInAccount.name;
         $.gender.value = loggedInAccount.gender;
@@ -219,11 +255,13 @@ function updateValues(){
         $.emergencyName.value = loggedInAccount.emergencyName;
         $.emergencyPhoneNumber.value = loggedInAccount.emergencyPhoneNumber;
         $.relationship.value = loggedInAccount.relationship;
-    }else if(nameChangeCheck() && genderChangeCheck() && birthDateChangeCheck($.birthDate.value) && NifNumberChangeCheck($.NifNumber.value) && phoneNumberChangeCheck($.phoneNumber.value) && emailChangeCheck($.email.value) && emergencyNameChangeCheck() && emergencyPhoneNumberChangeCheck($.emergencyPhoneNumber.value) && relationshipChangeCheck()){
+        $.weight.value = loggedInAccount.weight;
+        $.height.value = loggedInAccount.height;
+    }else if(nameChangeCheck() && genderChangeCheck() && birthDateChangeCheck($.birthDate.value) && NifNumberChangeCheck($.NifNumber.value) && phoneNumberChangeCheck($.phoneNumber.value) && emailChangeCheck($.email.value) && emergencyNameChangeCheck() && emergencyPhoneNumberChangeCheck($.emergencyPhoneNumber.value) && relationshipChangeCheck() && weightChangeCheck() && heightChangeCheck()){
         goToProfile();
         return true;
     }
-
+    return true;
 }
 
 showValues()

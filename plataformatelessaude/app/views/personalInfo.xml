@@ -64,6 +64,18 @@
                     
                         <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
                     
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitleSmaller" text="Peso:"></Label>
+                    </View>
+                    
+                        <TextField id="weight" hintText="Peso em kilogramas" class="input"></TextField>
+                    
+                    <View class="sectionTitleContainer">
+                        <Label class="sectionTitleSmaller" text="Altura:"></Label>
+                    </View>
+                    
+                        <TextField id="height" hintText="Altura em centímetros" class="input"></TextField>
+
                     <Button id="save" title="Save" onClick="updateValues"></Button>
                     <Button id="back1" title="Back" onClick="goToProfile"></Button>
                 </ScrollView>

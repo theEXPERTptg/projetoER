@@ -49,7 +49,7 @@
     borderRadius: 50,
     fontStyle: "Concert One",
     top: 15,
-    bottom: 25,
+    bottom: 65,
 
 }
 

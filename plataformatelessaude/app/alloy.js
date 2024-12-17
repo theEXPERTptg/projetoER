@@ -26,6 +26,8 @@ var accounts = {
             "emergencyName": "Jane Doe",
             "emergencyPhoneNumber": "960101432",
             "relationship": "Wife",
+            "weight": "75",
+            "height": "170",
             "consultations": [
                 {
                     "doctorName": "Dr. Johnny ",
@@ -150,6 +152,8 @@ var accounts = {
             "emergencyPhoneNumber": "960101432",
             "relationship": "Husband",
             "pacient": "johndoe",
+            "weight": "65",
+            "height": "165",
             "consultations": [
                 
             ]
