@@ -12,3 +12,11 @@ function openPasswordInfo(){
     Alloy.createController("passwordInfo").getView().open();
     return;
 }
+
+
+function changeVariables(){
+    $.userName.text = loggedInAccount.name;
+    $.userEmail.text = loggedInAccount.email;
+}
+
+changeVariables()
