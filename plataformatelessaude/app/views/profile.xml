@@ -23,7 +23,7 @@
                     <Label width="75%" top="28%" left="8%" text="Personal Info"></Label>
                     <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
                 </View>
-                <View class="settingsButton">
+                <View class="settingsButton" onClick="openPasswordInfo">
                     <Label width="75%" top="28%" left="8%" text="Password"></Label>
                     <ImageView image="/right-arrow.png" left="85%" top="20%" height="60%"></ImageView>
                 </View>

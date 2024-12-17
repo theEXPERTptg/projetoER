@@ -76,8 +76,8 @@
                     
                         <TextField id="height" hintText="Altura em centímetros" class="input"></TextField>
 
-                    <Button id="save" title="Save" onClick="updateValues"></Button>
-                    <Button id="back1" title="Back" onClick="goToProfile"></Button>
+                    <Button id="save" title="Salvar" onClick="updateValues"></Button>
+                    <Button id="back1" title="Voltar" onClick="goToProfile"></Button>
                 </ScrollView>
             </View>
         </View>

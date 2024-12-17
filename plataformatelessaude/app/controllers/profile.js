@@ -7,3 +7,8 @@ function openPersonalInfo(){
     Alloy.createController("personalInfo").getView().open();
     return;
 }
+
+function openPasswordInfo(){
+    Alloy.createController("passwordInfo").getView().open();
+    return;
+}
