@@ -124,17 +124,6 @@
             </View>
         </View>
 
-        <!--Estado3(texto)-->
-        <View class="callMessage" visible="true">
-            <View class="header">
-                <!-- User Info Container -->
-                <View class="userInfo">
-                    <Label class="userName" text="Mensagens - Fábio Mendonça"></Label>
-                    <ImageView id="userPhoto" class="userPhoto" image="/ProfilePic.png"></ImageView>
-                </View>
-            </View>
-            
-        </View>
 
     </Window>
 </Alloy>
