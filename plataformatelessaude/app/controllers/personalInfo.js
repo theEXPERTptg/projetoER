@@ -97,10 +97,10 @@ function updateValues(){
 
     function NifNumberChangeCheck(value){
         if(!value){
-            alert(`O NIF foi deixado em branco. A reverter alteração para o NIF inserido anteriormente: ${loggedInAccount.NifNumber}`);
-            $.NifNumber.value = loggedInAccount.NifNumber;
+            alert(`O NIF foi deixado em branco. A reverter alteração para o NIF inserido anteriormente: ${loggedInAccount.nif}`);
+            $.NifNumber.value = loggedInAccount.nif;
             return false;
-        }else if(value != loggedInAccount.NifNumber){
+        }else if(value != loggedInAccount.nif){
             const nif = typeof value === 'string' ? value : value.toString();
             const validationSets = {
                 one: ['1', '2', '3', '5', '6', '8'],
@@ -112,12 +112,12 @@ function updateValues(){
             const modulo11 = (Number(total) % 11);
             const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
             if(checkDigit === Number(nif[8])){
-                alert(`O NIF foi alterado de ${loggedInAccount.NifNumber} para ${$.NifNumber.value}.`);
-                loggedInAccount.NifNumber = $.NifNumber.value;
+                alert(`O NIF foi alterado de ${loggedInAccount.nif} para ${$.NifNumber.value}.`);
+                loggedInAccount.nif = $.NifNumber.value;
                 return true;
             }else{
-                alert(`O NIF inserido não é válido. A reverter alteração para o NIF inserido anteriormente: ${loggedInAccount.NifNumber}`);
-                $.NifNumber.value = loggedInAccount.NifNumber;
+                alert(`O NIF inserido não é válido. A reverter alteração para o NIF inserido anteriormente: ${loggedInAccount.nif}`);
+                $.NifNumber.value = loggedInAccount.nif;
                 return false;
             }
         }

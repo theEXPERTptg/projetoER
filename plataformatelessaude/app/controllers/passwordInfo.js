@@ -6,8 +6,22 @@ function goToProfile() {
 
 
 function updateValues(){
-    var password = $.password.value;
-    var confirmPassword = $.confirmPassword.value;
+    var password = $.password.value || "";
+    var confirmPassword = $.confirmPassword.value || "";
+
+    if (password === "" && confirmPassword === "") {
+        alert("Os campos estão vazios. Se deseja sair desta página use a opção Voltar.");
+        return false;
+    }
+    if (password !== "" && confirmPassword === "") {
+        alert("O campo de confirmação está vazio. Por favor, reintroduza a mesma password.");
+        return false;
+    }
+    if (password === "" && confirmPassword !== "") {
+        alert("O campo da password está vazio. Por favor, insira a nova password.");
+        return false;
+    }
+
     function passwordChangeCheck(password){
         if (password.length < 7) {
             alert("A password inserida é curta. Insira uma password que tenha pelo menos 7 caracteres.");
@@ -33,12 +47,11 @@ function updateValues(){
         return true;
     }
 
-    if(password == $.password.value && confirmPassword == $.confirmPassword.value){
-        alert(`Não existem dados inseridos. Não houveram alterações guardadas. Se deseja voltar atrás clique na opção "Voltar".`)
-        return false;
-    }else if(passwordChangeCheck(password) && confirmPasswordChangeCheck(confirmPassword) ){
+    if(passwordChangeCheck(password) && confirmPasswordChangeCheck(confirmPassword) ){
         goToProfile();
+        loggedInAccount.password = password;
+        alert("A password foi alterada com sucesso.")
         return true;
     }
-    return true;
+    return false;
 }
