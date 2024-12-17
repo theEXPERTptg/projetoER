@@ -63,7 +63,7 @@
                 return;
             }
 
-            peer = new Peer();
+            peer = new Peer("ERG5-TEST");
             peer.on('open', function (id) {
                 window.currentPeerId = id;
             });
