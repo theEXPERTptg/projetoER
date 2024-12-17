@@ -161,7 +161,42 @@ function validatePage2() {
     return true;
 }
 
-function validatePage3() {
+function validatePage3(){
+    var weight = $.weight.value?.trim() || "";
+    var height = $.height.value?.trim() || "";
+
+    const regex = /^\d+(\,\d+)?$/;
+    let errorMessage = "";
+
+    if (!weight && !height){errorMessage = "Não foram inseridos dados. Insira a informação necessária.";} 
+    else if (!weight){errorMessage = "Nenhum valor para o peso foi inserido. Insira a informação necessária.";} 
+    else if (!height){errorMessage = "Nenhum valor para a altura foi inserido. Insira a informação necessária.";} 
+
+    if (errorMessage) {
+        alert(errorMessage);
+        return false;
+    }
+    if(!regex.test(weight)) {
+        alert("O peso deve conter apenas números e, opcionalmente, uma vírgula.");
+        return false; // O peso é inválido
+    }
+    if(!regex.test(height)) {
+        alert("A altura deve conter apenas números e, opcionalmente, uma vírgula.");
+        return false; // O peso é inválido
+    }
+    if (weight && height) {
+        $.registerFormPage3.visible = false;
+        $.registerFormPage4.visible = true;
+        $.registerFormPage5.visible = false;
+        $.weight.value = weight;
+        $.height.value = height;
+        return true;
+    }
+    return false;
+}
+
+
+function validatePage4() {
     var emergencyName = $.emergencyName.value;
     var emergencyPhoneNumber = $.emergencyPhoneNumber.value;
     var relationship = $.relationship.value;
@@ -200,12 +235,13 @@ function validatePage3() {
         $.registerFormPage1.visible = false;
         $.registerFormPage2.visible = false;
         $.registerFormPage3.visible = false;
-        $.registerFormPage4.visible = true;
+        $.registerFormPage4.visible = false;
+        $.registerFormPage5.visible = true;
         return true;
     }
 }
 
-function validatePage4() {
+function validatePage5() {
     if (!$.checkbox1.value) {
         alert("É necessário aceitar os termos e condições para terminar o registo.");
         return false;
@@ -223,7 +259,7 @@ function showRegisterFormPage1() {
     $.registerFormPage2.visible = false;
     $.registerFormPage3.visible = false;
     $.registerFormPage4.visible = false;
-
+    $.registerFormPage5.visible = false;
 }
 
 function showRegisterFormPage2() {
@@ -239,16 +275,23 @@ function showRegisterFormPage3() {
 }
 
 function showRegisterFormPage4() {
+    $.registerFormPage3.visible = false;
+    $.registerFormPage4.visible = true;
+    $.registerFormPage5.visible = false;
+}
+
+function showRegisterFormPage5() {
     $.loginForm.visible = false;
     $.registerFormPage1.visible = false;
     $.registerFormPage2.visible = false;
     $.registerFormPage3.visible = false;
-    $.registerFormPage4.visible = true;
+    $.registerFormPage4.visible = false;
+    $.registerFormPage5.visible = true;
 }
 
 function showLoginForm() {
     $.registerFormPage1.visible = false;
-    $.registerFormPage4.visible = false;
+    $.registerFormPage5.visible = false;
     $.loginForm.visible = true;
 }
 
@@ -260,15 +303,15 @@ function submitLogin() {
     var serverMaintenance = true;
 
     if (!username || !password) {
-        alert("Please enter both username and password.");
+        alert("Por favor insere tanto o nome de utilizador como password.");
         return;
     }
 
     if (!serverConnection) {
         if (serverMaintenance) {
-            alert("The server is currently under maintenance.");
+            alert("O servidor está atualmente em manutenção.");
         } else {
-            alert("There currently isn't a connection to the server.");
+            alert("De momento não existe uma conexão com o servidor.");
         }
         return;
     }
@@ -278,7 +321,7 @@ function submitLogin() {
     );
 
     if (matchedAccount) {
-        alert("Login successful!");
+        alert("Login com sucesso!");
         loggedInAccount = matchedAccount;
         if (loggedInAccount.pacient) {
             loggedInAccount.consultations = accounts.accounts.find(account => account.username === loggedInAccount.pacient).consultations
@@ -290,11 +333,11 @@ function submitLogin() {
         var passwordCorrect = accounts.accounts.some(account => account.password === password);
 
         if (!userExists && !passwordCorrect) {
-            alert("The username and password are incorrect.");
+            alert("O utilizador e password estão incorretos.");
         } else if (!passwordCorrect) {
-            alert("The password is incorrect.");
+            alert("A password está incorreta.");
         } else {
-            alert("This username is incorrect for this password. (brincadeira)");
+            alert("Este utilizador está errado para está password. (brincadeira)");
         }
     }
 }
@@ -314,29 +357,31 @@ function submitRegister() {
         "name": $.name.value,
         "nif": $.NifNumber.value,
         "gender": $.gender.value,
-        "birthDate": birthDate,
+        "birthDate": $.birthDate.value,
         "email": $.email.value,
         "phoneNumber": $.phoneNumber.value,
         "emergencyName": $.emergencyName.value,
-        "emergencyNumber": $.emergencyPhoneNumber.value,
+        "emergencyPhoneNumber": $.emergencyPhoneNumber.value,
         "relationship": $.relationship.value,
+        "weight": $.weight.value,
+        "height": $.height.value,
         "consultations": [
 
         ]
     };
 
     accounts.accounts.push(newAccount);
-    alert("Account successfully registered!");
+    alert("Conta criada com sucesso!");
     showLoginForm();
 }
 
 function forgotPassword() {
-    alert("Feature not implemented - forgotPassword()");
+    alert("Por implementar - forgotPassword()");
     return;
 }
 
 function generateOtpCode() {
-    alert("Feature not implemented - generateOtpCode()")
+    alert("Por implementar - generateOtpCode()")
     return;
 }
 
@@ -362,7 +407,7 @@ if (OS_ANDROID) {
     if (missingPermissions.length > 0) {
         Ti.Android.requestPermissions(missingPermissions, function (e) {
             if (!e.success) {
-                alert("Permissions for Camera and Microphone are required. Please grant them in the device settings.");
+                alert("É necessário permissão para utilizar a câmara e o microfone. Por favor ceda permissão indo às definições do dispositivo.");
             }
         });
     }

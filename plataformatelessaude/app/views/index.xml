@@ -21,7 +21,7 @@
                 <TextField id="NifNumber" hintText="NIF" class="input"></TextField>
                 <TextField id="gender" hintText="Género" class="input"></TextField>
                 <TextField id="birthDate" hintText="Data de Nascimento (dd/mm/aaaa)" class="input"></TextField>
-                <Button id="next1" title="Próximo (1/4)" onClick="validatePage1"></Button> <!--TODO registerpage2-->
+                <Button id="next1" title="Próximo (1/5)" onClick="validatePage1"></Button> <!--TODO registerpage2-->
                 <Button id="back1" title="Voltar Atrás" onClick="showLoginForm"></Button> 
             </View>
                 <!--Page 2-->
@@ -31,23 +31,32 @@
                 <TextField id="phoneNumber" hintText="Número de telemóvel" class="input"></TextField>
                 <TextField id="password" hintText="Password" class="input"></TextField>
                 <TextField id="confirmPassword" hintText="Confirm Password" class="input"></TextField>
-                <Button id="next2" title="Próximo (2/4)" onClick="validatePage2"></Button> <!--TODO registerpage2-->
+                <Button id="next2" title="Próximo (2/5)" onClick="validatePage2"></Button> <!--TODO registerpage2-->
                 <Button id="back2" title="Voltar Atrás" onClick="showRegisterFormPage1"></Button>
             </View>
 
-            <!--Page 3-->
             <View id="registerFormPage3" class="form" visible="false"> 
+                <Label text="Registo" class="titleBox"></Label>
+                <TextField id="weight" hintText="Peso em kg" class="input"></TextField>
+                <TextField id="height" hintText="Altura em cm" class="input"></TextField>
+                <Button id="next3" title="Próximo (3/5)" onClick="validatePage3"></Button> <!--TODO registerpage2-->
+                <Button id="back3" title="Voltar Atrás" onClick="showRegisterFormPage2"></Button>
+            </View>
+
+
+            <!--Page 3-->
+            <View id="registerFormPage4" class="form" visible="false"> 
                 <Label text="Registo" class="titleBox"></Label>
                 <Label id="EmergencyContactText" text="Contacto de Emergência" class="titleBox"></Label>
                 <TextField id="emergencyName" hintText="Nome" class="input"></TextField>
                 <TextField id="emergencyPhoneNumber" hintText="Num. Telemóvel" class="input"></TextField>
                 <TextField id="relationship" hintText="Relação/Parentesco" class="input"></TextField>
-                <Button id="next3" title="Próximo (3/4)" onClick="validatePage3"></Button> <!--TODO registerpage2-->
-                <Button id="back3" title="Voltar Atrás" onClick="showRegisterFormPage2"></Button>
+                <Button id="next4" title="Próximo (4/5)" onClick="validatePage4"></Button> <!--TODO registerpage2-->
+                <Button id="back4" title="Voltar Atrás" onClick="showRegisterFormPage3"></Button>
             </View>
 
             <!--Page 4-->
-            <View id="registerFormPage4" class="form" visible="false"> 
+            <View id="registerFormPage5" class="form" visible="false"> 
                 <Label text="Registo" class="titleBox"></Label>
                     <ScrollView class="scroll-container">
                         <View class="content-container">
@@ -60,8 +69,8 @@
                         <Switch id="checkbox1" />
                             <Label id="checkboxLabel" text="Eu aceito os termos e condições." />
                     </View>   
-                <Button id="next4" title="Completar Registo" onClick="validatePage4"></Button>
-                <Button id="back4" title="Voltar Atrás" onClick="showRegisterFormPage3"></Button>
+                <Button id="next5" title="Completar Registo" onClick="validatePage5"></Button>
+                <Button id="back5" title="Voltar Atrás" onClick="showRegisterFormPage4"></Button>
             </View>
 
             
